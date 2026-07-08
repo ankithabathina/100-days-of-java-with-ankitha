@@ -72,3 +72,9 @@ Worst Case: **O(n)** (when many collisions occur)
 ## ✅ Learning Outcome
 
 Today, I learned how HashMap internally stores data, handles collisions, and achieves efficient performance using hashing.
+
+## 💻 Java Implementation
+
+The complete Java program demonstrating HashMap operations is available below:
+
+🔗 **[HashMapDemo.java](HashMapDemo.java)**
