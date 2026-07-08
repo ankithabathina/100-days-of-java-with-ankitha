@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1 - HashMap Internal Working</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+    <h1>📘 Day 1 - How HashMap Works Internally in Java</h1>
+    <p>100 Days of Java with Ankitha</p>
+</header>
+
+<div class="card">
+
+    <h2>🎯 Objective</h2>
+    <p>
+        Learn how HashMap stores and retrieves data efficiently using hashing.
+    </p>
+
+    <h2>📖 What is HashMap?</h2>
+    <p>
+        HashMap is a class in the Java Collections Framework that stores data as
+        key-value pairs. It uses hashing to provide fast insertion, deletion,
+        and retrieval of elements.
+    </p>
+
+    <h2>⚙️ Internal Working</h2>
+
+    <ol>
+        <li>Calculate the hash code of the key.</li>
+        <li>Convert the hash code into a bucket index.</li>
+        <li>Store the key-value pair in that bucket.</li>
+        <li>Handle collisions using Linked List or Red-Black Tree.</li>
+    </ol>
+
+    <h2>💻 Example</h2>
+
+<pre>
+HashMap&lt;Integer, String&gt; map = new HashMap&lt;&gt;();
+
+map.put(1, "Java");
+map.put(2, "Spring Boot");
+map.put(3, "React");
+</pre>
+
+    <h2>⏱️ Time Complexity</h2>
+
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>Operation</th>
+            <th>Complexity</th>
+        </tr>
+        <tr>
+            <td>Insert</td>
+            <td>O(1)</td>
+        </tr>
+        <tr>
+            <td>Search</td>
+            <td>O(1)</td>
+        </tr>
+        <tr>
+            <td>Delete</td>
+            <td>O(1)</td>
+        </tr>
+    </table>
+
+    <p><strong>Worst Case:</strong> O(n)</p>
+
+    <h2>📌 Key Takeaways</h2>
+
+    <ul>
+        <li>Stores data as key-value pairs.</li>
+        <li>Uses hashing for fast retrieval.</li>
+        <li>Allows one null key and multiple null values.</li>
+        <li>Does not maintain insertion order.</li>
+        <li>Handles collisions using Linked List or Red-Black Tree.</li>
+    </ul>
+
+    <h2>💻 Java Program</h2>
+
+    <p>
+        <a href="HashMapDemo.java">📄 View HashMapDemo.java</a>
+    </p>
+
+    <br>
+
+    <a href="../index.html">⬅ Back to Home</a>
+
+</div>
+
+</body>
+</html>
