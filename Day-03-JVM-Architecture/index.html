@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3 - JVM Architecture</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+    <h1>📘 Day 3 - JVM (Java Virtual Machine) Architecture</h1>
+    <p>100 Days of Java with Ankitha</p>
+</header>
+
+<div class="content">
+
+    <h2>🎯 Objective</h2>
+    <p>
+        Learn how the Java Virtual Machine (JVM) executes Java programs and manages memory.
+    </p>
+
+    <h2>📖 What is JVM?</h2>
+    <p>
+        JVM (Java Virtual Machine) is a part of the Java Runtime Environment (JRE).
+        It converts Java bytecode into machine code, making Java platform independent.
+    </p>
+
+    <h2>🌟 Why JVM?</h2>
+
+    <ul>
+        <li>Platform Independent</li>
+        <li>Automatic Memory Management</li>
+        <li>Garbage Collection</li>
+        <li>Security</li>
+        <li>Improved Performance using JIT Compiler</li>
+    </ul>
+
+    <h2>🏗️ JVM Architecture</h2>
+
+    <ol>
+        <li>Class Loader Subsystem</li>
+        <li>Runtime Data Areas</li>
+        <li>Execution Engine</li>
+        <li>Java Native Interface (JNI)</li>
+        <li>Native Method Libraries</li>
+    </ol>
+
+    <h2>📦 Runtime Data Areas</h2>
+
+    <table>
+        <tr>
+            <th>Memory Area</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>Heap</td>
+            <td>Stores Objects and Instance Variables</td>
+        </tr>
+        <tr>
+            <td>Stack</td>
+            <td>Stores Local Variables and Method Calls</td>
+        </tr>
+        <tr>
+            <td>Method Area</td>
+            <td>Stores Class Metadata and Static Variables</td>
+        </tr>
+        <tr>
+            <td>PC Register</td>
+            <td>Stores Current Instruction Address</td>
+        </tr>
+        <tr>
+            <td>Native Method Stack</td>
+            <td>Stores Native Methods</td>
+        </tr>
+    </table>
+
+    <h2>⚙️ Java Program Execution Flow</h2>
+
+<pre>
+Java Source Code (.java)
+        ↓
+Compile (javac)
+        ↓
+Bytecode (.class)
+        ↓
+Class Loader
+        ↓
+Bytecode Verifier
+        ↓
+Execution Engine
+        ↓
+JIT Compiler
+        ↓
+Machine Code
+        ↓
+Output
+</pre>
+
+    <h2>💻 Java Program</h2>
+
+    <p>
+        <a href="JVMDemo.java">📄 View JVMDemo.java</a>
+    </p>
+
+    <h2>🎯 Learning Outcome</h2>
+
+    <ul>
+        <li>Understood JVM Architecture.</li>
+        <li>Learned Runtime Data Areas.</li>
+        <li>Understood Class Loader and Execution Engine.</li>
+        <li>Learned about JIT Compiler and Garbage Collection.</li>
+    </ul>
+
+    <br>
+
+    <a href="../index.html">⬅ Back to Home</a>
+
+</div>
+
+</body>
+</html>
