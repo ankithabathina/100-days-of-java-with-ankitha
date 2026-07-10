@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 4 - Exception Handling</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+    <h1>📘 Day 4 - Exception Handling in Java</h1>
+    <p>100 Days of Java with Ankitha</p>
+</header>
+
+<div class="content">
+
+    <h2>🎯 Objective</h2>
+    <p>
+        Learn how Java handles runtime errors using Exception Handling.
+    </p>
+
+    <h2>📖 What is Exception Handling?</h2>
+    <p>
+        Exception Handling is a mechanism in Java that handles runtime errors gracefully
+        without terminating the program unexpectedly.
+    </p>
+
+    <h2>❓ Why Do We Need Exception Handling?</h2>
+
+    <ul>
+        <li>Prevents abnormal program termination.</li>
+        <li>Improves application reliability.</li>
+        <li>Makes debugging easier.</li>
+        <li>Maintains normal program flow.</li>
+    </ul>
+
+    <h2>📚 Types of Exceptions</h2>
+
+    <table>
+        <tr>
+            <th>Checked Exception</th>
+            <th>Unchecked Exception</th>
+        </tr>
+
+        <tr>
+            <td>Checked at Compile Time</td>
+            <td>Occurs at Runtime</td>
+        </tr>
+
+        <tr>
+            <td>IOException</td>
+            <td>ArithmeticException</td>
+        </tr>
+
+        <tr>
+            <td>SQLException</td>
+            <td>NullPointerException</td>
+        </tr>
+
+    </table>
+
+    <h2>🔑 Exception Handling Keywords</h2>
+
+    <ul>
+        <li><strong>try</strong> – Contains risky code.</li>
+        <li><strong>catch</strong> – Handles the exception.</li>
+        <li><strong>finally</strong> – Executes whether an exception occurs or not.</li>
+        <li><strong>throw</strong> – Throws an exception explicitly.</li>
+        <li><strong>throws</strong> – Declares an exception.</li>
+    </ul>
+
+    <h2>⚙️ Internal Exception Handling Process</h2>
+
+<pre>
+Program Starts
+       │
+       ▼
+try Block Executes
+       │
+Exception?
+ ┌─────┴─────┐
+ │           │
+No          Yes
+ │           │
+ ▼           ▼
+Continue   JVM Creates Exception Object
+               │
+               ▼
+      Searches Matching catch Block
+               │
+               ▼
+      Exception Handled
+               │
+               ▼
+      finally Block Executes
+               │
+               ▼
+        Program Continues
+</pre>
+
+    <h2>💻 Java Program</h2>
+
+    <p>
+        <a href="ExceptionHandlingDemo.java">📄 View ExceptionHandlingDemo.java</a>
+    </p>
+
+    <h2>🎯 Interview Questions</h2>
+
+    <ul>
+        <li>What is Exception Handling?</li>
+        <li>Difference between Checked and Unchecked Exceptions?</li>
+        <li>Difference between <strong>throw</strong> and <strong>throws</strong>?</li>
+        <li>Is the finally block always executed?</li>
+        <li>Can we have multiple catch blocks?</li>
+    </ul>
+
+    <h2>✅ Learning Outcome</h2>
+
+    <ul>
+        <li>Learned Exception Handling in Java.</li>
+        <li>Understood Checked and Unchecked Exceptions.</li>
+        <li>Learned try, catch, finally, throw, and throws.</li>
+        <li>Understood how JVM handles exceptions internally.</li>
+    </ul>
+
+    <br>
+
+    <a href="../index.html">⬅ Back to Home</a>
+
+</div>
+
+</body>
+</html>
