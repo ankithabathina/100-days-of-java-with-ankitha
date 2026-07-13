@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 7 - LinkedList in Java</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+    <h1>📘 Day 7 - LinkedList in Java</h1>
+    <p>100 Days of Java with Ankitha</p>
+</header>
+
+<div class="content">
+
+    <h2>🎯 Objective</h2>
+    <p>
+        Learn how LinkedList works internally, its features, important methods,
+        time complexity, and real-world applications.
+    </p>
+
+    <h2>📖 What is LinkedList?</h2>
+
+    <p>
+        LinkedList is a class in the Java Collections Framework that implements
+        the List and Deque interfaces. It stores elements as nodes connected
+        through previous and next references.
+    </p>
+
+    <h2>⭐ Features</h2>
+
+    <ul>
+        <li>Doubly Linked List</li>
+        <li>Dynamic Size</li>
+        <li>Maintains Insertion Order</li>
+        <li>Allows Duplicate Elements</li>
+        <li>Allows Null Values</li>
+        <li>Fast Insertion & Deletion</li>
+    </ul>
+
+    <h2>⚙️ Internal Working</h2>
+
+<pre>
+Head
+ │
+ ▼
++------+------+      +------+------+      +------+------+
+| Prev | Data | ---> | Prev | Data | ---> | Prev | Data |
+| Null | Java | <--- | Java | Spring| <---| Spring| React|
++------+------+      +------+------+      +------+------+
+       ▲                    ▲                    ▲
+       │                    │                    │
+      Next                 Next                 Next
+</pre>
+
+    <h2>📚 Important Methods</h2>
+
+    <table>
+        <tr>
+            <th>Method</th>
+            <th>Description</th>
+        </tr>
+
+        <tr>
+            <td>add()</td>
+            <td>Adds an element.</td>
+        </tr>
+
+        <tr>
+            <td>addFirst()</td>
+            <td>Adds an element at the beginning.</td>
+        </tr>
+
+        <tr>
+            <td>addLast()</td>
+            <td>Adds an element at the end.</td>
+        </tr>
+
+        <tr>
+            <td>getFirst()</td>
+            <td>Returns the first element.</td>
+        </tr>
+
+        <tr>
+            <td>getLast()</td>
+            <td>Returns the last element.</td>
+        </tr>
+
+        <tr>
+            <td>remove()</td>
+            <td>Removes an element.</td>
+        </tr>
+
+    </table>
+
+    <h2>⏱️ Time Complexity</h2>
+
+    <table>
+        <tr>
+            <th>Operation</th>
+            <th>Complexity</th>
+        </tr>
+
+        <tr>
+            <td>add()</td>
+            <td>O(1)</td>
+        </tr>
+
+        <tr>
+            <td>addFirst()</td>
+            <td>O(1)</td>
+        </tr>
+
+        <tr>
+            <td>addLast()</td>
+            <td>O(1)</td>
+        </tr>
+
+        <tr>
+            <td>get(index)</td>
+            <td>O(n)</td>
+        </tr>
+
+        <tr>
+            <td>remove()</td>
+            <td>O(1)</td>
+        </tr>
+
+    </table>
+
+    <h2>💻 Java Program</h2>
+
+    <p>
+        <a href="LinkedListDemo.java">📄 View LinkedListDemo.java</a>
+    </p>
+
+    <h2>🎯 Interview Questions</h2>
+
+    <ul>
+        <li>What is LinkedList?</li>
+        <li>Difference between ArrayList and LinkedList?</li>
+        <li>Why is LinkedList better for insertion and deletion?</li>
+        <li>How does LinkedList store data internally?</li>
+        <li>When should you use LinkedList?</li>
+    </ul>
+
+    <h2>✅ Learning Outcome</h2>
+
+    <ul>
+        <li>Learned the internal working of LinkedList.</li>
+        <li>Understood node-based data storage.</li>
+        <li>Learned important LinkedList methods.</li>
+        <li>Studied time complexity of operations.</li>
+    </ul>
+
+    <br>
+
+    <a href="../index.html">⬅ Back to Home</a>
+
+</div>
+
+</body>
+</html>
