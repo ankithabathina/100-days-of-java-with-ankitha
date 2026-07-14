@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 8 - String vs StringBuilder vs StringBuffer</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+    <h1>📘 Day 8 - String vs StringBuilder vs StringBuffer</h1>
+    <p>100 Days of Java with Ankitha</p>
+</header>
+
+<div class="content">
+
+    <h2>🎯 Objective</h2>
+    <p>
+        Learn the differences between String, StringBuilder, and StringBuffer,
+        including mutability, thread safety, performance, and internal working.
+    </p>
+
+    <h2>📖 What is String?</h2>
+
+    <p>
+        String is an immutable class in Java. Once a String object is created,
+        its value cannot be changed. Any modification creates a new object.
+    </p>
+
+    <h2>📖 What is StringBuilder?</h2>
+
+    <p>
+        StringBuilder is a mutable class that allows modifying the same object.
+        It is faster because it is not synchronized.
+    </p>
+
+    <h2>📖 What is StringBuffer?</h2>
+
+    <p>
+        StringBuffer is also mutable but thread-safe because its methods are synchronized.
+        It is mainly used in multi-threaded applications.
+    </p>
+
+    <h2>⚙️ Internal Working</h2>
+
+<pre>
+String (Immutable)
+
+"Java"
+   │
+append(" Developer")
+   │
+New Object Created
+   │
+"Java Developer"
+
+
+StringBuilder
+
+"Java"
+   │
+append(" Developer")
+   │
+Same Object Modified
+
+
+StringBuffer
+
+"Java"
+   │
+append(" Developer")
+   │
+Synchronized
+   │
+Same Object Modified
+</pre>
+
+    <h2>📊 Comparison</h2>
+
+    <table>
+        <tr>
+            <th>Feature</th>
+            <th>String</th>
+            <th>StringBuilder</th>
+            <th>StringBuffer</th>
+        </tr>
+
+        <tr>
+            <td>Mutable</td>
+            <td>No</td>
+            <td>Yes</td>
+            <td>Yes</td>
+        </tr>
+
+        <tr>
+            <td>Thread Safe</td>
+            <td>Yes</td>
+            <td>No</td>
+            <td>Yes</td>
+        </tr>
+
+        <tr>
+            <td>Performance</td>
+            <td>Slow</td>
+            <td>Fast</td>
+            <td>Moderate</td>
+        </tr>
+
+        <tr>
+            <td>Memory Usage</td>
+            <td>High</td>
+            <td>Low</td>
+            <td>Medium</td>
+        </tr>
+
+    </table>
+
+    <h2>💻 Java Program</h2>
+
+    <p>
+        <a href="StringComparisonDemo.java">
+            📄 View StringComparisonDemo.java
+        </a>
+    </p>
+
+    <h2>🎯 Interview Questions</h2>
+
+    <ul>
+        <li>What is String?</li>
+        <li>Why is String immutable?</li>
+        <li>Difference between StringBuilder and StringBuffer?</li>
+        <li>Which one is thread-safe?</li>
+        <li>When should you use StringBuilder?</li>
+        <li>When should you use StringBuffer?</li>
+    </ul>
+
+    <h2>✅ Learning Outcome</h2>
+
+    <ul>
+        <li>Learned String immutability.</li>
+        <li>Understood mutable vs immutable objects.</li>
+        <li>Compared StringBuilder and StringBuffer.</li>
+        <li>Learned thread safety and performance differences.</li>
+    </ul>
+
+    <br>
+
+    <a href="../index.html">⬅ Back to Home</a>
+
+</div>
+
+</body>
+</html>
