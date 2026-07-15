@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 9 - Multithreading in Java</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<header>
+
+<h1>📘 Day 9 - Multithreading in Java</h1>
+
+<p>100 Days of Java with Ankitha</p>
+
+</header>
+
+<div class="content">
+
+<h2>🎯 Objective</h2>
+
+<p>
+Learn the fundamentals of Multithreading, understand the Thread Lifecycle,
+learn different ways to create threads, important thread methods,
+and how Java executes multiple tasks simultaneously.
+</p>
+
+<hr>
+
+<h2>📖 What is Multithreading?</h2>
+
+<p>
+
+Multithreading is a feature of Java that allows multiple threads to run
+concurrently within a single process.
+
+Each thread performs an independent task while sharing the same memory
+space of the process.
+
+Instead of executing one task after another, multiple tasks can execute
+simultaneously, improving application performance and responsiveness.
+
+</p>
+
+<hr>
+
+<h2>❓ Why Do We Need Multithreading?</h2>
+
+<ul>
+
+<li>Improves application performance.</li>
+
+<li>Better CPU utilization.</li>
+
+<li>Executes multiple tasks simultaneously.</li>
+
+<li>Supports background processing.</li>
+
+<li>Makes applications more responsive.</li>
+
+<li>Efficient resource sharing.</li>
+
+<li>Reduces overall execution time.</li>
+
+</ul>
+
+<hr>
+
+<h2>📚 Process vs Thread</h2>
+
+<table>
+
+<tr>
+
+<th>Process</th>
+
+<th>Thread</th>
+
+</tr>
+
+<tr>
+
+<td>Independent program</td>
+
+<td>Smallest unit of execution</td>
+
+</tr>
+
+<tr>
+
+<td>Own memory space</td>
+
+<td>Shares process memory</td>
+
+</tr>
+
+<tr>
+
+<td>Heavyweight</td>
+
+<td>Lightweight</td>
+
+</tr>
+
+<tr>
+
+<td>Slow context switching</td>
+
+<td>Fast context switching</td>
+
+</tr>
+
+<tr>
+
+<td>Consumes more resources</td>
+
+<td>Consumes fewer resources</td>
+
+</tr>
+
+</table>
+
+<hr>
+
+<h2>⚙️ Internal Working of Multithreading</h2>
+
+<pre>
+
+Program Starts
+
+      │
+
+      ▼
+
+Main Thread Created
+
+      │
+
+      ▼
+
+Thread Object Created
+
+      │
+
+      ▼
+
+start() Method Called
+
+      │
+
+      ▼
+
+JVM Creates New Thread
+
+      │
+
+      ▼
+
+run() Method Executes
+
+      │
+
+      ▼
+
+Multiple Threads Execute Concurrently
+
+      │
+
+      ▼
+
+Execution Completed
+
+      │
+
+      ▼
+
+TERMINATED
+
+</pre>
+
+<h2>📝 Internal Working Explanation</h2>
+
+<p>
+
+<b>Step 1:</b> The JVM starts executing the program with the Main Thread.
+
+</p>
+
+<p>
+
+<b>Step 2:</b> A new Thread object is created using the Thread class
+or Runnable interface.
+
+</p>
+
+<p>
+
+<b>Step 3:</b> Calling <b>start()</b> requests the JVM to create a new thread.
+
+</p>
+
+<p>
+
+<b>Step 4:</b> The JVM internally invokes the <b>run()</b> method.
+
+</p>
+
+<p>
+
+<b>Step 5:</b> The Main Thread and Child Thread execute concurrently.
+
+</p>
+
+<p>
+
+<b>Step 6:</b> Once execution is completed, the thread enters the
+<b>TERMINATED</b> state.
+
+</p>
+
+<hr>
+<h2>🧵 Thread Lifecycle</h2>
+
+<pre>
+
+        NEW
+         │
+         ▼
+     RUNNABLE
+         │
+         ▼
+      RUNNING
+      /      \
+     ▼        ▼
+WAITING    BLOCKED
+      \      /
+       ▼    ▼
+    TERMINATED
+
+</pre>
+
+<h2>📌 Thread States Explanation</h2>
+
+<h3>1️⃣ NEW</h3>
+
+<p>
+A thread is in the <strong>NEW</strong> state when it is created but the
+<code>start()</code> method has not yet been called.
+</p>
+
+<h3>2️⃣ RUNNABLE</h3>
+
+<p>
+After calling <code>start()</code>, the thread enters the
+<strong>RUNNABLE</strong> state and waits for CPU scheduling.
+</p>
+
+<h3>3️⃣ RUNNING</h3>
+
+<p>
+When the CPU allocates time to the thread, it moves to the
+<strong>RUNNING</strong> state and executes the <code>run()</code> method.
+</p>
+
+<h3>4️⃣ WAITING</h3>
+
+<p>
+A thread enters the <strong>WAITING</strong> state when it waits for another
+thread to complete or for a specific event to occur.
+</p>
+
+<h3>5️⃣ BLOCKED</h3>
+
+<p>
+A thread enters the <strong>BLOCKED</strong> state when it is waiting to
+acquire a lock or monitor before continuing execution.
+</p>
+
+<h3>6️⃣ TERMINATED</h3>
+
+<p>
+Once the thread completes execution or stops due to an exception,
+it enters the <strong>TERMINATED</strong> state.
+</p>
+
+<hr>
+
+<h2>🔑 Ways to Create a Thread</h2>
+
+<h3>1️⃣ Extending Thread Class</h3>
+
+<p>
+A class can create a thread by extending the <strong>Thread</strong> class
+and overriding its <code>run()</code> method.
+</p>
+
+<pre>
+class MyThread extends Thread {
+
+    public void run() {
+        System.out.println("Thread is Running");
+    }
+
+}
+</pre>
+
+<p>
+<strong>Advantage:</strong> Easy to implement for simple applications.
+</p>
+
+<p>
+<strong>Limitation:</strong> Since Java supports only single inheritance,
+the class cannot extend any other class.
+</p>
+
+<hr>
+
+<h3>2️⃣ Implementing Runnable Interface</h3>
+
+<p>
+Another way to create a thread is by implementing the
+<strong>Runnable</strong> interface and overriding the
+<code>run()</code> method.
+</p>
+
+<pre>
+class MyRunnable implements Runnable {
+
+    public void run() {
+        System.out.println("Runnable is Running");
+    }
+
+}
+</pre>
+
+<p>
+<strong>Advantage:</strong> Allows the class to extend another class and is
+the preferred approach in Java.
+</p>
+
+<hr>
+
+<h2>⭐ Important Thread Methods</h2>
+
+<table>
+
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>start()</td>
+<td>Starts a new thread.</td>
+</tr>
+
+<tr>
+<td>run()</td>
+<td>Contains the code executed by the thread.</td>
+</tr>
+
+<tr>
+<td>sleep()</td>
+<td>Pauses the current thread for a specified time.</td>
+</tr>
+
+<tr>
+<td>join()</td>
+<td>Waits until another thread finishes execution.</td>
+</tr>
+
+<tr>
+<td>yield()</td>
+<td>Temporarily gives another thread a chance to execute.</td>
+</tr>
+
+<tr>
+<td>interrupt()</td>
+<td>Interrupts a sleeping or waiting thread.</td>
+</tr>
+
+<tr>
+<td>isAlive()</td>
+<td>Checks whether a thread is currently running.</td>
+</tr>
+
+<tr>
+<td>currentThread()</td>
+<td>Returns the currently executing thread.</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h2>✅ Advantages of Multithreading</h2>
+
+<ul>
+
+<li>Improves application performance.</li>
+
+<li>Better CPU utilization.</li>
+
+<li>Supports concurrent execution.</li>
+
+<li>Makes applications more responsive.</li>
+
+<li>Efficient resource sharing.</li>
+
+<li>Background task execution.</li>
+
+<li>Reduces overall execution time.</li>
+
+</ul>
+
+<hr>
+
+<h2>⚠️ Disadvantages of Multithreading</h2>
+
+<ul>
+
+<li>Difficult debugging.</li>
+
+<li>Thread synchronization issues.</li>
+
+<li>Deadlock can occur.</li>
+
+<li>Race conditions may occur.</li>
+
+<li>Program complexity increases.</li>
+
+</ul>
+
+<hr>
+  <h2>🌍 Real-World Applications of Multithreading</h2>
+
+<ul>
+
+<li>Online Banking Systems</li>
+
+<li>Web Servers</li>
+
+<li>Chat Applications</li>
+
+<li>Online Games</li>
+
+<li>Video Streaming Platforms</li>
+
+<li>File Download Managers</li>
+
+<li>Email Applications</li>
+
+<li>Operating Systems</li>
+
+<li>Android Applications</li>
+
+<li>Spring Boot Backend Applications</li>
+
+</ul>
+
+<hr>
+
+<h2>💻 Java Program</h2>
+
+<p>
+
+The complete Java implementation demonstrating Multithreading is available below.
+
+</p>
+
+<p>
+
+<a href="MultithreadingDemo.java">
+
+📄 View MultithreadingDemo.java
+
+</a>
+
+</p>
+
+<hr>
+
+<h2>💡 Best Practices</h2>
+
+<ul>
+
+<li>Prefer Runnable Interface over extending Thread.</li>
+
+<li>Avoid creating unnecessary threads.</li>
+
+<li>Use synchronization for shared resources.</li>
+
+<li>Always handle InterruptedException.</li>
+
+<li>Use Thread Pools (Executor Framework) in large applications.</li>
+
+<li>Keep thread execution lightweight.</li>
+
+<li>Avoid deadlocks by acquiring locks carefully.</li>
+
+</ul>
+
+<hr>
+
+<h2>🎯 Frequently Asked Interview Questions</h2>
+
+<ol>
+
+<li>What is Multithreading?</li>
+
+<li>Difference between Process and Thread?</li>
+
+<li>Difference between start() and run()?</li>
+
+<li>Explain the Thread Lifecycle.</li>
+
+<li>How do you create a thread in Java?</li>
+
+<li>Why is Runnable preferred over Thread?</li>
+
+<li>What is Thread Synchronization?</li>
+
+<li>What is Deadlock?</li>
+
+<li>What is Race Condition?</li>
+
+<li>What is the purpose of sleep()?</li>
+
+<li>What is join()?</li>
+
+<li>Difference between sleep() and wait()?</li>
+
+<li>What is currentThread()?</li>
+
+<li>What is isAlive()?</li>
+
+<li>Can we restart a thread after it is terminated?</li>
+
+</ol>
+
+<hr>
+
+<h2>📌 Key Takeaways</h2>
+
+<ul>
+
+<li>Multithreading allows multiple threads to execute concurrently.</li>
+
+<li>Threads share the memory of the same process.</li>
+
+<li>Java provides Thread Class and Runnable Interface for thread creation.</li>
+
+<li>Understanding the Thread Lifecycle is essential for writing concurrent applications.</li>
+
+<li>Synchronization helps prevent data inconsistency when multiple threads access shared resources.</li>
+
+<li>Multithreading improves performance but should be used carefully to avoid deadlocks and race conditions.</li>
+
+</ul>
+
+<hr>
+
+<h2>✅ Learning Outcome</h2>
+
+<ul>
+
+<li>Learned the fundamentals of Multithreading.</li>
+
+<li>Understood Process vs Thread.</li>
+
+<li>Learned the complete Thread Lifecycle.</li>
+
+<li>Explored different ways to create threads.</li>
+
+<li>Studied important thread methods.</li>
+
+<li>Learned real-world applications of Multithreading.</li>
+
+<li>Prepared interview-focused notes for Core Java.</li>
+
+</ul>
+
+<br>
+
+<a href="../index.html">⬅ Back to Home</a>
+
+</div>
+
+</body>
+</html>
