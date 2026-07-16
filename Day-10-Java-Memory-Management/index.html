@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 10 - Java Memory Management</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<header>
+
+<h1>📘 Day 10 - Java Memory Management</h1>
+
+<p>100 Days of Java with Ankitha</p>
+
+</header>
+
+<div class="content">
+
+<h2>🎯 Objective</h2>
+
+<p>
+Learn how Java manages memory using the JVM. Understand Heap Memory,
+Stack Memory, Method Area, Program Counter Register,
+Native Method Stack, and Garbage Collection.
+</p>
+
+<hr>
+
+<h2>📑 Quick Navigation</h2>
+
+<ul>
+
+<li><a href="#memory">📖 What is Java Memory Management?</a></li>
+
+<li><a href="#need">❓ Why Memory Management?</a></li>
+
+<li><a href="#areas">🏗 JVM Memory Areas</a></li>
+
+<li><a href="#working">⚙️ Internal Working</a></li>
+
+<li><a href="#gc">🗑 Garbage Collection</a></li>
+
+<li><a href="#advantages">⭐ Advantages</a></li>
+
+<li><a href="#applications">🌍 Real-world Applications</a></li>
+
+<li><a href="#program">💻 Java Program</a></li>
+
+<li><a href="#interview">🎯 Interview Questions</a></li>
+
+</ul>
+
+<hr>
+
+<h2 id="memory">📖 What is Java Memory Management?</h2>
+
+<p>
+
+Java Memory Management is the process by which the Java Virtual Machine
+(JVM) allocates and deallocates memory during program execution.
+
+Unlike many programming languages, Java automatically manages memory
+using the Garbage Collector. Developers do not need to manually free
+memory after creating objects.
+
+This makes Java applications more reliable, reduces memory leaks,
+and improves application performance.
+
+</p>
+
+<hr>
+
+<h2 id="need">❓ Why is Memory Management Important?</h2>
+
+<ul>
+
+<li>Automatic memory allocation.</li>
+
+<li>Automatic memory deallocation.</li>
+
+<li>Efficient memory utilization.</li>
+
+<li>Improves application performance.</li>
+
+<li>Prevents memory leaks.</li>
+
+<li>Reduces programmer effort.</li>
+
+<li>Supports scalable applications.</li>
+
+</ul>
+
+<hr>
+
+<h2 id="areas">🏗 JVM Memory Areas</h2>
+
+<p>
+
+The JVM divides memory into different areas. Each area has a specific
+purpose during program execution.
+
+</p>
+
+<table>
+
+<tr>
+<th>Memory Area</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>Heap Memory</td>
+<td>Stores Objects and Instance Variables</td>
+</tr>
+
+<tr>
+<td>Stack Memory</td>
+<td>Stores Method Calls and Local Variables</td>
+</tr>
+
+<tr>
+<td>Method Area</td>
+<td>Stores Class Metadata and Static Variables</td>
+</tr>
+
+<tr>
+<td>Program Counter Register</td>
+<td>Stores Address of Current Instruction</td>
+</tr>
+
+<tr>
+<td>Native Method Stack</td>
+<td>Executes Native Methods</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>1️⃣ Heap Memory</h3>
+
+<p>
+
+Heap Memory stores all objects and instance variables created during
+program execution.
+
+It is shared among all threads and is managed automatically by the
+Garbage Collector.
+
+</p>
+
+<h3>2️⃣ Stack Memory</h3>
+
+<p>
+
+Each thread has its own Stack Memory.
+
+It stores method calls, local variables, and references.
+Memory is automatically released when a method finishes execution.
+
+</p>
+
+<h3>3️⃣ Method Area</h3>
+
+<p>
+
+The Method Area stores class-level information such as:
+
+</p>
+
+<ul>
+
+<li>Class Metadata</li>
+
+<li>Static Variables</li>
+
+<li>Runtime Constant Pool</li>
+
+<li>Method Information</li>
+
+</ul>
+
+<h3>4️⃣ Program Counter Register</h3>
+
+<p>
+
+The Program Counter Register stores the address of the instruction
+currently being executed by the JVM.
+
+Each thread has its own Program Counter Register.
+
+</p>
+
+<h3>5️⃣ Native Method Stack</h3>
+
+<p>
+
+The Native Method Stack is used for executing native methods written
+in languages like C and C++ through JNI (Java Native Interface).
+
+</p>
+
+<hr>
