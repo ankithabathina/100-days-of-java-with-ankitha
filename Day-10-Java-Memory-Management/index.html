@@ -205,3 +205,391 @@ in languages like C and C++ through JNI (Java Native Interface).
 </p>
 
 <hr>
+    <h2 id="working">⚙️ Internal Working of Java Memory Management</h2>
+
+<pre>
+
+Program Starts
+      │
+      ▼
+JVM Loads Class
+      │
+      ▼
+Method Area Created
+      │
+      ▼
+Main Method Invoked
+      │
+      ▼
+Stack Frame Created
+      │
+      ▼
+Objects Created in Heap
+      │
+      ▼
+Methods Execute
+      │
+      ▼
+Objects Become Unreachable
+      │
+      ▼
+Garbage Collector Removes Objects
+      │
+      ▼
+Memory Reused
+
+</pre>
+
+<h2>📝 Internal Working Explanation</h2>
+
+<p>
+
+<b>Step 1:</b> The JVM loads the required class into the Method Area.
+
+</p>
+
+<p>
+
+<b>Step 2:</b> The <b>main()</b> method starts execution and a Stack Frame is created.
+
+</p>
+
+<p>
+
+<b>Step 3:</b> Whenever an object is created using the <b>new</b> keyword, memory is allocated in the Heap.
+
+</p>
+
+<p>
+
+<b>Step 4:</b> Local variables and method calls are stored in Stack Memory.
+
+</p>
+
+<p>
+
+<b>Step 5:</b> After methods complete execution, Stack Memory is automatically released.
+
+</p>
+
+<p>
+
+<b>Step 6:</b> Objects that are no longer referenced become eligible for Garbage Collection.
+
+</p>
+
+<p>
+
+<b>Step 7:</b> The Garbage Collector removes unused objects and frees Heap Memory.
+
+</p>
+
+<hr>
+
+<h2 id="gc">🗑 Garbage Collection (GC)</h2>
+
+<p>
+
+Garbage Collection is an automatic process performed by the JVM to remove
+objects that are no longer reachable by the program.
+
+It helps prevent memory leaks and improves application performance by
+reclaiming unused Heap Memory.
+
+</p>
+
+<h3>How Garbage Collection Works</h3>
+
+<pre>
+
+Object Created
+      │
+      ▼
+Object Used
+      │
+      ▼
+Reference Removed
+      │
+      ▼
+Object Becomes Unreachable
+      │
+      ▼
+Garbage Collector Detects Object
+      │
+      ▼
+Memory Released
+
+</pre>
+
+<h3>Common Garbage Collectors</h3>
+
+<ul>
+
+<li>Serial Garbage Collector</li>
+
+<li>Parallel Garbage Collector</li>
+
+<li>G1 Garbage Collector</li>
+
+<li>Z Garbage Collector (ZGC)</li>
+
+<li>Shenandoah Garbage Collector</li>
+
+</ul>
+
+<hr>
+
+<h2>📊 Heap Memory vs Stack Memory</h2>
+
+<table>
+
+<tr>
+<th>Heap Memory</th>
+<th>Stack Memory</th>
+</tr>
+
+<tr>
+<td>Stores Objects</td>
+<td>Stores Local Variables</td>
+</tr>
+
+<tr>
+<td>Shared by Threads</td>
+<td>One Stack per Thread</td>
+</tr>
+
+<tr>
+<td>Managed by Garbage Collector</td>
+<td>Automatically Cleared After Method Execution</td>
+</tr>
+
+<tr>
+<td>Larger Memory Area</td>
+<td>Smaller Memory Area</td>
+</tr>
+
+<tr>
+<td>Slower Access</td>
+<td>Faster Access</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h2 id="advantages">⭐ Advantages of Java Memory Management</h2>
+
+<ul>
+
+<li>Automatic memory allocation.</li>
+
+<li>Automatic garbage collection.</li>
+
+<li>Reduces memory leaks.</li>
+
+<li>Improves application performance.</li>
+
+<li>Efficient memory utilization.</li>
+
+<li>Simplifies application development.</li>
+
+</ul>
+
+<hr>
+
+<h2>⚠️ Disadvantages</h2>
+
+<ul>
+
+<li>Garbage Collection consumes CPU resources.</li>
+
+<li>Developers have less control over memory management.</li>
+
+<li>Frequent object creation may reduce performance.</li>
+
+<li>Improper coding can still cause OutOfMemoryError.</li>
+
+</ul>
+
+<hr>
+    <h2 id="applications">🌍 Real-World Applications</h2>
+
+<ul>
+
+<li>Enterprise Applications</li>
+
+<li>Banking Systems</li>
+
+<li>E-Commerce Applications</li>
+
+<li>Spring Boot Applications</li>
+
+<li>Android Applications</li>
+
+<li>Cloud-Based Applications</li>
+
+<li>Web Servers</li>
+
+<li>Microservices Architecture</li>
+
+<li>Desktop Applications</li>
+
+<li>Game Development</li>
+
+</ul>
+
+<hr>
+
+<h2 id="program">💻 Java Program</h2>
+
+<p>
+
+The following program demonstrates object creation and how objects become
+eligible for Garbage Collection.
+
+</p>
+
+<pre>
+
+public class MemoryManagementDemo {
+
+    int id = 101;
+
+    public static void main(String[] args) {
+
+        MemoryManagementDemo obj1 = new MemoryManagementDemo();
+
+        MemoryManagementDemo obj2 = new MemoryManagementDemo();
+
+        System.out.println("Objects Created");
+
+        obj1 = null;
+
+        obj2 = null;
+
+        System.gc();
+
+        System.out.println("Garbage Collection Requested");
+
+    }
+
+}
+
+</pre>
+
+<p>
+
+<b>Note:</b> <code>System.gc()</code> only requests Garbage Collection.
+The JVM decides whether to perform it immediately.
+
+</p>
+
+<hr>
+
+<h2>💡 Best Practices</h2>
+
+<ul>
+
+<li>Create objects only when required.</li>
+
+<li>Remove unused object references.</li>
+
+<li>Reuse existing objects whenever possible.</li>
+
+<li>Prefer local variables over unnecessary instance variables.</li>
+
+<li>Avoid memory leaks by releasing resources properly.</li>
+
+<li>Monitor Heap usage for large applications.</li>
+
+<li>Write optimized and clean Java code.</li>
+
+</ul>
+
+<hr>
+
+<h2 id="interview">🎯 Frequently Asked Interview Questions</h2>
+
+<ol>
+
+<li>What is Java Memory Management?</li>
+
+<li>What is Heap Memory?</li>
+
+<li>What is Stack Memory?</li>
+
+<li>Difference between Heap and Stack?</li>
+
+<li>What is Garbage Collection?</li>
+
+<li>How does Garbage Collection work?</li>
+
+<li>What is Method Area?</li>
+
+<li>What is Program Counter Register?</li>
+
+<li>What is Native Method Stack?</li>
+
+<li>What is OutOfMemoryError?</li>
+
+<li>What is StackOverflowError?</li>
+
+<li>Can we force Garbage Collection?</li>
+
+<li>What does System.gc() do?</li>
+
+<li>Which memory area stores objects?</li>
+
+<li>Which memory area stores local variables?</li>
+
+</ol>
+
+<hr>
+
+<h2>📌 Key Takeaways</h2>
+
+<ul>
+
+<li>JVM automatically manages memory.</li>
+
+<li>Objects are stored in Heap Memory.</li>
+
+<li>Method calls and local variables are stored in Stack Memory.</li>
+
+<li>Unused objects are removed by the Garbage Collector.</li>
+
+<li>Efficient memory management improves application performance.</li>
+
+<li>Understanding JVM memory is essential for Java interviews.</li>
+
+</ul>
+
+<hr>
+
+<h2>✅ Learning Outcome</h2>
+
+<ul>
+
+<li>Learned Java Memory Management.</li>
+
+<li>Understood JVM Memory Areas.</li>
+
+<li>Learned Heap vs Stack Memory.</li>
+
+<li>Explored Garbage Collection.</li>
+
+<li>Studied the internal working of JVM memory.</li>
+
+<li>Prepared interview-focused notes.</li>
+
+</ul>
+
+<br>
+
+<a href="../index.html">⬅ Back to Home</a>
+
+</div>
+
+</body>
+
+</html>
