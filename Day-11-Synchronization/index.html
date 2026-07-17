@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 11 - Synchronization in Java</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<header>
+
+<h1>📘 Day 11 - Synchronization in Java</h1>
+
+<p>
+Understanding Synchronization, Thread Safety, Race Conditions,
+Object Locks, synchronized Methods, synchronized Blocks,
+and Static Synchronization.
+</p>
+
+</header>
+
+<section>
+
+<h2>🎯 Objective</h2>
+
+<p>
+The objective of this lesson is to understand how Java manages
+multiple threads accessing shared resources simultaneously.
+Synchronization ensures that only one thread can execute the
+critical section of code at a time, preventing inconsistent
+results and making applications thread-safe.
+</p>
+
+</section>
+
+<section>
+
+<h2>📚 Quick Navigation</h2>
+
+<ul>
+
+<li>What is Synchronization?</li>
+
+<li>Why Synchronization?</li>
+
+<li>Race Condition</li>
+
+<li>Critical Section</li>
+
+<li>Internal Working</li>
+
+<li>Object Lock</li>
+
+<li>Types of Synchronization</li>
+
+<li>Synchronized Method</li>
+
+<li>Synchronized Block</li>
+
+<li>Static Synchronization</li>
+
+<li>Advantages</li>
+
+<li>Disadvantages</li>
+
+<li>Applications</li>
+
+<li>Java Program</li>
+
+<li>Interview Questions</li>
+
+<li>Best Practices</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h2>📖 What is Synchronization?</h2>
+
+<p>
+
+Synchronization is a mechanism in Java that allows only one
+thread to access a shared resource at a time.
+
+Whenever multiple threads try to modify the same object,
+Java uses synchronization to prevent data corruption and
+maintain consistency.
+
+Synchronization is achieved using object locks (monitors).
+Before entering a synchronized method or block,
+a thread must first acquire the object's lock.
+
+</p>
+
+</section>
+
+<section>
+
+<h2>❓ Why Do We Need Synchronization?</h2>
+
+<p>
+
+Imagine two ATM machines trying to withdraw money
+from the same bank account simultaneously.
+
+If both machines access the balance at the same time,
+the final balance may become incorrect.
+
+Synchronization prevents such problems by allowing
+only one thread to perform the operation at a time.
+
+</p>
+
+<table>
+
+<tr>
+
+<th>Without Synchronization</th>
+
+<th>With Synchronization</th>
+
+</tr>
+
+<tr>
+
+<td>Race Condition</td>
+
+<td>Thread Safety</td>
+
+</tr>
+
+<tr>
+
+<td>Incorrect Data</td>
+
+<td>Correct Data</td>
+
+</tr>
+
+<tr>
+
+<td>Multiple Threads Update Together</td>
+
+<td>One Thread at a Time</td>
+
+</tr>
+
+<tr>
+
+<td>Data Corruption</td>
+
+<td>Data Consistency</td>
+
+</tr>
+
+</table>
+
+</section>
+
+<section>
+
+<h2>⚠️ What is a Race Condition?</h2>
+
+<p>
+
+A Race Condition occurs when two or more threads
+access and modify shared data simultaneously,
+resulting in unpredictable or incorrect output.
+
+Example:
+
+</p>
+
+<pre>
+
+Initial Count = 0
+
+Thread A reads 0
+
+Thread B reads 0
+
+Thread A increments → 1
+
+Thread B increments → 1
+
+Final Count = 1
+
+Expected Count = 2
+
+</pre>
+
+<p>
+
+This problem occurs because both threads accessed
+the shared variable without synchronization.
+
+</p>
+
+</section>
+
+<section>
+
+<h2>⚙️ Internal Working of Synchronization</h2>
+
+<pre>
+
+        Thread 1
+
+            │
+
+            ▼
+
+      Requests Lock
+
+            │
+
+            ▼
+
+      Lock Acquired
+
+            │
+
+            ▼
+
+ Executes Critical Section
+
+            │
+
+            ▼
+
+      Lock Released
+
+            │
+
+            ▼
+
+        Thread 2 Gets Lock
+
+</pre>
+
+<p>
+
+Whenever a thread enters a synchronized method,
+the JVM checks whether the object's lock is available.
+
+If available, the thread acquires the lock and executes.
+
+All remaining threads wait until the lock is released.
+
+</p>
+
+</section>
