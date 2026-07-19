@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 13 - Java 8 Features</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<header>
+
+<h1>📘 Day 13 - Java 8 Features</h1>
+
+<p>
+Learn Java 8 Features including Lambda Expressions,
+Functional Interfaces, Method References,
+Default Methods, Static Methods,
+Stream API Introduction,
+Optional Class, and Date & Time API.
+</p>
+
+</header>
+
+<section>
+
+<h2>🎯 Objective</h2>
+
+<p>
+
+The objective of Java 8 is to make Java programming
+simpler, more readable, and more efficient by introducing
+functional programming concepts.
+
+Java 8 reduces boilerplate code and provides modern APIs
+that improve developer productivity and application performance.
+
+</p>
+
+</section>
+
+<section>
+
+<h2>📚 Quick Navigation</h2>
+
+<ul>
+
+<li>Introduction to Java 8</li>
+
+<li>Features of Java 8</li>
+
+<li>Lambda Expressions</li>
+
+<li>Functional Interface</li>
+
+<li>Method Reference</li>
+
+<li>Default Methods</li>
+
+<li>Static Methods</li>
+
+<li>Stream API (Introduction)</li>
+
+<li>Optional Class</li>
+
+<li>Date & Time API</li>
+
+<li>Advantages</li>
+
+<li>Applications</li>
+
+<li>Java Program</li>
+
+<li>Interview Questions</li>
+
+<li>Best Practices</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h2>📖 What is Java 8?</h2>
+
+<p>
+
+Java 8 is one of the most important releases of Java.
+
+It introduced Functional Programming,
+Lambda Expressions,
+Stream API,
+Method References,
+Optional Class,
+and the new Date & Time API.
+
+These features make Java applications more concise,
+maintainable, and efficient.
+
+</p>
+
+</section>
+
+<section>
+
+<h2>⭐ Major Features of Java 8</h2>
+
+<table>
+
+<tr>
+
+<th>Feature</th>
+
+<th>Description</th>
+
+</tr>
+
+<tr>
+
+<td>Lambda Expression</td>
+
+<td>Anonymous function used to reduce code.</td>
+
+</tr>
+
+<tr>
+
+<td>Functional Interface</td>
+
+<td>Contains exactly one abstract method.</td>
+
+</tr>
+
+<tr>
+
+<td>Method Reference</td>
+
+<td>Shortcut for Lambda Expressions.</td>
+
+</tr>
+
+<tr>
+
+<td>Default Method</td>
+
+<td>Method with implementation inside an interface.</td>
+
+</tr>
+
+<tr>
+
+<td>Static Method</td>
+
+<td>Static method inside an interface.</td>
+
+</tr>
+
+<tr>
+
+<td>Stream API</td>
+
+<td>Processes collections efficiently.</td>
+
+</tr>
+
+<tr>
+
+<td>Optional Class</td>
+
+<td>Avoids NullPointerException.</td>
+
+</tr>
+
+<tr>
+
+<td>Date & Time API</td>
+
+<td>Improved date and time handling.</td>
+
+</tr>
+
+</table>
+
+</section>
+
+<section>
+
+<h2>🔹 Lambda Expressions</h2>
+
+<p>
+
+A Lambda Expression is an anonymous function
+introduced in Java 8.
+
+It is mainly used to implement Functional Interfaces
+without creating separate implementation classes.
+
+Lambda expressions reduce boilerplate code and improve readability.
+
+</p>
+
+<pre>
+
+Syntax
+
+(parameters) -> expression
+
+Example
+
+() -> System.out.println("Hello Java");
+
+(x, y) -> x + y
+
+</pre>
+
+<h3>Advantages</h3>
+
+<ul>
+
+<li>Less Code</li>
+
+<li>Better Readability</li>
+
+<li>Functional Programming</li>
+
+<li>Easy Event Handling</li>
+
+<li>Works Well with Stream API</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h2>🔹 Functional Interface</h2>
+
+<p>
+
+A Functional Interface is an interface that contains
+exactly one abstract method.
+
+It can have multiple default and static methods,
+but only one abstract method.
+
+The <b>@FunctionalInterface</b> annotation
+ensures that only one abstract method exists.
+
+</p>
+
+<pre>
+
+@FunctionalInterface
+
+interface Greeting{
+
+    void sayHello();
+
+}
+
+</pre>
+
+<h3>Examples</h3>
+
+<ul>
+
+<li>Runnable</li>
+
+<li>Callable</li>
+
+<li>Comparator</li>
+
+<li>Consumer</li>
+
+<li>Supplier</li>
+
+<li>Predicate</li>
+
+<li>Function</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h2>🔹 Method Reference</h2>
+
+<p>
+
+Method Reference is a shorthand notation
+for Lambda Expressions.
+
+Instead of writing a Lambda Expression,
+we can directly refer to an existing method.
+
+This improves code readability.
+
+</p>
+
+<pre>
+
+System.out::println
+
+ClassName::staticMethod
+
+object::instanceMethod
+
+ClassName::new
+
+</pre>
+
+</section>
