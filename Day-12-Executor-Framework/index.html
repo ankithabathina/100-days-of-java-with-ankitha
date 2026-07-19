@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 12 - Executor Framework in Java</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<header>
+
+<h1>📘 Day 12 - Executor Framework in Java</h1>
+
+<p>
+Learn Executor Framework, ExecutorService, Thread Pools,
+Task Execution, Worker Threads, and efficient thread management
+using Java's concurrency utilities.
+</p>
+
+</header>
+
+<section>
+
+<h2>🎯 Objective</h2>
+
+<p>
+
+The objective of this lesson is to understand how Java manages
+multiple tasks efficiently using the Executor Framework.
+
+Instead of manually creating and managing threads,
+Java provides the Executor Framework to execute tasks using
+thread pools, improving performance and reducing resource usage.
+
+</p>
+
+</section>
+
+<section>
+
+<h2>📚 Quick Navigation</h2>
+
+<ul>
+
+<li>What is Executor Framework?</li>
+
+<li>Why Executor Framework?</li>
+
+<li>Need for Thread Pools</li>
+
+<li>Internal Working</li>
+
+<li>ExecutorService</li>
+
+<li>Types of Executors</li>
+
+<li>Thread Pool</li>
+
+<li>Advantages</li>
+
+<li>Disadvantages</li>
+
+<li>Applications</li>
+
+<li>Java Program</li>
+
+<li>Interview Questions</li>
+
+<li>Best Practices</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h2>📖 What is Executor Framework?</h2>
+
+<p>
+
+The Executor Framework is a part of the
+<b>java.util.concurrent</b> package.
+
+It provides a high-level API for executing tasks asynchronously
+without creating Thread objects manually.
+
+Instead of creating a new thread for every task,
+the Executor Framework reuses a pool of worker threads,
+making applications faster and more efficient.
+
+</p>
+
+</section>
+
+<section>
+
+<h2>❓ Why Do We Need Executor Framework?</h2>
+
+<p>
+
+Creating a new thread for every task consumes memory,
+increases CPU overhead, and reduces application performance.
+
+Executor Framework solves this problem by maintaining
+a pool of reusable worker threads.
+
+This improves scalability and makes concurrent programming easier.
+
+</p>
+
+<table>
+
+<tr>
+
+<th>Manual Threads</th>
+
+<th>Executor Framework</th>
+
+</tr>
+
+<tr>
+
+<td>Create Thread Every Time</td>
+
+<td>Reuse Existing Threads</td>
+
+</tr>
+
+<tr>
+
+<td>Higher Memory Usage</td>
+
+<td>Lower Memory Usage</td>
+
+</tr>
+
+<tr>
+
+<td>Slow Performance</td>
+
+<td>Better Performance</td>
+
+</tr>
+
+<tr>
+
+<td>Difficult Management</td>
+
+<td>Easy Management</td>
+
+</tr>
+
+</table>
+
+</section>
+
+<section>
+
+<h2>⚙️ Internal Working</h2>
+
+<pre>
+
+          Client Task
+
+               │
+
+               ▼
+
+       ExecutorService
+
+               │
+
+               ▼
+
+          Thread Pool
+
+      ┌────────┼────────┐
+
+      ▼        ▼        ▼
+
+ Worker 1  Worker 2  Worker 3
+
+      │        │        │
+
+      └────────┼────────┘
+
+               ▼
+
+       Task Completed
+
+               │
+
+               ▼
+
+    Thread Returns to Pool
+
+</pre>
+
+<p>
+
+Whenever a task is submitted, the ExecutorService assigns it
+to an available worker thread.
+
+After execution, the thread is not destroyed.
+
+Instead, it returns to the thread pool and waits for the next task.
+
+This reuse of threads significantly improves performance.
+
+</p>
+
+</section>
+
+<section>
+
+<h2>🧵 What is a Thread Pool?</h2>
+
+<p>
+
+A Thread Pool is a collection of pre-created worker threads.
+
+Instead of creating a new thread for each task,
+ExecutorService assigns tasks to these existing threads.
+
+Once a task is completed, the thread becomes available
+to execute another task.
+
+This minimizes thread creation overhead and improves
+overall application efficiency.
+
+</p>
+
+</section>
