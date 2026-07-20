@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 14 - Stream API in Java</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<header>
+
+<h1>📘 Day 14 - Stream API in Java</h1>
+
+<p>
+Learn Stream API, Stream Pipeline,
+Intermediate Operations,
+Terminal Operations,
+Collection Processing,
+Functional Programming,
+and Java 8 Streams.
+</p>
+
+</header>
+
+<section>
+
+<h2>🎯 Objective</h2>
+
+<p>
+
+The objective of Stream API is to process collections
+efficiently using functional programming.
+
+It helps developers perform filtering,
+mapping, sorting, searching,
+aggregation, and data transformation
+with less code and better readability.
+
+</p>
+
+</section>
+
+<section>
+
+<h2>📚 Quick Navigation</h2>
+
+<ul>
+
+<li>What is Stream API?</li>
+
+<li>Why Stream API?</li>
+
+<li>Features</li>
+
+<li>Stream Pipeline</li>
+
+<li>Intermediate Operations</li>
+
+<li>Terminal Operations</li>
+
+<li>Stream vs Collection</li>
+
+<li>Advantages</li>
+
+<li>Disadvantages</li>
+
+<li>Applications</li>
+
+<li>Java Program</li>
+
+<li>Interview Questions</li>
+
+<li>Best Practices</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h2>📖 What is Stream API?</h2>
+
+<p>
+
+Stream API was introduced in Java 8.
+
+It provides a functional approach
+for processing collections of data.
+
+A Stream is not a data structure.
+
+It is a sequence of elements
+that supports various operations
+such as filtering,
+mapping,
+sorting,
+searching,
+and collecting data.
+
+Unlike collections,
+Streams do not store data.
+They simply process data.
+
+</p>
+
+</section>
+
+<section>
+
+<h2>❓ Why Stream API?</h2>
+
+<p>
+
+Before Java 8,
+developers had to write lengthy loops
+to process collections.
+
+Stream API reduces boilerplate code
+and makes programs cleaner,
+shorter,
+and easier to understand.
+
+</p>
+
+<table>
+
+<tr>
+
+<th>Traditional Approach</th>
+
+<th>Stream API</th>
+
+</tr>
+
+<tr>
+
+<td>Uses Loops</td>
+
+<td>Uses Functional Programming</td>
+
+</tr>
+
+<tr>
+
+<td>More Code</td>
+
+<td>Less Code</td>
+
+</tr>
+
+<tr>
+
+<td>Difficult to Read</td>
+
+<td>Easy to Read</td>
+
+</tr>
+
+<tr>
+
+<td>Manual Processing</td>
+
+<td>Automatic Stream Operations</td>
+
+</tr>
+
+</table>
+
+</section>
+
+<section>
+
+<h2>⚙️ Stream Pipeline</h2>
+
+<pre>
+
+Collection
+
+      │
+
+      ▼
+
+stream()
+
+      │
+
+      ▼
+
+Intermediate Operations
+
+(filter, map, sorted...)
+
+      │
+
+      ▼
+
+Terminal Operation
+
+(collect, count...)
+
+      │
+
+      ▼
+
+Result
+
+</pre>
+
+<p>
+
+A Stream Pipeline consists of
+three stages:
+
+1. Source (Collection)
+
+2. Intermediate Operations
+
+3. Terminal Operation
+
+The stream processes data step by step
+until the final result is produced.
+
+</p>
+
+</section>
+
+<section>
+
+<h2>🔹 Intermediate Operations</h2>
+
+<p>
+
+Intermediate operations return another Stream.
+
+They are lazy,
+meaning they execute only when
+a terminal operation is called.
+
+</p>
+
+<table>
+
+<tr>
+
+<th>Method</th>
+
+<th>Purpose</th>
+
+</tr>
+
+<tr>
+
+<td>filter()</td>
+
+<td>Select elements</td>
+
+</tr>
+
+<tr>
+
+<td>map()</td>
+
+<td>Transform elements</td>
+
+</tr>
+
+<tr>
+
+<td>sorted()</td>
+
+<td>Sort elements</td>
+
+</tr>
+
+<tr>
+
+<td>distinct()</td>
+
+<td>Remove duplicates</td>
+
+</tr>
+
+<tr>
+
+<td>limit()</td>
+
+<td>Limit elements</td>
+
+</tr>
+
+<tr>
+
+<td>skip()</td>
+
+<td>Skip elements</td>
+
+</tr>
+
+<tr>
+
+<td>peek()</td>
+
+<td>Debug Stream</td>
+
+</tr>
+
+</table>
+
+</section>
+
+<section>
+
+<h2>🔹 Terminal Operations</h2>
+
+<p>
+
+Terminal operations produce
+the final result
+and close the stream.
+
+</p>
+
+<table>
+
+<tr>
+
+<th>Method</th>
+
+<th>Purpose</th>
+
+</tr>
+
+<tr>
+
+<td>collect()</td>
+
+<td>Collect result</td>
+
+</tr>
+
+<tr>
+
+<td>forEach()</td>
+
+<td>Print elements</td>
+
+</tr>
+
+<tr>
+
+<td>count()</td>
+
+<td>Count elements</td>
+
+</tr>
+
+<tr>
+
+<td>reduce()</td>
+
+<td>Reduce to single value</td>
+
+</tr>
+
+<tr>
+
+<td>findFirst()</td>
+
+<td>Return first element</td>
+
+</tr>
+
+<tr>
+
+<td>findAny()</td>
+
+<td>Return any element</td>
+
+</tr>
+
+<tr>
+
+<td>max()</td>
+
+<td>Maximum value</td>
+
+</tr>
+
+<tr>
+
+<td>min()</td>
+
+<td>Minimum value</td>
+
+</tr>
+
+</table>
+
+</section>
