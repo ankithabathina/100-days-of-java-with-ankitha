@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Day 15 - Generics in Java</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>📘 Day 15 - Generics in Java</h1>
+
+<p>
+
+Learn Generics in Java,
+Generic Classes,
+Generic Methods,
+Generic Interfaces,
+Diamond Operator,
+Bounded Types,
+Wildcards,
+Type Erasure,
+and Wrapper Classes.
+
+</p>
+
+</header>
+
+<section>
+
+<h2>🎯 Objective</h2>
+
+<p>
+
+The objective of Generics is to write reusable,
+type-safe, and maintainable code.
+
+Generics allow classes, interfaces, and methods
+to work with different data types while preventing
+compile-time type errors.
+
+</p>
+
+</section>
+
+<section>
+
+<h2>📚 Quick Navigation</h2>
+
+<ul>
+
+<li>What are Generics?</li>
+
+<li>Why Generics?</li>
+
+<li>Generic Type Parameters</li>
+
+<li>Generic Classes</li>
+
+<li>Generic Methods</li>
+
+<li>Generic Interfaces</li>
+
+<li>Diamond Operator</li>
+
+<li>Bounded Generics</li>
+
+<li>Wildcards</li>
+
+<li>Type Erasure</li>
+
+<li>Wrapper Classes</li>
+
+<li>Advantages</li>
+
+<li>Limitations</li>
+
+<li>Real-Time Uses</li>
+
+<li>Interview Questions</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h2>📖 What are Generics?</h2>
+
+<p>
+
+Generics are a feature introduced in Java 5.
+
+They allow classes, interfaces,
+and methods to work with different
+data types while maintaining
+compile-time type safety.
+
+Instead of writing separate code
+for Integer, String, Double,
+or Employee objects,
+Generics let us write one reusable implementation.
+
+</p>
+
+</section>
+
+<section>
+
+<h2>❓ Why were Generics introduced?</h2>
+
+<p>
+
+Before Java 5,
+collections stored everything
+as an Object.
+
+Whenever we retrieved data,
+we had to manually convert it
+back to its original type.
+
+This process is called
+Type Casting.
+
+If we cast the wrong type,
+Java throws a
+ClassCastException.
+
+Generics solve this problem
+by checking the data type
+during compilation.
+
+</p>
+
+<pre>
+
+Without Generics
+
+ArrayList list = new ArrayList();
+
+list.add("Java");
+
+list.add(100);
+
+String s = (String) list.get(0);
+
+</pre>
+
+<p>
+
+Problems
+
+✔ No Type Safety
+
+✔ Manual Type Casting
+
+✔ Runtime Errors
+
+</p>
+
+</section>
+
+<section>
+
+<h2>✅ With Generics</h2>
+
+<pre>
+
+ArrayList&lt;String&gt; list =
+new ArrayList&lt;&gt;();
+
+list.add("Java");
+
+// list.add(100);
+
+String s = list.get(0);
+
+</pre>
+
+<p>
+
+Benefits
+
+✔ Type Safety
+
+✔ No Explicit Type Casting
+
+✔ Compile-Time Checking
+
+✔ Better Readability
+
+</p>
+
+</section>
+
+<section>
+
+<h2>🔹 Generic Type Parameters</h2>
+
+<p>
+
+Generics use angle brackets (&lt;&gt;)
+to specify the type of object.
+
+Common naming conventions are:
+
+</p>
+
+<table>
+
+<tr>
+
+<th>Type</th>
+
+<th>Meaning</th>
+
+</tr>
+
+<tr>
+
+<td>T</td>
+
+<td>Type</td>
+
+</tr>
+
+<tr>
+
+<td>E</td>
+
+<td>Element</td>
+
+</tr>
+
+<tr>
+
+<td>K</td>
+
+<td>Key</td>
+
+</tr>
+
+<tr>
+
+<td>V</td>
+
+<td>Value</td>
+
+</tr>
+
+<tr>
+
+<td>N</td>
+
+<td>Number</td>
+
+</tr>
+
+</table>
+
+<p>
+
+Example
+
+</p>
+
+<pre>
+
+HashMap&lt;Integer,String&gt;
+
+</pre>
+
+<p>
+
+Integer → Key
+
+String → Value
+
+</p>
+
+</section>
+
+<section>
+
+<h2>🏗 Generic Class</h2>
+
+<p>
+
+A Generic Class allows us
+to create objects of different
+data types using the same class.
+
+Instead of creating
+multiple classes,
+one Generic Class can
+handle many object types.
+
+</p>
+
+<h3>Syntax</h3>
+
+<pre>
+
+class Box&lt;T&gt;{
+
+}
+
+</pre>
+
+<h3>Example</h3>
+
+<pre>
+
+class Box&lt;T&gt;{
+
+T value;
+
+void set(T value){
+
+this.value=value;
+
+}
+
+T get(){
+
+return value;
+
+}
+
+}
+
+</pre>
+
+<p>
+
+Here,
+
+T represents a data type.
+
+When we create
+
+Box&lt;String&gt;
+
+T becomes String.
+
+</p>
+
+</section>
+
+<section>
+
+<h2>⚙ Generic Method</h2>
+
+<p>
+
+A Generic Method works
+with multiple data types.
+
+Instead of creating
+different methods for
+Integer,
+String,
+Double,
+etc.,
+one Generic Method
+handles all object types.
+
+</p>
+
+<h3>Syntax</h3>
+
+<pre>
+
+public static &lt;T&gt;
+void print(T value)
+
+</pre>
+
+<h3>Example</h3>
+
+<pre>
+
+print(100);
+
+print("Java");
+
+print(25.5);
+
+</pre>
+
+</section>
+
+<section>
+
+<h2>🖥 Generic Interface</h2>
+
+<p>
+
+Interfaces can also use
+Generics.
+
+The implementing class
+decides the data type.
+
+</p>
+
+<pre>
+
+interface Printer&lt;T&gt;{
+
+void print(T value);
+
+}
+
+</pre>
+
+<p>
+
+Example
+
+</p>
+
+<pre>
+
+class StringPrinter
+
+implements Printer&lt;String&gt;{
+
+}
+
+</pre>
+
+</section>
