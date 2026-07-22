@@ -260,3 +260,347 @@ which object should be created.
 </ul>
 
 </section>
+  <section>
+
+<h2>🔄 Singleton vs Factory Pattern</h2>
+
+<table>
+
+<tr>
+
+<th>Singleton Pattern</th>
+
+<th>Factory Pattern</th>
+
+</tr>
+
+<tr>
+
+<td>Creates only one object.</td>
+
+<td>Creates different objects based on user request.</td>
+
+</tr>
+
+<tr>
+
+<td>Controls object creation.</td>
+
+<td>Controls object selection.</td>
+
+</tr>
+
+<tr>
+
+<td>Only one instance exists.</td>
+
+<td>Many objects can be created.</td>
+
+</tr>
+
+<tr>
+
+<td>Example: Logger</td>
+
+<td>Example: Shape Factory</td>
+
+</tr>
+
+</table>
+
+</section>
+
+<section>
+
+<h2>🌍 Real-Time Applications</h2>
+
+<table>
+
+<tr>
+
+<th>Pattern</th>
+
+<th>Applications</th>
+
+</tr>
+
+<tr>
+
+<td>Singleton</td>
+
+<td>
+
+Logger,
+Database Connection,
+Cache Manager,
+Configuration Manager,
+Printer Spooler
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>Factory</td>
+
+<td>
+
+Payment Gateway,
+Notification System,
+Vehicle Factory,
+Spring Bean Factory,
+Shape Factory
+
+</td>
+
+</tr>
+
+</table>
+
+</section>
+
+<section>
+
+<h2>💻 Singleton Pattern Example</h2>
+
+<pre>
+
+class Singleton{
+
+private static Singleton instance;
+
+private Singleton(){
+
+}
+
+public static Singleton getInstance(){
+
+if(instance==null){
+
+instance=new Singleton();
+
+}
+
+return instance;
+
+}
+
+}
+
+</pre>
+
+<p>
+
+The constructor is private,
+so objects cannot be created
+using the <b>new</b> keyword.
+
+The static method
+<b>getInstance()</b>
+returns the same object
+every time.
+
+</p>
+
+</section>
+
+<section>
+
+<h2>💻 Factory Pattern Example</h2>
+
+<pre>
+
+interface Shape{
+
+void draw();
+
+}
+
+class Circle implements Shape{
+
+public void draw(){
+
+System.out.println("Circle");
+
+}
+
+}
+
+class Rectangle implements Shape{
+
+public void draw(){
+
+System.out.println("Rectangle");
+
+}
+
+}
+
+</pre>
+
+<p>
+
+Instead of creating objects
+directly,
+the Factory class decides
+which object should be returned.
+
+</p>
+
+</section>
+
+<section>
+
+<h2>✅ Advantages of Design Patterns</h2>
+
+<ul>
+
+<li>Reusable Solutions</li>
+
+<li>Easy Maintenance</li>
+
+<li>Loose Coupling</li>
+
+<li>Scalable Applications</li>
+
+<li>Improves Code Quality</li>
+
+<li>Easy Team Collaboration</li>
+
+<li>Reduces Code Duplication</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h2>❌ Disadvantages</h2>
+
+<ul>
+
+<li>Can increase the number of classes.</li>
+
+<li>May be difficult for beginners.</li>
+
+<li>Some patterns add extra complexity.</li>
+
+<li>Wrong usage can make code harder to understand.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h2>💡 Best Practices</h2>
+
+<ul>
+
+<li>Choose a pattern based on the problem, not because it exists.</li>
+
+<li>Keep classes small and focused.</li>
+
+<li>Follow SOLID principles.</li>
+
+<li>Avoid unnecessary object creation.</li>
+
+<li>Use Singleton only when a single instance is truly required.</li>
+
+<li>Use Factory when object creation logic becomes complex.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h2>🎤 Frequently Asked Interview Questions</h2>
+
+<ol>
+
+<li>What are Design Patterns?</li>
+
+<li>Why are Design Patterns important?</li>
+
+<li>How many Design Patterns are there?</li>
+
+<li>Name the three categories of Design Patterns.</li>
+
+<li>Explain Singleton Pattern with an example.</li>
+
+<li>Explain Factory Pattern with an example.</li>
+
+<li>What is the difference between Singleton and Factory Pattern?</li>
+
+<li>Where is Singleton used in real projects?</li>
+
+<li>Where is Factory Pattern used?</li>
+
+<li>Which Design Patterns are used in Spring Framework?</li>
+
+</ol>
+
+</section>
+
+<section>
+
+<h2>📝 Key Takeaways</h2>
+
+<ul>
+
+<li>Design Patterns are reusable solutions to common software problems.</li>
+
+<li>There are three categories: Creational, Structural, and Behavioral.</li>
+
+<li>Singleton creates only one object throughout the application.</li>
+
+<li>Factory creates objects without exposing creation logic.</li>
+
+<li>Both patterns improve code quality and maintainability.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h2>🎯 Learning Outcome</h2>
+
+<p>
+
+Today I learned the fundamentals of Design Patterns,
+their importance,
+the three categories of patterns,
+Singleton Pattern,
+Factory Pattern,
+their real-world applications,
+advantages,
+and interview concepts.
+
+These patterns help developers build scalable,
+reusable,
+and maintainable Java applications.
+
+</p>
+
+</section>
+
+<footer>
+
+<p>
+
+⭐ Day 16 Completed Successfully ⭐
+
+<br><br>
+
+Keep Learning • Keep Coding • Keep Growing 🚀
+
+</p>
+
+</footer>
+
+</body>
+
+</html>
