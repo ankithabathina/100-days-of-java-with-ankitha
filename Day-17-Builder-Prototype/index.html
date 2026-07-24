@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 17 - Builder Pattern & Prototype Pattern</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f9;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        header {
+            background: linear-gradient(90deg, #0d6efd, #0dcaf0);
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        header h1 {
+            font-size: 38px;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        nav {
+            background: #222;
+            text-align: center;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 12px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: gold;
+        }
+
+        section {
+            width: 90%;
+            max-width: 1100px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,.15);
+        }
+
+        h2 {
+            color: #0d6efd;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #198754;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            margin-left: 25px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th {
+            background: #0d6efd;
+            color: white;
+            padding: 12px;
+        }
+
+        table td {
+            border: 1px solid #ccc;
+            padding: 12px;
+        }
+
+        pre {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        .box {
+            background: #eef6ff;
+            border-left: 5px solid #0d6efd;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>📘 Day 17 – Builder Pattern & Prototype Pattern</h1>
+
+<p>100 Days of Java with Ankitha</p>
+
+</header>
+
+<nav>
+
+<a href="#objective">Objective</a>
+
+<a href="#intro">Introduction</a>
+
+<a href="#builder">Builder</a>
+
+<a href="#prototype">Prototype</a>
+
+<a href="#comparison">Comparison</a>
+
+<a href="#interview">Interview</a>
+
+</nav>
+
+<section id="objective">
+
+<h2>🎯 Objective</h2>
+
+<p>
+
+Understand two important <strong>Creational Design Patterns</strong>:
+<strong>Builder Pattern</strong> and <strong>Prototype Pattern</strong>.
+These patterns simplify object creation, improve code readability,
+increase flexibility, and reduce complexity in Java applications.
+
+</p>
+
+</section>
+
+<section id="intro">
+
+<h2>📖 What are Creational Design Patterns?</h2>
+
+<p>
+
+Creational Design Patterns focus on the process of object creation.
+Instead of creating objects directly using constructors,
+these patterns provide reusable and flexible ways to create objects.
+
+</p>
+
+<h3>Why Do We Need Them?</h3>
+
+<ul>
+
+<li>Improve code readability</li>
+
+<li>Reduce object creation complexity</li>
+
+<li>Promote code reuse</li>
+
+<li>Increase maintainability</li>
+
+<li>Support loose coupling</li>
+
+<li>Improve scalability</li>
+
+</ul>
+
+<div class="box">
+
+<b>Examples of Creational Patterns</b>
+
+<ul>
+
+<li>Singleton</li>
+
+<li>Factory</li>
+
+<li>Abstract Factory</li>
+
+<li>Builder</li>
+
+<li>Prototype</li>
+
+</ul>
+
+</div>
+
+</section>
+<section id="builder">
+
+    <h2>🏗 Builder Pattern</h2>
+
+    <p>
+
+        The <strong>Builder Pattern</strong> is a <b>Creational Design Pattern</b>
+        used to construct complex objects step by step.
+        Instead of using multiple constructors, a separate Builder class is
+        responsible for creating the object.
+
+    </p>
+
+    <h3>Definition</h3>
+
+    <p>
+
+        Builder Pattern separates the construction of an object from its
+        representation so that the same construction process can create
+        different representations.
+
+    </p>
+
+    <h3>Why Builder Pattern?</h3>
+
+    <p>
+
+        Consider a Student class having many fields:
+
+    </p>
+
+<pre>
+Name
+Age
+Department
+Email
+Phone Number
+Address
+CGPA
+Gender
+Skills
+College
+</pre>
+
+    <p>
+
+        Creating constructors for every possible combination becomes
+        difficult.
+
+    </p>
+
+<pre>
+Student s = new Student(
+    "Ankitha",
+    21,
+    "CSE",
+    "Hyderabad",
+    "9876543210",
+    8.5
+);
+</pre>
+
+    <p>
+
+        This constructor is difficult to understand because we don't know
+        what each parameter represents.
+
+        Builder Pattern solves this problem by creating objects step by step.
+
+    </p>
+
+    <h3>Builder Pattern Workflow</h3>
+
+<pre>
+Client
+
+   │
+
+   ▼
+
+Builder Object
+
+   │
+
+Set Required Values
+
+   │
+
+   ▼
+
+build()
+
+   │
+
+   ▼
+
+Student Object
+</pre>
+
+    <h3>Structure</h3>
+
+<pre>
++--------------------+
+|      Client        |
++--------------------+
+          |
+          |
+          ▼
++--------------------+
+|      Builder       |
++--------------------+
+          |
+          |
+          ▼
++--------------------+
+|      Product       |
++--------------------+
+</pre>
+
+    <h3>Advantages</h3>
+
+    <ul>
+
+        <li>✔ Improves readability</li>
+
+        <li>✔ Avoids constructor overloading</li>
+
+        <li>✔ Supports immutable objects</li>
+
+        <li>✔ Easy to maintain</li>
+
+        <li>✔ Flexible object creation</li>
+
+        <li>✔ Cleaner code</li>
+
+        <li>✔ Better scalability</li>
+
+    </ul>
+
+    <h3>Disadvantages</h3>
+
+    <ul>
+
+        <li>❌ Requires additional Builder class</li>
+
+        <li>❌ Slightly increases code size</li>
+
+        <li>❌ Not useful for very simple objects</li>
+
+    </ul>
+
+    <h3>Real-Time Applications</h3>
+
+    <ul>
+
+        <li>Spring Boot Configuration Objects</li>
+
+        <li>Lombok <b>@Builder</b></li>
+
+        <li>StringBuilder</li>
+
+        <li>REST API Request Builders</li>
+
+        <li>Database Configuration Objects</li>
+
+        <li>Notification Builders</li>
+
+        <li>Email Builders</li>
+
+    </ul>
+
+    <h3>Example</h3>
+
+<pre>
+Student student = new Student.Builder("Ankitha",21)
+        .setDepartment("Computer Science")
+        .setEmail("ankitha@gmail.com")
+        .setCgpa(8.5)
+        .build();
+</pre>
+
+    <div class="box">
+
+        <b>Key Points</b>
+
+        <ul>
+
+            <li>Builder Pattern creates objects step by step.</li>
+
+            <li>It improves readability.</li>
+
+            <li>It avoids large constructors.</li>
+
+            <li>It is widely used in enterprise Java applications.</li>
+
+            <li>Lombok's <b>@Builder</b> annotation is based on this pattern.</li>
+
+        </ul>
+
+    </div>
+
+</section>
+<section id="prototype">
+
+    <h2>🧬 Prototype Pattern</h2>
+
+    <p>
+
+        The <strong>Prototype Pattern</strong> is a <b>Creational Design Pattern</b>
+        that creates new objects by copying an existing object instead of creating
+        a new object from scratch.
+
+    </p>
+
+    <h3>Definition</h3>
+
+    <p>
+
+        Prototype Pattern creates duplicate objects using the existing object's
+        clone. It improves performance when object creation is expensive.
+
+    </p>
+
+    <h3>Why Prototype Pattern?</h3>
+
+    <p>
+
+        Suppose an Employee object takes several seconds to load data from a
+        database.
+
+        Instead of creating the object again, we simply clone the existing
+        object.
+
+    </p>
+
+<pre>
+Without Prototype
+
+Create Object
+      ↓
+Load Database
+      ↓
+Initialize Values
+      ↓
+Return Object
+
+Every time this process repeats.
+</pre>
+
+<pre>
+With Prototype
+
+Create Object Once
+       ↓
+Clone Existing Object
+       ↓
+Return Copy
+
+Faster and more efficient.
+</pre>
+
+    <h3>Prototype Pattern Workflow</h3>
+
+<pre>
+Original Object
+
+      │
+
+      ▼
+
+clone()
+
+      │
+
+      ▼
+
+Copied Object
+</pre>
+
+    <h3>Cloneable Interface</h3>
+
+    <p>
+
+        Java provides the <b>Cloneable</b> marker interface to indicate that an
+        object can be cloned.
+
+    </p>
+
+<pre>
+class Employee implements Cloneable
+</pre>
+
+    <p>
+
+        A marker interface contains no methods. It simply tells the JVM that the
+        object supports cloning.
+
+    </p>
+
+    <h3>clone() Method</h3>
+
+<pre>
+Employee emp2 = (Employee) emp1.clone();
+</pre>
+
+    <p>
+
+        The <b>clone()</b> method creates a copy of the current object.
+
+    </p>
+
+    <h3>Shallow Copy</h3>
+
+    <p>
+
+        A shallow copy copies only the main object. If the object contains
+        references to other objects, those references are shared.
+
+    </p>
+
+<pre>
+Employee
+    │
+    ▼
+Address
+
+Clone
+
+Employee Copy
+    │
+    ▼
+Same Address Object
+</pre>
+
+    <h4>Advantages</h4>
+
+    <ul>
+
+        <li>Fast object creation</li>
+
+        <li>Consumes less memory</li>
+
+        <li>Easy to implement</li>
+
+    </ul>
+
+    <h4>Disadvantages</h4>
+
+    <ul>
+
+        <li>Referenced objects are shared</li>
+
+        <li>Changes affect both objects</li>
+
+    </ul>
+
+    <h3>Deep Copy</h3>
+
+    <p>
+
+        A deep copy creates completely independent objects, including all nested
+        objects.
+
+    </p>
+
+<pre>
+Employee
+   │
+   ▼
+Address
+
+Clone
+
+Employee Copy
+   │
+   ▼
+New Address Object
+</pre>
+
+    <h4>Advantages</h4>
+
+    <ul>
+
+        <li>Objects are completely independent</li>
+
+        <li>No shared references</li>
+
+        <li>Safe for modifications</li>
+
+    </ul>
+
+    <h4>Disadvantages</h4>
+
+    <ul>
+
+        <li>Consumes more memory</li>
+
+        <li>Requires additional coding</li>
+
+        <li>Slightly slower than shallow copy</li>
+
+    </ul>
+
+    <h3>Real-Time Applications</h3>
+
+    <ul>
+
+        <li>Game Development</li>
+
+        <li>Graphic Design Software</li>
+
+        <li>PowerPoint Templates</li>
+
+        <li>Document Editors</li>
+
+        <li>Employee Management Systems</li>
+
+        <li>Object Caching</li>
+
+        <li>Machine Learning Models</li>
+
+        <li>Configuration Objects</li>
+
+    </ul>
+
+    <h3>Java Example</h3>
+
+<pre>
+Employee emp1 = new Employee("Ankitha",50000);
+
+Employee emp2 = (Employee) emp1.clone();
+
+System.out.println(emp1 == emp2);
+
+// Output : false
+</pre>
+
+    <div class="box">
+
+        <b>Key Points</b>
+
+        <ul>
+
+            <li>Prototype Pattern copies existing objects.</li>
+
+            <li>Uses Cloneable interface.</li>
+
+            <li>clone() creates duplicate objects.</li>
+
+            <li>Improves performance.</li>
+
+            <li>Useful when object creation is expensive.</li>
+
+        </ul>
+
+    </div>
+
+</section>
+<section id="comparison">
+
+    <h2>📊 Shallow Copy vs Deep Copy</h2>
+
+    <table>
+
+        <tr>
+            <th>Shallow Copy</th>
+            <th>Deep Copy</th>
+        </tr>
+
+        <tr>
+            <td>Copies object references</td>
+            <td>Copies complete object</td>
+        </tr>
+
+        <tr>
+            <td>Fast</td>
+            <td>Slower</td>
+        </tr>
+
+        <tr>
+            <td>Less memory usage</td>
+            <td>More memory usage</td>
+        </tr>
+
+        <tr>
+            <td>Shared referenced objects</td>
+            <td>Independent objects</td>
+        </tr>
+
+        <tr>
+            <td>Unsafe for mutable objects</td>
+            <td>Safe for mutable objects</td>
+        </tr>
+
+    </table>
+
+    <br>
+
+    <h2>📊 Builder Pattern vs Prototype Pattern</h2>
+
+    <table>
+
+        <tr>
+            <th>Builder Pattern</th>
+            <th>Prototype Pattern</th>
+        </tr>
+
+        <tr>
+            <td>Creates a new object</td>
+            <td>Copies an existing object</td>
+        </tr>
+
+        <tr>
+            <td>Uses Builder Class</td>
+            <td>Uses clone() method</td>
+        </tr>
+
+        <tr>
+            <td>Step-by-step object creation</td>
+            <td>Object duplication</td>
+        </tr>
+
+        <tr>
+            <td>Readable and flexible</td>
+            <td>Improves performance</td>
+        </tr>
+
+        <tr>
+            <td>Best for complex objects</td>
+            <td>Best when creation is expensive</td>
+        </tr>
+
+    </table>
+
+</section>
+
+<section>
+
+    <h2>💡 Best Practices</h2>
+
+    <ul>
+
+        <li>Use Builder Pattern for objects with many optional fields.</li>
+
+        <li>Use Prototype Pattern when object creation is costly.</li>
+
+        <li>Prefer immutable objects with Builder Pattern.</li>
+
+        <li>Override <code>clone()</code> carefully.</li>
+
+        <li>Use Deep Copy for mutable reference objects.</li>
+
+        <li>Avoid unnecessary cloning when object creation is inexpensive.</li>
+
+        <li>Document the purpose of Builder and Prototype implementations.</li>
+
+    </ul>
+
+</section>
+
+<section>
+
+    <h2>🌍 Real-Time Applications</h2>
+
+    <ul>
+
+        <li>Spring Boot Configuration Objects</li>
+
+        <li>Lombok <b>@Builder</b></li>
+
+        <li>StringBuilder Class</li>
+
+        <li>REST API Request Objects</li>
+
+        <li>Game Development</li>
+
+        <li>PowerPoint Templates</li>
+
+        <li>Graphic Design Software</li>
+
+        <li>Employee Management Systems</li>
+
+        <li>Database Configuration Objects</li>
+
+        <li>Object Caching Systems</li>
+
+    </ul>
+
+</section>
+
+<section id="interview">
+
+    <h2>🎤 Frequently Asked Interview Questions</h2>
+
+    <ol>
+
+        <li>What is the Builder Pattern?</li>
+
+        <li>Why do we use the Builder Pattern?</li>
+
+        <li>What is the Prototype Pattern?</li>
+
+        <li>What is object cloning?</li>
+
+        <li>What is the Cloneable interface?</li>
+
+        <li>What is the clone() method?</li>
+
+        <li>Explain shallow copy.</li>
+
+        <li>Explain deep copy.</li>
+
+        <li>Difference between shallow copy and deep copy?</li>
+
+        <li>Difference between Builder Pattern and Prototype Pattern?</li>
+
+        <li>Where is Builder Pattern used in Spring Boot?</li>
+
+        <li>Where is Prototype Pattern used in real-world applications?</li>
+
+        <li>What are the advantages of Builder Pattern?</li>
+
+        <li>What are the advantages of Prototype Pattern?</li>
+
+        <li>What are the disadvantages of object cloning?</li>
+
+    </ol>
+
+</section>
+
+<section>
+
+    <h2>🎯 Learning Outcome</h2>
+
+    <p>
+        After completing this lesson, you will be able to:
+    </p>
+
+    <ul>
+
+        <li>✅ Understand Creational Design Patterns.</li>
+
+        <li>✅ Implement Builder Pattern in Java.</li>
+
+        <li>✅ Implement Prototype Pattern in Java.</li>
+
+        <li>✅ Use the Cloneable interface.</li>
+
+        <li>✅ Differentiate between Shallow Copy and Deep Copy.</li>
+
+        <li>✅ Compare Builder and Prototype Patterns.</li>
+
+        <li>✅ Identify real-world applications.</li>
+
+        <li>✅ Answer Java interview questions confidently.</li>
+
+    </ul>
+
+</section>
+
+<section>
+
+    <h2>📝 Conclusion</h2>
+
+    <p>
+
+        The <strong>Builder Pattern</strong> helps create complex objects in a clean,
+        readable, and maintainable way. The <strong>Prototype Pattern</strong> improves
+        performance by cloning existing objects instead of creating new ones repeatedly.
+
+        Both patterns are part of the <strong>Gang of Four (GoF) Creational Design Patterns</strong>
+        and are widely used in enterprise Java applications, Spring Boot projects,
+        and software design interviews.
+
+    </p>
+
+</section>
+
+<footer>
+
+    <h3>⭐ Day 17 Completed Successfully!</h3>
+
+    <p>
+        Topics Covered:
+    </p>
+
+    <p>
+
+        ✔ Builder Pattern |
+        ✔ Prototype Pattern |
+        ✔ Cloneable Interface |
+        ✔ clone() Method |
+        ✔ Shallow Copy |
+        ✔ Deep Copy |
+        ✔ Comparison |
+        ✔ Real-Time Applications |
+        ✔ Interview Questions
+
+    </p>
+
+    <br>
+
+    <p>
+        <strong>100 Days of Java with Ankitha 🚀</strong>
+    </p>
+
+</footer>
+
+</body>
+
+</html>
