@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Day 20 - Observer Pattern & Strategy Pattern</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:#f4f6f9;
+color:#333;
+line-height:1.8;
+}
+
+header{
+background:linear-gradient(135deg,#1565C0,#42A5F5);
+color:white;
+padding:40px;
+text-align:center;
+}
+
+header h1{
+font-size:42px;
+}
+
+header h2{
+margin-top:10px;
+}
+
+header p{
+margin-top:10px;
+font-size:18px;
+}
+
+nav{
+background:#1565C0;
+padding:15px;
+position:sticky;
+top:0;
+z-index:100;
+}
+
+nav ul{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+list-style:none;
+}
+
+nav ul li{
+margin:10px 18px;
+}
+
+nav ul li a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+nav ul li a:hover{
+color:#FFD54F;
+}
+
+section{
+width:90%;
+max-width:1100px;
+background:white;
+margin:30px auto;
+padding:30px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,.15);
+}
+
+h2{
+color:#1565C0;
+margin-bottom:15px;
+}
+
+h3{
+color:#0D47A1;
+margin-top:20px;
+}
+
+p{
+margin:10px 0;
+}
+
+ul{
+margin-left:25px;
+margin-top:10px;
+}
+
+li{
+margin:8px 0;
+}
+
+.highlight{
+background:#E3F2FD;
+padding:18px;
+border-left:6px solid #1565C0;
+margin:20px 0;
+}
+
+pre{
+background:#f5f5f5;
+padding:15px;
+border-radius:8px;
+overflow:auto;
+}
+
+table{
+border-collapse:collapse;
+width:100%;
+margin-top:20px;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:12px;
+text-align:left;
+}
+
+th{
+background:#1565C0;
+color:white;
+}
+
+footer{
+background:#1565C0;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>📘 Day 20</h1>
+
+<h2>Observer Pattern & Strategy Pattern</h2>
+
+<p>100 Days of Java with Ankitha</p>
+
+</header>
+
+<nav>
+
+<ul>
+
+<li><a href="#objective">Objective</a></li>
+
+<li><a href="#intro">Introduction</a></li>
+
+<li><a href="#observer">Observer Pattern</a></li>
+
+<li><a href="#strategy">Strategy Pattern</a></li>
+
+<li><a href="#comparison">Comparison</a></li>
+
+<li><a href="#questions">Interview Questions</a></li>
+
+</ul>
+
+</nav>
+
+<section id="objective">
+
+<h2>🎯 Objective</h2>
+
+<p>
+
+Learn two important <strong>Behavioral Design Patterns</strong>:
+
+</p>
+
+<ul>
+
+<li>Observer Pattern</li>
+
+<li>Strategy Pattern</li>
+
+</ul>
+
+<p>
+
+These patterns focus on object communication and behavior, helping developers build flexible, maintainable, and scalable applications.
+
+</p>
+
+</section>
+
+<section id="intro">
+
+<h2>📖 Introduction to Behavioral Design Patterns</h2>
+
+<p>
+
+Behavioral Design Patterns describe how objects interact and communicate with one another. They help distribute responsibilities efficiently and reduce tight coupling between objects.
+
+</p>
+
+<p>
+
+These patterns make software easier to extend, maintain, and reuse.
+
+</p>
+
+<div class="highlight">
+
+<strong>Why Behavioral Design Patterns?</strong>
+
+<ul>
+
+<li>Improve communication between objects</li>
+
+<li>Reduce coupling</li>
+
+<li>Increase flexibility</li>
+
+<li>Promote code reusability</li>
+
+<li>Support SOLID principles</li>
+
+<li>Make applications easier to maintain</li>
+
+</ul>
+
+</div>
+
+<h3>Types of Behavioral Design Patterns</h3>
+
+<ul>
+
+<li>Observer</li>
+
+<li>Strategy</li>
+
+<li>Command</li>
+
+<li>State</li>
+
+<li>Chain of Responsibility</li>
+
+<li>Mediator</li>
+
+<li>Template Method</li>
+
+<li>Visitor</li>
+
+<li>Iterator</li>
+
+<li>Memento</li>
+
+</ul>
+
+</section>
+
+<section id="observer">
+
+<h2>👀 Observer Pattern</h2>
+
+<h3>Definition</h3>
+
+<p>
+
+The <strong>Observer Pattern</strong> is a Behavioral Design Pattern in which one object (called the <strong>Subject</strong>) automatically notifies multiple dependent objects (called <strong>Observers</strong>) whenever its state changes.
+
+</p>
+
+<p>
+
+This pattern establishes a <strong>one-to-many relationship</strong> between the Subject and its Observers.
+
+</p>
+
+<h3>Why Observer Pattern?</h3>
+
+<p>
+
+Imagine subscribing to a YouTube channel. Whenever a creator uploads a new video, every subscriber immediately receives a notification. Subscribers don't need to check repeatedly for updates because the channel automatically informs them.
+
+</p>
+
+<div class="highlight">
+
+<strong>Real-Life Examples</strong>
+
+<ul>
+
+<li>📺 YouTube Notifications</li>
+
+<li>📱 WhatsApp Group Messages</li>
+
+<li>🌦 Weather Alert Systems</li>
+
+<li>📈 Stock Market Updates</li>
+
+<li>📰 News Applications</li>
+
+<li>📧 Email Subscription Services</li>
+
+</ul>
+
+</div>
+
+</section>
+<section>
+
+<h3>Components of Observer Pattern</h3>
+
+<ul>
+
+<li><strong>Subject</strong> – Maintains a list of observers and sends notifications whenever its state changes.</li>
+
+<li><strong>Observer</strong> – Receives updates from the subject.</li>
+
+<li><strong>Concrete Subject</strong> – Stores the current state and notifies all registered observers.</li>
+
+<li><strong>Concrete Observer</strong> – Implements the update method and responds to notifications.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Observer Pattern Workflow</h3>
+
+<pre>
+
+          Subject
+             │
+     ┌───────┼────────┐
+     │       │        │
+     ▼       ▼        ▼
+Observer1 Observer2 Observer3
+
+</pre>
+
+<p>
+
+Whenever the Subject changes its state, it automatically notifies every registered Observer. Each Observer receives the update and performs its own action.
+
+</p>
+
+</section>
+
+<section>
+
+<h3>Advantages</h3>
+
+<ul>
+
+<li>Supports one-to-many communication.</li>
+
+<li>Reduces tight coupling between objects.</li>
+
+<li>New observers can be added without modifying existing code.</li>
+
+<li>Ideal for event-driven applications.</li>
+
+<li>Improves flexibility and scalability.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Disadvantages</h3>
+
+<ul>
+
+<li>Too many observers may reduce performance.</li>
+
+<li>Debugging notification chains can be difficult.</li>
+
+<li>Notification order may not always be predictable.</li>
+
+<li>Managing many observers increases complexity.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Real-Time Applications</h3>
+
+<ul>
+
+<li>YouTube Channel Notifications</li>
+
+<li>WhatsApp Group Messages</li>
+
+<li>Weather Forecast Applications</li>
+
+<li>Stock Market Alerts</li>
+
+<li>Email Subscription Systems</li>
+
+<li>News Applications</li>
+
+<li>Social Media Notifications</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Java Example Explanation</h3>
+
+<p>
+
+In our Java program, the <strong>YouTubeChannel</strong> acts as the <strong>Subject</strong>, while each <strong>YouTubeSubscriber</strong> acts as an <strong>Observer</strong>.
+
+</p>
+
+<p>
+
+Subscribers register with the channel using the <strong>subscribe()</strong> method. When a new video is uploaded, the channel calls <strong>notifySubscribers()</strong>, which automatically invokes the <strong>update()</strong> method for every subscriber.
+
+</p>
+
+<p>
+
+This demonstrates how one Subject can notify multiple Observers without needing to know their internal implementation.
+
+</p>
+
+<div class="highlight">
+
+<strong>Key Point:</strong>
+
+<p>
+
+The <strong>Observer Pattern</strong> establishes a <strong>one-to-many relationship</strong> where one Subject automatically informs all registered Observers whenever its state changes.
+
+</p>
+
+</div>
+
+</section>
+<section id="strategy">
+
+<h2>🎯 Strategy Pattern</h2>
+
+<h3>Definition</h3>
+
+<p>
+
+The <strong>Strategy Pattern</strong> is a Behavioral Design Pattern that allows you to define multiple algorithms or behaviors, encapsulate each one in a separate class, and switch between them at runtime without modifying the client code.
+
+</p>
+
+<p>
+
+Instead of using long <strong>if-else</strong> or <strong>switch</strong> statements, the Strategy Pattern selects the required behavior dynamically.
+
+</p>
+
+</section>
+
+<section>
+
+<h3>Why Strategy Pattern?</h3>
+
+<p>
+
+Imagine making a payment on an e-commerce website. You can choose different payment methods such as <strong>Credit Card</strong>, <strong>UPI</strong>, or <strong>PayPal</strong>. Although the payment method changes, the checkout process remains the same.
+
+</p>
+
+<p>
+
+Each payment method represents a different strategy, and the application selects the appropriate one based on the user's choice.
+
+</p>
+
+<div class="highlight">
+
+<strong>Real-Life Examples</strong>
+
+<ul>
+
+<li>💳 Online Payment Systems</li>
+
+<li>🗺 Google Maps Route Selection</li>
+
+<li>🗜 File Compression (ZIP, RAR, GZIP)</li>
+
+<li>📦 Courier Delivery Methods</li>
+
+<li>🚖 Ride Booking (Bike, Auto, Cab)</li>
+
+<li>🔐 Authentication Methods (Password, OTP, Fingerprint)</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<section>
+
+<h3>Components of Strategy Pattern</h3>
+
+<ul>
+
+<li><strong>Strategy</strong> – Defines the common interface for all algorithms.</li>
+
+<li><strong>Concrete Strategy</strong> – Implements a specific algorithm or behavior.</li>
+
+<li><strong>Context</strong> – Uses a strategy object to perform the required operation.</li>
+
+<li><strong>Client</strong> – Selects and provides the appropriate strategy to the Context.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Strategy Pattern Workflow</h3>
+
+<pre>
+
+Client
+   │
+   ▼
+Context
+   │
+   ▼
+Selected Strategy
+   │
+   ▼
+Execute Algorithm
+
+</pre>
+
+<p>
+
+The client selects a strategy and passes it to the Context. The Context delegates the work to the selected strategy without knowing its internal implementation.
+
+</p>
+
+</section>
+
+<section>
+
+<h3>Advantages</h3>
+
+<ul>
+
+<li>Allows algorithms to be changed at runtime.</li>
+
+<li>Eliminates lengthy if-else and switch statements.</li>
+
+<li>Follows the Open/Closed Principle.</li>
+
+<li>Improves code readability and maintainability.</li>
+
+<li>Promotes code reuse through separate strategy classes.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Disadvantages</h3>
+
+<ul>
+
+<li>Creates more classes in the project.</li>
+
+<li>The client must know which strategy to choose.</li>
+
+<li>Can increase complexity for simple applications.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Real-Time Applications</h3>
+
+<ul>
+
+<li>Online Payment Gateways</li>
+
+<li>Google Maps Navigation</li>
+
+<li>Sorting Algorithms</li>
+
+<li>File Compression Utilities</li>
+
+<li>Authentication Systems</li>
+
+<li>Travel Booking Applications</li>
+
+<li>Shipping and Delivery Services</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Java Example Explanation</h3>
+
+<p>
+
+In our Java program, <strong>PaymentStrategy</strong> is the Strategy interface. The classes <strong>CreditCardPayment</strong>, <strong>UpiPayment</strong>, and <strong>PayPalPayment</strong> are Concrete Strategies that provide different payment implementations.
+
+</p>
+
+<p>
+
+The <strong>PaymentContext</strong> class acts as the Context. It stores the selected payment strategy and delegates the payment request to that strategy.
+
+</p>
+
+<p>
+
+The client can change the payment method at runtime by selecting a different strategy without modifying the Context class.
+
+</p>
+
+<div class="highlight">
+
+<strong>Key Point:</strong>
+
+<p>
+
+The <strong>Strategy Pattern</strong> enables applications to switch between different algorithms or behaviors dynamically while keeping the client code unchanged.
+
+</p>
+
+</div>
+
+</section>
+<section id="comparison">
+
+<h2>⚖️ Observer Pattern vs Strategy Pattern</h2>
+
+<table>
+
+<tr>
+<th>Observer Pattern</th>
+<th>Strategy Pattern</th>
+</tr>
+
+<tr>
+<td>Defines a one-to-many relationship between objects.</td>
+<td>Defines a family of interchangeable algorithms.</td>
+</tr>
+
+<tr>
+<td>Automatically notifies observers when the subject changes.</td>
+<td>Allows changing the algorithm or behavior at runtime.</td>
+</tr>
+
+<tr>
+<td>Focuses on object communication.</td>
+<td>Focuses on selecting an algorithm.</td>
+</tr>
+
+<tr>
+<td>Commonly used in event-driven systems.</td>
+<td>Commonly used when multiple implementations of the same task exist.</td>
+</tr>
+
+<tr>
+<td>Examples: Notifications, Weather Apps, News Feeds.</td>
+<td>Examples: Payment Methods, Route Selection, Sorting Algorithms.</td>
+</tr>
+
+</table>
+
+</section>
+
+<section>
+
+<h2>✅ Best Practices</h2>
+
+<ul>
+
+<li>Use the Observer Pattern for event-driven communication.</li>
+
+<li>Register observers only when they are needed.</li>
+
+<li>Remove unused observers to avoid unnecessary notifications.</li>
+
+<li>Use the Strategy Pattern to replace long if-else or switch statements.</li>
+
+<li>Keep each strategy focused on a single algorithm.</li>
+
+<li>Follow the Single Responsibility Principle (SRP) and Open/Closed Principle (OCP).</li>
+
+</ul>
+
+</section>
+
+<section id="questions">
+
+<h2>💼 Frequently Asked Interview Questions</h2>
+
+<ol>
+
+<li>What is the Observer Pattern?</li>
+
+<li>What are the main components of the Observer Pattern?</li>
+
+<li>Why is the Observer Pattern called a one-to-many relationship?</li>
+
+<li>Where is the Observer Pattern used in real-world applications?</li>
+
+<li>What is the Strategy Pattern?</li>
+
+<li>How does the Strategy Pattern differ from inheritance?</li>
+
+<li>Why is the Strategy Pattern preferred over if-else statements?</li>
+
+<li>Explain the Context class in the Strategy Pattern.</li>
+
+<li>Differentiate between Observer Pattern and Strategy Pattern.</li>
+
+<li>Where are these patterns used in Java and Spring Framework?</li>
+
+</ol>
+
+</section>
+
+<section>
+
+<h2>🎯 Learning Outcome</h2>
+
+<p>After completing Day 20, you will be able to:</p>
+
+<ul>
+
+<li>Understand the Observer Pattern and its workflow.</li>
+
+<li>Implement the Observer Pattern in Java.</li>
+
+<li>Understand the Strategy Pattern and its workflow.</li>
+
+<li>Implement the Strategy Pattern in Java.</li>
+
+<li>Identify real-world use cases for both patterns.</li>
+
+<li>Choose the appropriate behavioral pattern based on application requirements.</li>
+
+<li>Answer Java interview questions on behavioral design patterns with confidence.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h2>📌 Conclusion</h2>
+
+<p>
+
+The <strong>Observer Pattern</strong> allows one object to automatically notify multiple dependent objects whenever its state changes, making it ideal for notification and event-driven systems.
+
+</p>
+
+<p>
+
+The <strong>Strategy Pattern</strong> enables applications to switch between different algorithms or behaviors at runtime without modifying existing code, resulting in flexible and maintainable software.
+
+</p>
+
+<p>
+
+Both patterns are widely used in enterprise Java applications, Spring Framework, GUI applications, payment gateways, messaging systems, and many other real-world software solutions.
+
+</p>
+
+</section>
+
+<footer>
+
+<h3>🎉 Day 20 Completed Successfully!</h3>
+
+<p>
+
+100 Days of Java with Ankitha 🚀
+
+</p>
+
+<p>
+
+Keep Learning • Keep Coding • Keep Growing ❤️
+
+</p>
+
+</footer>
+
+</body>
+
+</html>
