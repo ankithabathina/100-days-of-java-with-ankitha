@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Day 19 - Facade Pattern & Proxy Pattern</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:#f4f6f9;
+color:#333;
+line-height:1.8;
+}
+
+header{
+background:linear-gradient(135deg,#4A148C,#7B1FA2);
+color:white;
+padding:40px;
+text-align:center;
+}
+
+header h1{
+font-size:42px;
+}
+
+header p{
+margin-top:10px;
+font-size:18px;
+}
+
+nav{
+background:#4A148C;
+padding:15px;
+position:sticky;
+top:0;
+}
+
+nav ul{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+list-style:none;
+}
+
+nav ul li{
+margin:10px 18px;
+}
+
+nav ul li a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+nav ul li a:hover{
+color:#FFD54F;
+}
+
+section{
+width:90%;
+max-width:1100px;
+background:white;
+margin:30px auto;
+padding:30px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,.15);
+}
+
+h2{
+color:#6A1B9A;
+margin-bottom:15px;
+}
+
+h3{
+color:#4A148C;
+margin-top:20px;
+}
+
+p{
+margin:10px 0;
+}
+
+ul{
+margin-left:25px;
+margin-top:10px;
+}
+
+li{
+margin:8px 0;
+}
+
+.highlight{
+background:#F3E5F5;
+padding:18px;
+border-left:6px solid #6A1B9A;
+margin:20px 0;
+}
+
+footer{
+background:#4A148C;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>📘 Day 19</h1>
+
+<h2>Facade Pattern & Proxy Pattern</h2>
+
+<p>100 Days of Java with Ankitha</p>
+
+</header>
+
+<nav>
+
+<ul>
+
+<li><a href="#objective">Objective</a></li>
+
+<li><a href="#intro">Introduction</a></li>
+
+<li><a href="#facade">Facade Pattern</a></li>
+
+<li><a href="#proxy">Proxy Pattern</a></li>
+
+<li><a href="#comparison">Comparison</a></li>
+
+<li><a href="#questions">Interview Questions</a></li>
+
+</ul>
+
+</nav>
+
+<section id="objective">
+
+<h2>🎯 Objective</h2>
+
+<p>
+
+Learn two important Structural Design Patterns:
+
+</p>
+
+<ul>
+
+<li>Facade Pattern</li>
+
+<li>Proxy Pattern</li>
+
+</ul>
+
+<p>
+
+These patterns simplify complex systems and provide controlled access to objects, making Java applications easier to develop and maintain.
+
+</p>
+
+</section>
+
+<section id="intro">
+
+<h2>📖 Introduction to Structural Design Patterns</h2>
+
+<p>
+
+Structural Design Patterns explain how classes and objects are organized to build larger and more flexible software systems.
+
+</p>
+
+<p>
+
+They reduce complexity, improve maintainability, and encourage code reuse.
+
+</p>
+
+<div class="highlight">
+
+<strong>Why use Structural Design Patterns?</strong>
+
+<ul>
+
+<li>Reduce coupling</li>
+
+<li>Improve code reusability</li>
+
+<li>Simplify complex systems</li>
+
+<li>Increase flexibility</li>
+
+<li>Improve maintainability</li>
+
+<li>Create scalable applications</li>
+
+</ul>
+
+</div>
+
+<h3>Types of Structural Design Patterns</h3>
+
+<ul>
+
+<li>Adapter</li>
+
+<li>Bridge</li>
+
+<li>Composite</li>
+
+<li>Decorator</li>
+
+<li>Facade</li>
+
+<li>Flyweight</li>
+
+<li>Proxy</li>
+
+</ul>
+
+</section>
+
+<section id="facade">
+
+<h2>🏢 Facade Pattern</h2>
+
+<h3>Definition</h3>
+
+<p>
+
+The <strong>Facade Pattern</strong> provides a simple interface to a complex subsystem.
+
+Instead of interacting with multiple subsystem classes, the client communicates with a single Facade class.
+
+</p>
+
+<h3>Why Facade Pattern?</h3>
+
+<p>
+
+Imagine starting a computer.
+
+You simply press the <strong>Power Button</strong>.
+
+Internally, many operations happen automatically such as starting the CPU, loading memory, and reading the operating system.
+
+The Power Button acts as the <strong>Facade</strong>.
+
+</p>
+
+<div class="highlight">
+
+<strong>Real-Life Examples</strong>
+
+<ul>
+
+<li>Computer Startup</li>
+
+<li>ATM Machine</li>
+
+<li>TV Remote</li>
+
+<li>Hotel Booking System</li>
+
+<li>Online Shopping Checkout</li>
+
+</ul>
+
+</div>
+  <section>
+
+<h3>Components of Facade Pattern</h3>
+
+<ul>
+
+<li><strong>Client</strong> – Uses the Facade instead of interacting with subsystem classes directly.</li>
+
+<li><strong>Facade</strong> – Provides a simple interface to the complex subsystem.</li>
+
+<li><strong>Subsystem Classes</strong> – Perform the actual operations behind the scenes.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Facade Pattern Workflow</h3>
+
+<pre>
+
+Client
+   │
+   ▼
+Facade
+   │
+   ▼
+Subsystem Classes
+
+</pre>
+
+<p>
+
+The client communicates only with the <strong>Facade</strong>. The Facade internally coordinates all subsystem classes and returns the required result.
+
+</p>
+
+</section>
+
+<section>
+
+<h3>Advantages</h3>
+
+<ul>
+
+<li>Simplifies complex systems.</li>
+
+<li>Reduces coupling between client and subsystem classes.</li>
+
+<li>Improves code readability.</li>
+
+<li>Makes maintenance easier.</li>
+
+<li>Provides a single entry point to the subsystem.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Disadvantages</h3>
+
+<ul>
+
+<li>The Facade class can become too large if not designed properly.</li>
+
+<li>Advanced subsystem features may be hidden from the client.</li>
+
+<li>An extra abstraction layer may be introduced.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Real-Time Applications</h3>
+
+<ul>
+
+<li>Computer Startup Process</li>
+
+<li>ATM Machine Operations</li>
+
+<li>TV Remote Control</li>
+
+<li>Hotel Booking Systems</li>
+
+<li>Spring Framework</li>
+
+<li>JDBC API</li>
+
+<li>E-commerce Checkout Systems</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Java Example Explanation</h3>
+
+<p>
+
+In our Java program, <strong>CPU</strong>, <strong>Memory</strong>, and <strong>HardDrive</strong> are the subsystem classes.
+
+</p>
+
+<p>
+
+The <strong>ComputerFacade</strong> provides one simple method called
+<strong>startComputer()</strong>, which internally starts the CPU, loads memory, and reads the operating system.
+
+</p>
+
+<p>
+
+The client only creates the <strong>ComputerFacade</strong> object and calls one method instead of interacting with multiple subsystem classes.
+
+</p>
+
+<div class="highlight">
+
+<strong>Key Point:</strong>
+
+<p>
+
+The <strong>Facade Pattern</strong> hides the complexity of multiple subsystem classes by exposing a single, easy-to-use interface.
+
+</p>
+
+</div>
+
+</section>
+<section id="proxy">
+
+<h2>🔒 Proxy Pattern</h2>
+
+<h3>Definition</h3>
+
+<p>
+
+The <strong>Proxy Pattern</strong> is a Structural Design Pattern that provides a placeholder or representative object to control access to another object.
+
+Instead of communicating directly with the real object, the client interacts with the Proxy.
+
+</p>
+
+<p>
+
+The Proxy can perform additional tasks such as security checks, logging, caching, or lazy initialization before forwarding the request to the real object.
+
+</p>
+
+</section>
+
+<section>
+
+<h3>Why Proxy Pattern?</h3>
+
+<p>
+
+Imagine visiting a company's office.
+
+Before meeting the manager, you first interact with the <strong>Security Guard</strong>.
+
+The guard verifies your identity and decides whether you are allowed to enter.
+
+Here, the Security Guard acts as the <strong>Proxy</strong>, while the Manager represents the <strong>Real Object</strong>.
+
+</p>
+
+</section>
+
+<section>
+
+<h3>Components of Proxy Pattern</h3>
+
+<ul>
+
+<li><strong>Subject</strong> – Defines the common interface used by both Proxy and Real Subject.</li>
+
+<li><strong>Real Subject</strong> – The actual object that performs the requested work.</li>
+
+<li><strong>Proxy</strong> – Controls access to the Real Subject.</li>
+
+<li><strong>Client</strong> – Uses the Proxy instead of directly accessing the Real Subject.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Proxy Pattern Workflow</h3>
+
+<pre>
+
+Client
+   │
+   ▼
+Proxy
+   │
+   ├── Access Allowed?
+   │
+   ├── Yes ─────► Real Object
+   │                   │
+   │                   ▼
+   │             Perform Task
+   │
+   └── No
+         │
+         ▼
+    Access Denied
+
+</pre>
+
+<p>
+
+The client sends a request to the <strong>Proxy</strong>. The Proxy checks whether access is allowed. If permitted, it forwards the request to the Real Object; otherwise, it denies access.
+
+</p>
+
+</section>
+
+<section>
+
+<h3>Advantages</h3>
+
+<ul>
+
+<li>Provides controlled access to objects.</li>
+
+<li>Improves application security.</li>
+
+<li>Supports lazy object creation.</li>
+
+<li>Adds logging and monitoring.</li>
+
+<li>Can cache frequently used data.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Disadvantages</h3>
+
+<ul>
+
+<li>Adds an extra layer between client and object.</li>
+
+<li>May slightly reduce performance due to additional checks.</li>
+
+<li>Can increase design complexity if overused.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Real-Time Applications</h3>
+
+<ul>
+
+<li>Security Guard at Office</li>
+
+<li>ATM Card Authentication</li>
+
+<li>Proxy Servers</li>
+
+<li>Spring AOP</li>
+
+<li>Hibernate Lazy Loading</li>
+
+<li>Java RMI</li>
+
+<li>Cloud Storage Access Control</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Java Example Explanation</h3>
+
+<p>
+
+In our Java program, <strong>Office</strong> is the Subject interface.
+
+</p>
+
+<p>
+
+<strong>ManagerOffice</strong> is the Real Subject that provides access to the manager's office.
+
+</p>
+
+<p>
+
+<strong>SecurityGuard</strong> acts as the Proxy by checking whether the user is authorized before allowing access.
+
+</p>
+
+<p>
+
+The client communicates only with the Proxy, which decides whether the request should reach the Real Subject.
+
+</p>
+
+<div class="highlight">
+
+<strong>Key Point:</strong>
+
+<p>
+
+The <strong>Proxy Pattern</strong> controls access to an object by acting as an intermediary, providing security, logging, caching, or lazy initialization without modifying the original object.
+
+</p>
+
+</div>
+
+</section>
+</section>
+<section id="comparison">
+
+<h2>⚖️ Facade Pattern vs Proxy Pattern</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" width="100%">
+
+<tr>
+<th>Facade Pattern</th>
+<th>Proxy Pattern</th>
+</tr>
+
+<tr>
+<td>Provides a simplified interface to a complex subsystem.</td>
+<td>Controls access to another object.</td>
+</tr>
+
+<tr>
+<td>Focuses on reducing complexity.</td>
+<td>Focuses on security and access control.</td>
+</tr>
+
+<tr>
+<td>Hides subsystem details.</td>
+<td>Acts as an intermediary between client and real object.</td>
+</tr>
+
+<tr>
+<td>Improves usability.</td>
+<td>Improves security and performance.</td>
+</tr>
+
+<tr>
+<td>Client communicates with the Facade.</td>
+<td>Client communicates with the Proxy.</td>
+</tr>
+
+</table>
+
+</section>
+
+<section>
+
+<h2>✅ Best Practices</h2>
+
+<ul>
+
+<li>Use the Facade Pattern to simplify interactions with complex subsystems.</li>
+
+<li>Use the Proxy Pattern when access control or security is required.</li>
+
+<li>Keep Facade classes focused on one subsystem.</li>
+
+<li>Avoid putting too much business logic inside the Facade.</li>
+
+<li>Use Proxy for logging, caching, lazy loading, and authentication.</li>
+
+<li>Follow the Single Responsibility Principle (SRP).</li>
+
+</ul>
+
+</section>
+
+<section id="questions">
+
+<h2>💼 Frequently Asked Interview Questions</h2>
+
+<ol>
+
+<li>What is the Facade Pattern?</li>
+
+<li>Why do we use the Facade Pattern?</li>
+
+<li>What are the advantages of the Facade Pattern?</li>
+
+<li>What is the Proxy Pattern?</li>
+
+<li>Why do we use the Proxy Pattern?</li>
+
+<li>Difference between Facade Pattern and Proxy Pattern?</li>
+
+<li>Explain the components of the Facade Pattern.</li>
+
+<li>Explain the components of the Proxy Pattern.</li>
+
+<li>Give real-time examples of Facade and Proxy Patterns.</li>
+
+<li>Where are Facade and Proxy Patterns used in Java and Spring?</li>
+
+</ol>
+
+</section>
+
+<section>
+
+<h2>🎯 Learning Outcome</h2>
+
+<p>After completing Day 19, you will be able to:</p>
+
+<ul>
+
+<li>Understand the Facade Pattern.</li>
+
+<li>Implement the Facade Pattern in Java.</li>
+
+<li>Understand the Proxy Pattern.</li>
+
+<li>Implement the Proxy Pattern in Java.</li>
+
+<li>Compare Facade and Proxy Patterns.</li>
+
+<li>Identify real-world applications.</li>
+
+<li>Answer Java interview questions confidently.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h2>📌 Conclusion</h2>
+
+<p>
+
+The <strong>Facade Pattern</strong> simplifies communication with complex systems by providing a single, unified interface to multiple subsystem classes.
+
+</p>
+
+<p>
+
+The <strong>Proxy Pattern</strong> controls access to an object by acting as an intermediary, enabling features such as security, lazy loading, logging, and caching.
+
+</p>
+
+<p>
+
+Both patterns are widely used in enterprise Java applications, Spring Framework, Hibernate, and other real-world software systems to improve maintainability, flexibility, and scalability.
+
+</p>
+
+</section>
+
+<footer>
+
+<h3>🎉 Day 19 Completed Successfully!</h3>
+
+<p>
+
+100 Days of Java with Ankitha 🚀
+
+</p>
+
+<p>
+
+Keep Learning • Keep Coding • Keep Growing ❤️
+
+</p>
+
+</footer>
+
+</body>
+</html>
