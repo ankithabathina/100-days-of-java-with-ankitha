@@ -270,7 +270,508 @@ Similarly, in Java, an Adapter converts one interface into another, allowing exi
 <li>Language Translator</li>
 
 </ul>
+    <section>
+
+<h3>Components of Adapter Pattern</h3>
+
+<ul>
+
+<li><strong>Target</strong> – The interface expected by the client.</li>
+
+<li><strong>Adaptee</strong> – The existing class that has incompatible functionality.</li>
+
+<li><strong>Adapter</strong> – Converts the Adaptee interface into the Target interface.</li>
+
+<li><strong>Client</strong> – Uses the Target interface to communicate with the Adapter.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Adapter Pattern Workflow</h3>
+
+<pre>
+
+Client
+   │
+   ▼
+Target Interface
+   │
+   ▼
+Adapter
+   │
+   ▼
+Adaptee
+
+</pre>
+
+<p>
+
+The client communicates with the <strong>Target Interface</strong>. The <strong>Adapter</strong> translates the request and forwards it to the <strong>Adaptee</strong>, allowing incompatible classes to work together.
+
+</p>
+
+</section>
+
+<section>
+
+<h3>Advantages</h3>
+
+<ul>
+
+<li>Improves compatibility between different interfaces.</li>
+
+<li>Promotes code reusability.</li>
+
+<li>Reduces duplicate code.</li>
+
+<li>Supports legacy system integration.</li>
+
+<li>Encourages loose coupling.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Disadvantages</h3>
+
+<ul>
+
+<li>Adds an extra layer between classes.</li>
+
+<li>Can increase the number of classes in the project.</li>
+
+<li>May slightly increase application complexity.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Real-Time Applications</h3>
+
+<ul>
+
+<li>JDBC Drivers</li>
+
+<li>Spring MVC Handler Adapter</li>
+
+<li>Payment Gateway Integration</li>
+
+<li>Third-party API Integration</li>
+
+<li>Legacy System Integration</li>
+
+<li>USB Device Adapters</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Java Example Explanation</h3>
+
+<p>
+
+In our Java program, the <strong>MediaPlayer</strong> interface acts as the <strong>Target</strong>.
+
+</p>
+
+<p>
+
+The <strong>Mp4Player</strong> class is the <strong>Adaptee</strong>, which can only play MP4 files.
+
+</p>
+
+<p>
+
+The <strong>MediaAdapter</strong> converts calls from the <strong>MediaPlayer</strong> interface into calls that the <strong>Mp4Player</strong> understands.
+
+</p>
+
+<p>
+
+The <strong>AudioPlayer</strong> acts as the client and uses the adapter whenever it needs to play MP4 files.
+
+</p>
+
+<div class="highlight">
+
+<strong>Key Point:</strong>
+
+<p>
+
+The Adapter Pattern enables existing classes with incompatible interfaces to work together without modifying their source code.
+
+</p>
 
 </div>
 
 </section>
+
+</div>
+
+</section>
+    <section id="decorator">
+
+<h2>🎨 Decorator Pattern</h2>
+
+<h3>Definition</h3>
+
+<p>
+
+The <strong>Decorator Pattern</strong> is a Structural Design Pattern that allows you to add new functionality to an object dynamically without modifying its existing code.
+
+</p>
+
+<p>
+
+Instead of changing the original class, the object is wrapped inside another object (Decorator) that provides additional behavior.
+
+</p>
+
+</section>
+
+<section>
+
+<h3>Why Decorator Pattern?</h3>
+
+<p>
+
+Suppose you order a <strong>Margherita Pizza</strong>.
+
+Instead of creating separate classes like:
+
+</p>
+
+<ul>
+
+<li>CheesePizza</li>
+
+<li>MushroomPizza</li>
+
+<li>CheeseMushroomPizza</li>
+
+<li>CheeseCornPizza</li>
+
+</ul>
+
+<p>
+
+we simply decorate the original pizza by adding toppings one by one.
+
+This makes the application flexible and avoids creating too many classes.
+
+</p>
+
+</section>
+
+<section>
+
+<h3>Components of Decorator Pattern</h3>
+
+<ul>
+
+<li><strong>Component</strong> – Defines the common interface.</li>
+
+<li><strong>Concrete Component</strong> – The original object.</li>
+
+<li><strong>Decorator</strong> – Wraps the component object.</li>
+
+<li><strong>Concrete Decorator</strong> – Adds additional functionality.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Decorator Pattern Workflow</h3>
+
+<pre>
+
+Client
+   │
+   ▼
+Decorator
+   │
+   ▼
+Original Object
+
+</pre>
+
+<p>
+
+The client creates the original object and then wraps it with one or more decorators. Each decorator adds new functionality while preserving the original behavior.
+
+</p>
+
+</section>
+
+<section>
+
+<h3>Advantages</h3>
+
+<ul>
+
+<li>Adds functionality dynamically.</li>
+
+<li>Follows the Open/Closed Principle.</li>
+
+<li>Promotes composition over inheritance.</li>
+
+<li>Easy to extend functionality.</li>
+
+<li>Improves flexibility and maintainability.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Disadvantages</h3>
+
+<ul>
+
+<li>Can create many small classes.</li>
+
+<li>May make debugging more difficult.</li>
+
+<li>Object structure becomes more complex.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Real-Time Applications</h3>
+
+<ul>
+
+<li>Java I/O Streams</li>
+
+<li>BufferedInputStream</li>
+
+<li>BufferedReader</li>
+
+<li>Spring Security Filters</li>
+
+<li>Logging Frameworks</li>
+
+<li>Notification Systems</li>
+
+<li>Pizza and Coffee Customization</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h3>Java Example Explanation</h3>
+
+<p>
+
+In our Java program, <strong>Pizza</strong> is the Component interface.
+
+</p>
+
+<p>
+
+<strong>MargheritaPizza</strong> is the Concrete Component.
+
+</p>
+
+<p>
+
+<strong>PizzaDecorator</strong> wraps the Pizza object.
+
+</p>
+
+<p>
+
+<strong>CheeseDecorator</strong> and <strong>MushroomDecorator</strong> add extra toppings without modifying the original Pizza class.
+
+</p>
+
+<div class="highlight">
+
+<strong>Key Point:</strong>
+
+<p>
+
+The Decorator Pattern lets us extend an object's functionality at runtime while keeping the original class unchanged.
+
+</p>
+
+</div>
+
+</section>
+    <section id="comparison">
+
+<h2>⚖️ Adapter Pattern vs Decorator Pattern</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" width="100%">
+
+<tr>
+<th>Adapter Pattern</th>
+<th>Decorator Pattern</th>
+</tr>
+
+<tr>
+<td>Converts one interface into another.</td>
+<td>Adds new functionality to an existing object.</td>
+</tr>
+
+<tr>
+<td>Used to make incompatible classes work together.</td>
+<td>Used to enhance object behaviour dynamically.</td>
+</tr>
+
+<tr>
+<td>Focuses on compatibility.</td>
+<td>Focuses on flexibility and extension.</td>
+</tr>
+
+<tr>
+<td>Acts as a bridge between interfaces.</td>
+<td>Wraps an existing object.</td>
+</tr>
+
+<tr>
+<td>Mostly used during integration.</td>
+<td>Mostly used for feature enhancement.</td>
+</tr>
+
+</table>
+
+</section>
+
+<section>
+
+<h2>✅ Best Practices</h2>
+
+<ul>
+
+<li>Use Adapter Pattern when integrating incompatible interfaces.</li>
+
+<li>Use Decorator Pattern to add new functionality without modifying existing classes.</li>
+
+<li>Prefer composition over inheritance.</li>
+
+<li>Keep each decorator focused on a single responsibility.</li>
+
+<li>Avoid creating unnecessary decorators.</li>
+
+<li>Follow the SOLID principles while designing applications.</li>
+
+</ul>
+
+</section>
+
+<section id="questions">
+
+<h2>💼 Frequently Asked Interview Questions</h2>
+
+<ol>
+
+<li>What is the Adapter Pattern?</li>
+
+<li>Why do we use the Adapter Pattern?</li>
+
+<li>What is the Decorator Pattern?</li>
+
+<li>Difference between Adapter Pattern and Decorator Pattern?</li>
+
+<li>Explain the components of the Adapter Pattern.</li>
+
+<li>Explain the components of the Decorator Pattern.</li>
+
+<li>Give real-time examples of the Adapter Pattern.</li>
+
+<li>Give real-time examples of the Decorator Pattern.</li>
+
+<li>Why is composition preferred over inheritance?</li>
+
+<li>Where are Adapter and Decorator Patterns used in Java?</li>
+
+</ol>
+
+</section>
+
+<section>
+
+<h2>🎯 Learning Outcome</h2>
+
+<p>After completing Day 18, you will be able to:</p>
+
+<ul>
+
+<li>Understand Structural Design Patterns.</li>
+
+<li>Implement the Adapter Pattern in Java.</li>
+
+<li>Implement the Decorator Pattern in Java.</li>
+
+<li>Identify real-world use cases for both patterns.</li>
+
+<li>Differentiate between Adapter and Decorator Patterns.</li>
+
+<li>Answer Java interview questions with confidence.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h2>📌 Conclusion</h2>
+
+<p>
+
+The <strong>Adapter Pattern</strong> enables incompatible interfaces to work together without changing existing code, making it ideal for integrating third-party libraries and legacy systems.
+
+</p>
+
+<p>
+
+The <strong>Decorator Pattern</strong> allows developers to add new functionality dynamically by wrapping objects instead of modifying them, resulting in flexible and maintainable software.
+
+</p>
+
+<p>
+
+Both patterns are widely used in enterprise Java applications, Spring Framework, and real-world software development.
+
+</p>
+
+</section>
+
+<footer>
+
+<h3>🎉 Day 18 Completed Successfully!</h3>
+
+<p>
+
+100 Days of Java with Ankitha 🚀
+
+</p>
+
+<p>
+
+Keep Learning • Keep Coding • Keep Growing ❤️
+
+</p>
+
+</footer>
+
+</body>
+</html>
