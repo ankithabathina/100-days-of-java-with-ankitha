@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 18 - Adapter Pattern & Decorator Pattern</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1565C0, #42A5F5);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 42px;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        nav {
+            background: #0D47A1;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 10px 18px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: yellow;
+        }
+
+        section {
+            background: white;
+            width: 90%;
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            color: #1565C0;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #0D47A1;
+            margin-top: 20px;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        ul {
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .highlight {
+            background: #E3F2FD;
+            padding: 15px;
+            border-left: 6px solid #1565C0;
+            margin: 20px 0;
+        }
+
+        footer {
+            background: #1565C0;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>📘 Day 18</h1>
+
+    <h2>Adapter Pattern & Decorator Pattern</h2>
+
+    <p>100 Days of Java with Ankitha</p>
+
+</header>
+
+<nav>
+
+<ul>
+
+<li><a href="#objective">Objective</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#adapter">Adapter Pattern</a></li>
+<li><a href="#decorator">Decorator Pattern</a></li>
+<li><a href="#comparison">Comparison</a></li>
+<li><a href="#questions">Interview Questions</a></li>
+
+</ul>
+
+</nav>
+
+<section id="objective">
+
+<h2>🎯 Objective</h2>
+
+<p>
+
+Learn two important Structural Design Patterns used in Java:
+
+</p>
+
+<ul>
+
+<li>Adapter Pattern</li>
+
+<li>Decorator Pattern</li>
+
+</ul>
+
+<p>
+
+These patterns improve software flexibility, encourage code reuse, and help developers build scalable applications without changing existing code.
+
+</p>
+
+</section>
+
+<section id="introduction">
+
+<h2>📖 Introduction to Structural Design Patterns</h2>
+
+<p>
+
+Structural Design Patterns focus on organizing classes and objects to create larger, more flexible software structures.
+
+</p>
+
+<p>
+
+They simplify relationships between objects, promote code reuse, and make applications easier to maintain.
+
+</p>
+
+<div class="highlight">
+
+<strong>Why use Structural Design Patterns?</strong>
+
+<ul>
+
+<li>Increase flexibility</li>
+
+<li>Improve code reuse</li>
+
+<li>Reduce coupling</li>
+
+<li>Simplify integration</li>
+
+<li>Make applications easier to maintain</li>
+
+</ul>
+
+</div>
+
+<h3>Types of Structural Design Patterns</h3>
+
+<ul>
+
+<li>Adapter</li>
+
+<li>Bridge</li>
+
+<li>Composite</li>
+
+<li>Decorator</li>
+
+<li>Facade</li>
+
+<li>Flyweight</li>
+
+<li>Proxy</li>
+
+</ul>
+
+</section>
+
+<section id="adapter">
+
+<h2>🔌 Adapter Pattern</h2>
+
+<h3>Definition</h3>
+
+<p>
+
+The <strong>Adapter Pattern</strong> allows two incompatible interfaces to work together.
+
+It acts as a bridge between an existing class and the interface expected by the client.
+
+</p>
+
+<h3>Why Adapter Pattern?</h3>
+
+<p>
+
+Imagine your laptop only has a USB-C port, but your pendrive uses USB-A.
+
+Instead of replacing the pendrive, you use a USB adapter.
+
+Similarly, in Java, an Adapter converts one interface into another, allowing existing classes to work together without modification.
+
+</p>
+
+<div class="highlight">
+
+<strong>Real-Life Examples</strong>
+
+<ul>
+
+<li>USB to HDMI Adapter</li>
+
+<li>Mobile Charger Adapter</li>
+
+<li>Travel Plug Adapter</li>
+
+<li>Memory Card Reader</li>
+
+<li>Language Translator</li>
+
+</ul>
+
+</div>
+
+</section>
