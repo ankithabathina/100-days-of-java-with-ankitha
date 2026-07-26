@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Day 21 - Java Reflection API | 100 Days of Java</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#f4f7fb;
+color:#333;
+line-height:1.8;
+}
+
+header{
+background:linear-gradient(135deg,#1565C0,#42A5F5);
+color:white;
+text-align:center;
+padding:40px;
+}
+
+header h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+header p{
+font-size:18px;
+}
+
+nav{
+background:#0D47A1;
+padding:15px;
+position:sticky;
+top:0;
+z-index:100;
+}
+
+nav ul{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+list-style:none;
+}
+
+nav ul li{
+margin:10px 15px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+font-weight:bold;
+transition:.3s;
+}
+
+nav ul li a:hover{
+color:#FFD54F;
+}
+
+section{
+max-width:1100px;
+margin:auto;
+background:white;
+margin-top:30px;
+padding:30px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+h2{
+color:#1565C0;
+margin-bottom:20px;
+}
+
+h3{
+margin-top:20px;
+color:#0D47A1;
+}
+
+p{
+margin:15px 0;
+text-align:justify;
+}
+
+ul{
+margin-left:25px;
+}
+
+li{
+margin:8px 0;
+}
+
+.code{
+background:#272822;
+color:#fff;
+padding:15px;
+border-radius:8px;
+overflow-x:auto;
+font-family:Consolas;
+margin:15px 0;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+table th{
+background:#1565C0;
+color:white;
+padding:12px;
+}
+
+table td{
+padding:12px;
+border:1px solid #ddd;
+}
+
+table tr:nth-child(even){
+background:#f5f5f5;
+}
+
+.highlight{
+background:#E3F2FD;
+padding:15px;
+border-left:6px solid #1565C0;
+margin:20px 0;
+border-radius:5px;
+}
+
+footer{
+background:#0D47A1;
+color:white;
+text-align:center;
+padding:25px;
+margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>📘 Day 21 - Java Reflection API</h1>
+
+<p>100 Days of Java with Ankitha</p>
+
+<p>Learn how Java inspects and manipulates classes dynamically at runtime.</p>
+
+</header>
+
+<nav>
+
+<ul>
+
+<li><a href="#objective">Objective</a></li>
+
+<li><a href="#intro">Introduction</a></li>
+
+<li><a href="#reflection">Reflection API</a></li>
+
+<li><a href="#classobject">Class Object</a></li>
+
+<li><a href="#constructors">Constructors</a></li>
+
+<li><a href="#methods">Methods</a></li>
+
+<li><a href="#fields">Fields</a></li>
+
+<li><a href="#private">Private Members</a></li>
+
+<li><a href="#advantages">Advantages</a></li>
+
+<li><a href="#applications">Applications</a></li>
+
+<li><a href="#interview">Interview Questions</a></li>
+
+</ul>
+
+</nav>
+
+<section id="objective">
+
+<h2>🎯 Objective</h2>
+
+<p>
+
+The objective of this project is to understand the Java Reflection API and learn how it allows programs to inspect and manipulate classes, constructors, methods, and fields during runtime. Reflection is an essential feature used by many enterprise Java frameworks such as Spring, Hibernate, JUnit, and Mockito.
+
+</p>
+
+<div class="highlight">
+
+<strong>Reflection</strong> enables Java programs to examine and modify their own structure and behavior while the application is running.
+
+</div>
+
+</section>
+
+<section id="intro">
+
+<h2>📖 Introduction</h2>
+
+<p>
+
+Normally, Java classes are accessed during compile time. However, there are situations where the structure of a class is not known until the application is running. The Reflection API solves this problem by allowing Java to inspect classes dynamically.
+
+</p>
+
+<p>
+
+Reflection belongs to the <strong>java.lang.reflect</strong> package and provides classes that help developers retrieve metadata about Java classes and interact with them programmatically.
+
+</p>
+
+<h3>Common Uses</h3>
+
+<ul>
+
+<li>Runtime class inspection</li>
+
+<li>Dependency Injection</li>
+
+<li>Dynamic object creation</li>
+
+<li>Framework development</li>
+
+<li>Annotation processing</li>
+
+<li>Automatic testing</li>
+
+<li>Object mapping</li>
+
+</ul>
+
+</section>
+
+<section id="reflection">
+
+<h2>🔍 What is Reflection API?</h2>
+
+<p>
+
+The Java Reflection API is a powerful feature that allows programs to inspect and manipulate classes, interfaces, constructors, methods, and fields while the application is running.
+
+</p>
+
+<p>
+
+Instead of directly creating objects using the <strong>new</strong> keyword, Reflection allows Java to create objects dynamically and execute methods without knowing the implementation during compile time.
+
+</p>
+
+<div class="highlight">
+
+Reflection is widely used in enterprise frameworks because it provides flexibility and dynamic behaviour at runtime.
+
+</div>
+
+<h3>Reflection API Features</h3>
+
+<ul>
+
+<li>Retrieve class information</li>
+
+<li>Access constructors</li>
+
+<li>Access methods</li>
+
+<li>Access fields</li>
+
+<li>Create objects dynamically</li>
+
+<li>Invoke methods dynamically</li>
+
+<li>Access private members</li>
+
+</ul>
+
+</section>
+<section id="classobject">
+
+<h2>🏛 Class Object</h2>
+
+<p>
+
+The <strong>Class</strong> class is the entry point of the Reflection API. Every loaded Java class has a corresponding Class object that stores metadata about the class, such as its constructors, methods, fields, interfaces, and annotations.
+
+</p>
+
+<p>
+
+Before using Reflection, we first obtain the Class object of the required class.
+
+</p>
+
+<h3>Ways to Obtain a Class Object</h3>
+
+<table>
+
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>Student.class</td>
+<td>Obtains the Class object using the class name.</td>
+</tr>
+
+<tr>
+<td>object.getClass()</td>
+<td>Obtains the Class object from an existing object.</td>
+</tr>
+
+<tr>
+<td>Class.forName()</td>
+<td>Loads the class dynamically using its fully qualified name.</td>
+</tr>
+
+</table>
+
+<div class="code">
+
+Class&lt;?&gt; cls = Student.class;
+
+</div>
+
+<div class="highlight">
+
+The Class object acts as the gateway to access constructors, methods, fields, and other metadata of a Java class.
+
+</div>
+
+</section>
+
+<section id="constructors">
+
+<h2>🛠 Constructors</h2>
+
+<p>
+
+Reflection allows developers to inspect all constructors declared inside a class. Constructors can also be invoked dynamically to create objects during runtime.
+
+</p>
+
+<h3>Retrieving Constructors</h3>
+
+<div class="code">
+
+Constructor&lt;?&gt;[] constructors = cls.getDeclaredConstructors();
+
+</div>
+
+<p>
+
+The <strong>getDeclaredConstructors()</strong> method returns all constructors declared in the class, including private constructors.
+
+</p>
+
+<h3>Creating an Object Dynamically</h3>
+
+<div class="code">
+
+Object obj = cls.getDeclaredConstructor().newInstance();
+
+</div>
+
+<p>
+
+Unlike the traditional <strong>new</strong> keyword, Reflection creates objects dynamically during program execution.
+
+</p>
+
+<table>
+
+<tr>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>getDeclaredConstructors()</td>
+<td>Returns all constructors</td>
+</tr>
+
+<tr>
+<td>getDeclaredConstructor()</td>
+<td>Returns a specific constructor</td>
+</tr>
+
+<tr>
+<td>newInstance()</td>
+<td>Creates an object dynamically</td>
+</tr>
+
+</table>
+
+</section>
+
+<section id="methods">
+
+<h2>⚙ Methods</h2>
+
+<p>
+
+Reflection can retrieve information about methods and invoke them during runtime. This capability is heavily used in frameworks such as Spring and JUnit.
+
+</p>
+
+<h3>Retrieving Methods</h3>
+
+<div class="code">
+
+Method[] methods = cls.getDeclaredMethods();
+
+</div>
+
+<p>
+
+The above statement returns all methods declared inside the class, including private methods.
+
+</p>
+
+<h3>Invoking a Method</h3>
+
+<div class="code">
+
+Method displayMethod = cls.getDeclaredMethod("display");
+
+displayMethod.invoke(obj);
+
+</div>
+
+<p>
+
+The <strong>invoke()</strong> method executes the specified method on the given object.
+
+</p>
+
+<table>
+
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>getDeclaredMethods()</td>
+<td>Returns all methods</td>
+</tr>
+
+<tr>
+<td>getDeclaredMethod()</td>
+<td>Returns a specific method</td>
+</tr>
+
+<tr>
+<td>invoke()</td>
+<td>Executes the selected method</td>
+</tr>
+
+</table>
+
+</section>
+
+<section id="fields">
+
+<h2>📦 Fields</h2>
+
+<p>
+
+Reflection also provides access to the fields (variables) declared inside a class. Developers can inspect or modify field values during runtime.
+
+</p>
+
+<h3>Retrieving Fields</h3>
+
+<div class="code">
+
+Field[] fields = cls.getDeclaredFields();
+
+</div>
+
+<p>
+
+This method returns all fields declared inside the class, including private fields.
+
+</p>
+
+<h3>Example Output</h3>
+
+<ul>
+
+<li>name</li>
+
+<li>age</li>
+
+</ul>
+
+<table>
+
+<tr>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>getDeclaredFields()</td>
+<td>Returns all fields</td>
+</tr>
+
+<tr>
+<td>getDeclaredField()</td>
+<td>Returns a specific field</td>
+</tr>
+
+<tr>
+<td>set()</td>
+<td>Updates the field value</td>
+</tr>
+
+<tr>
+<td>get()</td>
+<td>Reads the field value</td>
+</tr>
+
+</table>
+
+<div class="highlight">
+
+Reflection makes it possible to inspect and modify object fields dynamically, even when the field names are not known at compile time.
+
+</div>
+
+</section>
+<section id="private">
+
+<h2>🔒 Accessing Private Members</h2>
+
+<p>
+
+Normally, private fields and methods cannot be accessed outside their class. However, the Reflection API allows access to these members by using the <strong>setAccessible(true)</strong> method.
+
+</p>
+
+<p>
+
+This feature is useful for testing frameworks, dependency injection, and object mapping libraries. However, it should be used carefully because it bypasses Java's encapsulation.
+
+</p>
+
+<h3>Accessing a Private Method</h3>
+
+<div class="code">
+
+Method privateMethod = cls.getDeclaredMethod("privateMethod");
+
+privateMethod.setAccessible(true);
+
+privateMethod.invoke(obj);
+
+</div>
+
+<h3>Accessing a Private Field</h3>
+
+<div class="code">
+
+Field field = cls.getDeclaredField("name");
+
+field.setAccessible(true);
+
+System.out.println(field.get(obj));
+
+</div>
+
+<div class="highlight">
+
+<strong>Note:</strong> Avoid using Reflection to access private members unless absolutely necessary, as it can compromise code security and maintainability.
+
+</div>
+
+</section>
+
+<section id="advantages">
+
+<h2>✅ Advantages of Reflection API</h2>
+
+<ul>
+
+<li>Allows runtime inspection of classes.</li>
+
+<li>Supports dynamic object creation.</li>
+
+<li>Enables dynamic method invocation.</li>
+
+<li>Useful for Dependency Injection frameworks.</li>
+
+<li>Helps build reusable libraries and tools.</li>
+
+<li>Supports annotation processing.</li>
+
+<li>Essential for ORM frameworks like Hibernate.</li>
+
+<li>Simplifies automated testing.</li>
+
+</ul>
+
+</section>
+
+<section id="disadvantages">
+
+<h2>❌ Disadvantages of Reflection API</h2>
+
+<ul>
+
+<li>Slower than normal method calls.</li>
+
+<li>Breaks encapsulation by accessing private members.</li>
+
+<li>Can introduce security vulnerabilities.</li>
+
+<li>More difficult to debug.</li>
+
+<li>Increases application complexity.</li>
+
+<li>Should not be overused in performance-critical applications.</li>
+
+</ul>
+
+</section>
+
+<section id="applications">
+
+<h2>🌍 Real-Time Applications</h2>
+
+<p>
+
+The Reflection API is widely used in enterprise applications and Java frameworks to inspect classes and create objects dynamically.
+
+</p>
+
+<table>
+
+<tr>
+<th>Framework / Tool</th>
+<th>How Reflection is Used</th>
+</tr>
+
+<tr>
+<td>Spring Framework</td>
+<td>Dependency Injection and Bean Creation</td>
+</tr>
+
+<tr>
+<td>Hibernate</td>
+<td>Entity Mapping and ORM Operations</td>
+</tr>
+
+<tr>
+<td>JUnit</td>
+<td>Automatic Test Discovery and Execution</td>
+</tr>
+
+<tr>
+<td>Mockito</td>
+<td>Dynamic Mock Object Creation</td>
+</tr>
+
+<tr>
+<td>Jackson / Gson</td>
+<td>JSON Serialization and Deserialization</td>
+</tr>
+
+<tr>
+<td>IDE Tools</td>
+<td>Code Inspection and Auto-completion</td>
+</tr>
+
+<tr>
+<td>Plugin Systems</td>
+<td>Loading External Modules Dynamically</td>
+</tr>
+
+</table>
+
+<div class="highlight">
+
+Reflection is one of the core technologies behind many modern Java frameworks because it enables applications to adapt dynamically at runtime.
+
+</div>
+
+</section>
+
+<section id="program">
+
+<h2>💻 Program Explanation</h2>
+
+<p>
+
+The <strong>ReflectionDemo.java</strong> program demonstrates the core capabilities of the Reflection API through a simple <strong>Student</strong> class.
+
+</p>
+
+<h3>The program performs the following operations:</h3>
+
+<ol>
+
+<li>Obtains the <strong>Class</strong> object.</li>
+
+<li>Retrieves all constructors.</li>
+
+<li>Creates an object dynamically.</li>
+
+<li>Retrieves all methods.</li>
+
+<li>Retrieves all fields.</li>
+
+<li>Invokes a public method.</li>
+
+<li>Invokes a private method using Reflection.</li>
+
+</ol>
+
+<h3>Reflection Workflow</h3>
+
+<div class="code">
+
+Student Class
+
+↓
+
+Class Object
+
+↓
+
+Constructors
+
+↓
+
+Methods
+
+↓
+
+Fields
+
+↓
+
+Create Object
+
+↓
+
+Invoke Methods
+
+</div>
+
+</section>
+<section id="comparison">
+
+<h2>📊 Reflection API vs Normal Java</h2>
+
+<table>
+
+<tr>
+<th>Normal Java</th>
+<th>Reflection API</th>
+</tr>
+
+<tr>
+<td>Works at compile time</td>
+<td>Works at runtime</td>
+</tr>
+
+<tr>
+<td>Direct object creation</td>
+<td>Dynamic object creation</td>
+</tr>
+
+<tr>
+<td>Direct method invocation</td>
+<td>Dynamic method invocation</td>
+</tr>
+
+<tr>
+<td>Cannot access private members</td>
+<td>Can access private members using Reflection</td>
+</tr>
+
+<tr>
+<td>Better performance</td>
+<td>Slightly slower due to runtime processing</td>
+</tr>
+
+<tr>
+<td>Simple and easy to debug</td>
+<td>More complex and harder to debug</td>
+</tr>
+
+</table>
+
+</section>
+
+<section id="best">
+
+<h2>⭐ Best Practices</h2>
+
+<ul>
+
+<li>Use Reflection only when necessary.</li>
+
+<li>Avoid Reflection in performance-critical applications.</li>
+
+<li>Do not access private members unless required.</li>
+
+<li>Handle Reflection exceptions properly.</li>
+
+<li>Prefer normal Java programming whenever possible.</li>
+
+<li>Document Reflection-based code clearly for maintainability.</li>
+
+<li>Use Reflection responsibly to preserve encapsulation and security.</li>
+
+</ul>
+
+</section>
+
+<section id="interview">
+
+<h2>🎤 Interview Questions</h2>
+
+<h3>1. What is the Reflection API?</h3>
+
+<p>
+Reflection is a Java feature that allows a program to inspect and manipulate classes, methods, constructors, and fields during runtime.
+</p>
+
+<h3>2. Which package contains the Reflection API?</h3>
+
+<div class="code">
+java.lang.reflect
+</div>
+
+<h3>3. What is the purpose of the Class class?</h3>
+
+<p>
+The <strong>Class</strong> class stores metadata about a Java class and acts as the entry point for Reflection.
+</p>
+
+<h3>4. How do you create an object using Reflection?</h3>
+
+<div class="code">
+Object obj = cls.getDeclaredConstructor().newInstance();
+</div>
+
+<h3>5. How do you invoke a method dynamically?</h3>
+
+<div class="code">
+Method method = cls.getDeclaredMethod("display");
+
+method.invoke(obj);
+</div>
+
+<h3>6. Can Reflection access private methods?</h3>
+
+<p>
+Yes. By calling <strong>setAccessible(true)</strong>, Reflection can access private methods and fields.
+</p>
+
+<h3>7. Name some frameworks that use Reflection.</h3>
+
+<ul>
+
+<li>Spring Framework</li>
+
+<li>Hibernate</li>
+
+<li>JUnit</li>
+
+<li>Mockito</li>
+
+<li>Jackson</li>
+
+<li>Gson</li>
+
+</ul>
+
+<h3>8. What are the disadvantages of Reflection?</h3>
+
+<ul>
+
+<li>Performance overhead</li>
+
+<li>Breaks encapsulation</li>
+
+<li>Security concerns</li>
+
+<li>Difficult debugging</li>
+
+</ul>
+
+</section>
+
+<section id="learning">
+
+<h2>🎯 Learning Outcome</h2>
+
+<p>
+
+After completing this project, you will be able to:
+
+</p>
+
+<ul>
+
+<li>Understand the Java Reflection API.</li>
+
+<li>Obtain Class objects using different approaches.</li>
+
+<li>Retrieve constructors, methods, and fields dynamically.</li>
+
+<li>Create objects at runtime using Reflection.</li>
+
+<li>Invoke public and private methods dynamically.</li>
+
+<li>Explain how Reflection is used in enterprise Java frameworks.</li>
+
+<li>Answer Reflection API interview questions confidently.</li>
+
+</ul>
+
+</section>
+
+<section id="conclusion">
+
+<h2>📝 Conclusion</h2>
+
+<p>
+
+The <strong>Java Reflection API</strong> is a powerful runtime feature that enables applications to inspect and manipulate classes dynamically. It plays a crucial role in modern Java development and is widely used in frameworks such as Spring, Hibernate, JUnit, and Mockito.
+
+</p>
+
+<p>
+
+Although Reflection offers great flexibility, it should be used carefully because it introduces additional runtime overhead and can bypass encapsulation. Understanding Reflection strengthens your knowledge of advanced Java concepts and prepares you for enterprise application development and technical interviews.
+
+</p>
+
+<div class="highlight">
+
+🚀 Reflection makes Java applications more flexible by enabling dynamic inspection, object creation, and method invocation at runtime.
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>💯 100 Days of Java with Ankitha</h3>
+
+<p>Day 21 • Java Reflection API</p>
+
+<p>⭐ Keep Learning • Keep Building • Keep Growing ⭐</p>
+
+<p>&copy; 2026 Ankitha Bathina. All Rights Reserved.</p>
+
+</footer>
+
+</body>
+</html>
