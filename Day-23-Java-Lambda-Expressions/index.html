@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Day 23 - Java Lambda Expressions | 100 Days of Java</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        body{
+            background:#f4f7fb;
+            color:#333;
+            line-height:1.8;
+        }
+
+        header{
+
+            background:linear-gradient(135deg,#8E24AA,#5E35B1);
+            color:white;
+            text-align:center;
+            padding:40px;
+
+        }
+
+        header h1{
+
+            font-size:38px;
+
+        }
+
+        header p{
+
+            margin-top:10px;
+            font-size:18px;
+
+        }
+
+        nav{
+
+            position:sticky;
+            top:0;
+            z-index:100;
+            background:#4527A0;
+            text-align:center;
+            padding:15px;
+
+        }
+
+        nav a{
+
+            color:white;
+            text-decoration:none;
+            margin:12px;
+            font-weight:bold;
+
+        }
+
+        nav a:hover{
+
+            color:yellow;
+
+        }
+
+        section{
+
+            width:90%;
+            max-width:1100px;
+            margin:40px auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+        }
+
+        h2{
+
+            color:#5E35B1;
+            margin-bottom:15px;
+
+        }
+
+        h3{
+
+            color:#4527A0;
+            margin-top:20px;
+
+        }
+
+        p{
+
+            margin-bottom:15px;
+
+        }
+
+        ul{
+
+            margin-left:25px;
+
+        }
+
+        li{
+
+            margin:10px 0;
+
+        }
+
+        code{
+
+            background:#eeeeee;
+            padding:2px 6px;
+            border-radius:4px;
+
+        }
+
+        pre{
+
+            background:#1e1e1e;
+            color:#00ff90;
+            padding:20px;
+            border-radius:8px;
+            overflow:auto;
+            margin-top:15px;
+
+        }
+
+        table{
+
+            width:100%;
+            border-collapse:collapse;
+            margin-top:20px;
+
+        }
+
+        table,th,td{
+
+            border:1px solid #ccc;
+
+        }
+
+        th{
+
+            background:#5E35B1;
+            color:white;
+
+        }
+
+        th,td{
+
+            padding:12px;
+            text-align:left;
+
+        }
+
+        footer{
+
+            background:#4527A0;
+            color:white;
+            text-align:center;
+            padding:20px;
+            margin-top:40px;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Day 23 - Java Lambda Expressions</h1>
+
+    <p>100 Days of Java with Ankitha 🚀</p>
+
+</header>
+
+<nav>
+
+    <a href="#objective">Objective</a>
+
+    <a href="#introduction">Introduction</a>
+
+    <a href="#lambda">Lambda</a>
+
+    <a href="#syntax">Syntax</a>
+
+    <a href="#functional">Functional Interface</a>
+
+    <a href="#examples">Examples</a>
+
+    <a href="#collections">Collections</a>
+
+    <a href="#advantages">Advantages</a>
+
+    <a href="#applications">Applications</a>
+
+    <a href="#interview">Interview</a>
+
+    <a href="#conclusion">Conclusion</a>
+
+</nav>
+
+<section id="objective">
+
+<h2>Objective</h2>
+
+<p>
+
+The objective of this project is to understand Java Lambda Expressions,
+their syntax, advantages, and real-world applications.
+Lambda Expressions simplify Java programming by reducing boilerplate code
+and supporting Functional Programming.
+
+</p>
+
+</section>
+
+<section id="introduction">
+
+<h2>Introduction</h2>
+
+<p>
+
+Lambda Expressions were introduced in Java 8 to make Java code shorter,
+cleaner, and more readable. They allow developers to implement Functional
+Interfaces without creating Anonymous Inner Classes.
+
+</p>
+
+<p>
+
+Lambda Expressions are widely used with the Collections Framework,
+Stream API, Comparator, Runnable, and Spring Boot applications.
+
+</p>
+
+</section>
+
+<section id="lambda">
+
+<h2>What is a Lambda Expression?</h2>
+
+<p>
+
+A Lambda Expression is an anonymous function that contains parameters,
+an arrow operator (<code>-></code>), and a method body.
+
+</p>
+
+<pre>
+(parameters) -> {
+
+    // method body
+
+}
+</pre>
+
+<p>
+
+Lambda Expressions make Java code concise and easier to understand.
+
+</p>
+
+</section>
+
+<section id="syntax">
+
+<h2>Syntax of Lambda Expression</h2>
+
+<pre>
+(parameter1, parameter2) -> {
+
+    // statements
+
+}
+</pre>
+
+<h3>Example</h3>
+
+<pre>
+() -> System.out.println("Hello Java");
+
+(number) -> number * number;
+
+(a, b) -> a + b;
+</pre>
+  <section id="functional">
+
+    <h2>Functional Interface</h2>
+
+    <p>
+
+        A <strong>Functional Interface</strong> is an interface that contains
+        exactly <strong>one abstract method</strong>. Lambda Expressions can
+        only be used with Functional Interfaces.
+
+    </p>
+
+<pre>
+@FunctionalInterface
+
+interface Greeting{
+
+    void message();
+
+}
+</pre>
+
+    <p>
+
+        The <code>@FunctionalInterface</code> annotation tells the compiler
+        that the interface should contain only one abstract method.
+
+    </p>
+
+</section>
+
+<section id="examples">
+
+    <h2>Lambda Expression Examples</h2>
+
+    <h3>Example 1 - No Parameters</h3>
+
+<pre>
+Greeting greet = () ->
+
+    System.out.println("Hello Java");
+
+greet.message();
+</pre>
+
+    <p>
+
+        This Lambda Expression does not accept any parameters and simply
+        prints a message.
+
+    </p>
+
+    <h3>Example 2 - One Parameter</h3>
+
+<pre>
+Square square = (number) -> number * number;
+
+System.out.println(square.findSquare(5));
+</pre>
+
+    <p>
+
+        This Lambda Expression accepts one parameter and returns its square.
+
+    </p>
+
+    <h3>Example 3 - Multiple Parameters</h3>
+
+<pre>
+Addition add = (a,b) -> a + b;
+
+System.out.println(add.add(10,20));
+</pre>
+
+    <p>
+
+        This Lambda Expression accepts two parameters and returns their sum.
+
+    </p>
+
+</section>
+
+<section id="collections">
+
+    <h2>Lambda with Collections</h2>
+
+    <p>
+
+        Lambda Expressions make working with Java Collections easier and more
+        readable.
+
+    </p>
+
+<pre>
+List&lt;String&gt; names = new ArrayList&lt;&gt;();
+
+names.add("Rahul");
+names.add("Ankitha");
+names.add("David");
+
+names.forEach(name ->
+    System.out.println(name));
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+Rahul
+Ankitha
+David
+</pre>
+
+    <p>
+
+        The <code>forEach()</code> method iterates through every element in
+        the collection and executes the Lambda Expression.
+
+    </p>
+
+    <h3>Sorting using Lambda Expression</h3>
+
+<pre>
+Collections.sort(names,
+(name1, name2) ->
+name1.compareTo(name2));
+</pre>
+
+    <p>
+
+        Lambda Expressions simplify sorting by replacing anonymous inner
+        classes with concise code.
+
+    </p>
+
+</section>
+  <section id="method-reference">
+
+    <h2>Method Reference</h2>
+
+    <p>
+
+        A <strong>Method Reference</strong> is a shorter and cleaner way of
+        writing Lambda Expressions when the Lambda simply calls an existing method.
+
+    </p>
+
+    <h3>Syntax</h3>
+
+<pre>
+ClassName::methodName
+</pre>
+
+    <h3>Example</h3>
+
+<pre>
+List<String> names = Arrays.asList(
+"Rahul",
+"Ankitha",
+"David"
+);
+
+names.forEach(System.out::println);
+</pre>
+
+    <p>
+
+        Here, <code>System.out::println</code> is a method reference that
+        replaces the Lambda Expression:
+
+    </p>
+
+<pre>
+names.forEach(name -> System.out.println(name));
+</pre>
+
+</section>
+
+<section id="comparison">
+
+    <h2>Lambda Expression vs Anonymous Class</h2>
+
+    <table>
+
+        <tr>
+
+            <th>Lambda Expression</th>
+
+            <th>Anonymous Class</th>
+
+        </tr>
+
+        <tr>
+
+            <td>Less code</td>
+
+            <td>More code</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Easy to read</td>
+
+            <td>Complex to read</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Uses -> operator</td>
+
+            <td>Uses class implementation</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Introduced in Java 8</td>
+
+            <td>Available before Java 8</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Supports Functional Programming</td>
+
+            <td>Does not directly support Functional Programming</td>
+
+        </tr>
+
+    </table>
+
+</section>
+
+<section id="advantages">
+
+    <h2>Advantages of Lambda Expressions</h2>
+
+    <ul>
+
+        <li>Reduces boilerplate code.</li>
+
+        <li>Improves code readability.</li>
+
+        <li>Supports Functional Programming.</li>
+
+        <li>Works seamlessly with Stream API.</li>
+
+        <li>Simplifies Collection operations.</li>
+
+        <li>Makes code easier to maintain.</li>
+
+        <li>Improves developer productivity.</li>
+
+    </ul>
+
+</section>
+
+<section id="disadvantages">
+
+    <h2>Disadvantages of Lambda Expressions</h2>
+
+    <ul>
+
+        <li>Can be difficult for beginners.</li>
+
+        <li>Debugging complex Lambda Expressions can be challenging.</li>
+
+        <li>Works only with Functional Interfaces.</li>
+
+        <li>Overusing Lambda Expressions may reduce readability.</li>
+
+    </ul>
+
+</section>
+
+<section id="applications">
+
+    <h2>Real-Time Applications</h2>
+
+    <table>
+
+        <tr>
+
+            <th>Technology</th>
+
+            <th>Usage</th>
+
+        </tr>
+
+        <tr>
+
+            <td>Collections Framework</td>
+
+            <td>Sorting, Searching, Iteration</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Stream API</td>
+
+            <td>Filtering, Mapping, Reducing</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Comparator</td>
+
+            <td>Custom Sorting</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Multithreading</td>
+
+            <td>Runnable and ExecutorService</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Spring Boot</td>
+
+            <td>Functional Programming and Stream Processing</td>
+
+        </tr>
+
+    </table>
+
+</section>
+
+<section id="best-practices">
+
+    <h2>Best Practices</h2>
+
+    <ul>
+
+        <li>Keep Lambda Expressions short and simple.</li>
+
+        <li>Use meaningful parameter names.</li>
+
+        <li>Prefer Method References when appropriate.</li>
+
+        <li>Avoid deeply nested Lambda Expressions.</li>
+
+        <li>Use Lambda Expressions only with Functional Interfaces.</li>
+
+    </ul>
+
+</section>
+  <section id="interview">
+
+    <h2>Interview Questions</h2>
+
+    <ol>
+
+        <li>What is a Lambda Expression?</li>
+
+        <li>Why were Lambda Expressions introduced in Java 8?</li>
+
+        <li>What is a Functional Interface?</li>
+
+        <li>Can a Lambda Expression be used with every interface?</li>
+
+        <li>Explain the syntax of a Lambda Expression.</li>
+
+        <li>What is the difference between a Lambda Expression and an Anonymous Class?</li>
+
+        <li>What is a Method Reference?</li>
+
+        <li>What are the advantages of Lambda Expressions?</li>
+
+        <li>How are Lambda Expressions used with Collections?</li>
+
+        <li>How are Lambda Expressions used in the Stream API?</li>
+
+        <li>Can Lambda Expressions access local variables?</li>
+
+        <li>What are effectively final variables?</li>
+
+        <li>Where are Lambda Expressions used in real-world applications?</li>
+
+    </ol>
+
+</section>
+
+<section id="outcomes">
+
+    <h2>Learning Outcomes</h2>
+
+    <p>
+
+        After completing this project, you will be able to:
+
+    </p>
+
+    <ul>
+
+        <li>Understand the concept of Functional Programming in Java.</li>
+
+        <li>Write concise code using Lambda Expressions.</li>
+
+        <li>Create and use Functional Interfaces.</li>
+
+        <li>Work with Lambda Expressions in Collections.</li>
+
+        <li>Sort data using Comparator and Lambda.</li>
+
+        <li>Understand Method References.</li>
+
+        <li>Use Lambda Expressions in modern Java applications.</li>
+
+        <li>Answer Java 8 Lambda interview questions confidently.</li>
+
+    </ul>
+
+</section>
+
+<section id="conclusion">
+
+    <h2>Conclusion</h2>
+
+    <p>
+
+        Java Lambda Expressions, introduced in Java 8, make programs more
+        concise, readable, and maintainable by reducing boilerplate code.
+        They provide a modern approach to implementing Functional Interfaces
+        without using Anonymous Inner Classes.
+
+    </p>
+
+    <p>
+
+        Lambda Expressions are widely used with the Collections Framework,
+        Stream API, Comparator, Multithreading, and Spring Boot applications.
+        Mastering Lambda Expressions is an essential step toward writing
+        efficient and modern Java applications.
+
+    </p>
+
+</section>
+
+<footer>
+
+    <h3>Day 23 – Java Lambda Expressions</h3>
+
+    <p>Part of the <strong>100 Days of Java with Ankitha</strong> 🚀</p>
+
+    <p>Made with ❤️ by Ankitha Bathina</p>
+
+</footer>
+
+</body>
+</html>
+
+</section>
