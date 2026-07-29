@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 22 - Java Annotations | 100 Days of Java</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1565c0, #42a5f5);
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        header h1 {
+            font-size: 38px;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #0d47a1;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 12px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: yellow;
+        }
+
+        section {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,.15);
+        }
+
+        h2 {
+            color: #1565c0;
+            margin-bottom: 15px;
+        }
+
+        h3{
+            color:#0d47a1;
+            margin-top:20px;
+        }
+
+        p{
+            margin-bottom:15px;
+        }
+
+        ul{
+            margin-left:30px;
+        }
+
+        li{
+            margin:10px 0;
+        }
+
+        code{
+            background:#eee;
+            padding:2px 5px;
+            border-radius:5px;
+        }
+
+        pre{
+            background:#1e1e1e;
+            color:#00ff90;
+            padding:20px;
+            overflow:auto;
+            border-radius:8px;
+            margin-top:15px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:20px;
+        }
+
+        table,th,td{
+            border:1px solid #ccc;
+        }
+
+        th{
+            background:#1565c0;
+            color:white;
+        }
+
+        th,td{
+            padding:12px;
+            text-align:left;
+        }
+
+        footer{
+            background:#0d47a1;
+            color:white;
+            text-align:center;
+            padding:20px;
+            margin-top:40px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Day 22 - Java Annotations</h1>
+
+<p>100 Days of Java with Ankitha 🚀</p>
+
+</header>
+
+<nav>
+
+<a href="#objective">Objective</a>
+
+<a href="#introduction">Introduction</a>
+
+<a href="#annotation">Annotations</a>
+
+<a href="#types">Types</a>
+
+<a href="#builtin">Built-in</a>
+
+<a href="#custom">Custom</a>
+
+<a href="#meta">Meta</a>
+
+<a href="#reflection">Reflection</a>
+
+<a href="#advantages">Advantages</a>
+
+<a href="#applications">Applications</a>
+
+<a href="#interview">Interview</a>
+
+<a href="#conclusion">Conclusion</a>
+
+</nav>
+
+<section id="objective">
+
+<h2>Objective</h2>
+
+<p>
+
+The objective of this project is to understand Java Annotations, their purpose,
+types, built-in annotations, custom annotations, and how annotations are processed
+at runtime using the Reflection API.
+
+</p>
+
+</section>
+
+<section id="introduction">
+
+<h2>Introduction</h2>
+
+<p>
+
+Java Annotations are a special form of metadata introduced in Java 5.
+They provide additional information about classes, methods, constructors,
+fields, and parameters without changing the program's business logic.
+
+</p>
+
+<p>
+
+Annotations are widely used in enterprise applications, especially in
+Spring Boot, Hibernate, JUnit, and Jakarta Validation.
+
+</p>
+
+</section>
+
+<section id="annotation">
+
+<h2>What are Java Annotations?</h2>
+
+<p>
+
+An annotation is a special interface represented using the <code>@</code> symbol.
+It supplies metadata to the compiler, JVM, or frameworks.
+
+</p>
+
+<pre>
+@Override
+public void display(){
+
+    System.out.println("Hello Java");
+
+}
+</pre>
+
+<p>
+
+Here, <code>@Override</code> informs the compiler that the method overrides
+a method from the parent class.
+
+</p>
+
+</section>
+
+<section id="types">
+
+<h2>Types of Java Annotations</h2>
+
+<h3>1. Built-in Annotations</h3>
+
+<ul>
+
+<li>@Override</li>
+
+<li>@Deprecated</li>
+
+<li>@SuppressWarnings</li>
+
+<li>@FunctionalInterface</li>
+
+<li>@SafeVarargs</li>
+
+</ul>
+
+<h3>2. Custom Annotations</h3>
+
+<p>
+
+Custom annotations are created by developers according to application requirements.
+
+</p>
+
+<pre>
+@interface MyAnnotation{
+
+    String author();
+
+    int version();
+
+}
+</pre>
+
+</section>
