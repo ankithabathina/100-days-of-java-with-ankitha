@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Day 24 - Functional Interfaces</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+            line-height:1.8;
+            background:#f4f7fb;
+            color:#333;
+        }
+
+        header{
+            background:#0077b6;
+            color:white;
+            padding:25px;
+            text-align:center;
+        }
+
+        nav{
+            background:#023e8a;
+            padding:12px;
+            text-align:center;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin:15px;
+            font-weight:bold;
+        }
+
+        nav a:hover{
+            color:#ffd60a;
+        }
+
+        section{
+            background:white;
+            margin:20px;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h2{
+            color:#0077b6;
+            margin-bottom:10px;
+        }
+
+        h3{
+            color:#023e8a;
+            margin-top:15px;
+        }
+
+        p{
+            margin:10px 0;
+        }
+
+        ul{
+            margin-left:25px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:15px;
+        }
+
+        table,th,td{
+            border:1px solid #ccc;
+        }
+
+        th{
+            background:#0077b6;
+            color:white;
+            padding:10px;
+        }
+
+        td{
+            padding:10px;
+        }
+
+        pre{
+            background:#f1f1f1;
+            padding:15px;
+            border-left:5px solid #0077b6;
+            overflow-x:auto;
+        }
+
+        footer{
+            background:#023e8a;
+            color:white;
+            text-align:center;
+            padding:20px;
+            margin-top:30px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Day 24 – Functional Interfaces</h1>
+
+    <p>100 Days of Java with Ankitha 🚀</p>
+
+</header>
+
+<nav>
+
+    <a href="#objective">Objective</a>
+    <a href="#introduction">Introduction</a>
+    <a href="#functional">Functional Interface</a>
+    <a href="#rules">Rules</a>
+    <a href="#annotation">@FunctionalInterface</a>
+
+</nav>
+
+<section id="objective">
+
+    <h2>Objective</h2>
+
+    <p>
+
+        Learn the concept of Functional Interfaces in Java, understand
+        their rules, explore built-in functional interfaces, and implement
+        them using Lambda Expressions.
+
+    </p>
+
+</section>
+
+<section id="introduction">
+
+    <h2>Introduction</h2>
+
+    <p>
+
+        Functional Interfaces were introduced in Java 8 to support
+        Functional Programming. A Functional Interface contains exactly
+        one abstract method and serves as the foundation for Lambda
+        Expressions and Method References.
+
+    </p>
+
+    <p>
+
+        Java provides several built-in Functional Interfaces in the
+        <strong>java.util.function</strong> package, making it easier
+        to write clean, concise, and reusable code.
+
+    </p>
+
+</section>
+
+<section id="functional">
+
+    <h2>What is a Functional Interface?</h2>
+
+    <p>
+
+        A Functional Interface is an interface that contains exactly one
+        abstract method. It can also contain multiple default, static,
+        and private methods.
+
+    </p>
+
+    <h3>Example</h3>
+
+<pre>
+@FunctionalInterface
+interface Greeting {
+
+    void message();
+
+}
+</pre>
+
+    <p>
+
+        The interface above contains only one abstract method, making it
+        a Functional Interface.
+
+    </p>
+
+</section>
+
+<section id="rules">
+
+    <h2>Rules of Functional Interfaces</h2>
+
+    <ul>
+
+        <li>Must contain exactly one abstract method.</li>
+
+        <li>Can have multiple default methods.</li>
+
+        <li>Can have multiple static methods.</li>
+
+        <li>Can have private methods (Java 9+).</li>
+
+        <li>Can extend another interface if only one abstract method exists.</li>
+
+    </ul>
+
+</section>
+
+<section id="annotation">
+
+    <h2>@FunctionalInterface Annotation</h2>
+
+    <p>
+
+        The <strong>@FunctionalInterface</strong> annotation tells the
+        compiler that the interface should contain only one abstract method.
+
+    </p>
+
+<pre>
+@FunctionalInterface
+interface Greeting {
+
+    void message();
+
+}
+</pre>
+
+    <p>
+
+        If another abstract method is added, the compiler generates an
+        error, ensuring the interface remains functional.
+
+    </p>
+
+</section>
+<section id="builtin">
+
+    <h2>Built-in Functional Interfaces</h2>
+
+    <p>
+
+        Java provides several predefined Functional Interfaces in the
+        <strong>java.util.function</strong> package. These interfaces are
+        commonly used with Lambda Expressions and the Stream API.
+
+    </p>
+
+</section>
+
+<section id="predicate">
+
+    <h2>Predicate&lt;T&gt;</h2>
+
+    <p>
+
+        <strong>Predicate</strong> represents a condition. It accepts one
+        input and returns a boolean value (<code>true</code> or
+        <code>false</code>).
+
+    </p>
+
+    <h3>Syntax</h3>
+
+<pre>
+Predicate<Integer> even =
+number -> number % 2 == 0;
+</pre>
+
+    <h3>Example</h3>
+
+<pre>
+Predicate<Integer> even =
+number -> number % 2 == 0;
+
+System.out.println(even.test(10));
+System.out.println(even.test(15));
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+true
+false
+</pre>
+
+</section>
+
+<section id="function">
+
+    <h2>Function&lt;T, R&gt;</h2>
+
+    <p>
+
+        <strong>Function</strong> accepts one input, processes it, and
+        returns one output.
+
+    </p>
+
+    <h3>Syntax</h3>
+
+<pre>
+Function<Integer, Integer> square =
+number -> number * number;
+</pre>
+
+    <h3>Example</h3>
+
+<pre>
+Function<Integer, Integer> square =
+number -> number * number;
+
+System.out.println(square.apply(5));
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+25
+</pre>
+
+</section>
+
+<section id="consumer">
+
+    <h2>Consumer&lt;T&gt;</h2>
+
+    <p>
+
+        <strong>Consumer</strong> accepts one input but does not return
+        any value. It is generally used to perform operations such as
+        printing or updating data.
+
+    </p>
+
+    <h3>Syntax</h3>
+
+<pre>
+Consumer<String> print =
+name -> System.out.println(name);
+</pre>
+
+    <h3>Example</h3>
+
+<pre>
+Consumer<String> print =
+name -> System.out.println(name);
+
+print.accept("Ankitha");
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+Ankitha
+</pre>
+
+</section>
+
+<section id="supplier">
+
+    <h2>Supplier&lt;T&gt;</h2>
+
+    <p>
+
+        <strong>Supplier</strong> does not accept any input but returns
+        a value whenever requested.
+
+    </p>
+
+    <h3>Syntax</h3>
+
+<pre>
+Supplier<String> message =
+() -> "Welcome to Java";
+</pre>
+
+    <h3>Example</h3>
+
+<pre>
+Supplier<String> message =
+() -> "Welcome to Java";
+
+System.out.println(message.get());
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+Welcome to Java
+</pre>
+
+</section>
+
+<section id="workflow">
+
+    <h2>Program Workflow</h2>
+
+<pre>
+Create Functional Interface
+          │
+          ▼
+Implement Using Lambda Expression
+          │
+          ▼
+Call Abstract Method
+          │
+          ▼
+Execute Logic
+          │
+          ▼
+Display Output
+</pre>
+
+</section>
+
+<section id="custom">
+
+    <h2>Custom Functional Interface</h2>
+
+    <p>
+
+        Developers can create their own Functional Interfaces according
+        to application requirements.
+
+    </p>
+
+    <h3>Example</h3>
+
+<pre>
+@FunctionalInterface
+interface Addition {
+
+    int add(int a, int b);
+
+}
+
+Addition sum = (a, b) -> a + b;
+
+System.out.println(sum.add(10, 20));
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+30
+</pre>
+
+</section>
+<section id="advantages">
+
+    <h2>Advantages of Functional Interfaces</h2>
+
+    <ul>
+
+        <li>Reduces boilerplate code using Lambda Expressions.</li>
+
+        <li>Improves code readability and maintainability.</li>
+
+        <li>Supports Functional Programming in Java.</li>
+
+        <li>Works seamlessly with the Stream API.</li>
+
+        <li>Encourages reusable and modular code.</li>
+
+        <li>Simplifies Collection processing.</li>
+
+        <li>Improves developer productivity.</li>
+
+        <li>Widely used in modern Java frameworks like Spring Boot.</li>
+
+    </ul>
+
+</section>
+
+<section id="disadvantages">
+
+    <h2>Disadvantages of Functional Interfaces</h2>
+
+    <ul>
+
+        <li>Can contain only one abstract method.</li>
+
+        <li>May be confusing for beginners.</li>
+
+        <li>Debugging complex Lambda Expressions can be difficult.</li>
+
+        <li>Overusing Functional Interfaces may reduce code readability.</li>
+
+        <li>Not suitable when multiple abstract methods are required.</li>
+
+    </ul>
+
+</section>
+
+<section id="applications">
+
+    <h2>Real-Time Applications</h2>
+
+    <table>
+
+        <tr>
+
+            <th>Technology</th>
+
+            <th>Application</th>
+
+        </tr>
+
+        <tr>
+
+            <td>Collections Framework</td>
+
+            <td>Sorting, filtering, and iteration</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Stream API</td>
+
+            <td>Filtering, mapping, reducing, and data processing</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Spring Boot</td>
+
+            <td>Functional programming and event handling</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Multithreading</td>
+
+            <td>Runnable and ExecutorService implementations</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Data Validation</td>
+
+            <td>Predicate-based validation logic</td>
+
+        </tr>
+
+    </table>
+
+</section>
+
+<section id="comparison">
+
+    <h2>Functional Interface vs Normal Interface</h2>
+
+    <table>
+
+        <tr>
+
+            <th>Functional Interface</th>
+
+            <th>Normal Interface</th>
+
+        </tr>
+
+        <tr>
+
+            <td>Contains one abstract method</td>
+
+            <td>Can contain multiple abstract methods</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Supports Lambda Expressions</td>
+
+            <td>Does not directly support Lambda Expressions</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Introduced in Java 8</td>
+
+            <td>Available since Java 1.0</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Used in Functional Programming</td>
+
+            <td>Used in Object-Oriented Programming</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Usually annotated with @FunctionalInterface</td>
+
+            <td>No such annotation is required</td>
+
+        </tr>
+
+    </table>
+
+</section>
+
+<section id="best-practices">
+
+    <h2>Best Practices</h2>
+
+    <ul>
+
+        <li>Always use the <strong>@FunctionalInterface</strong> annotation.</li>
+
+        <li>Keep Functional Interfaces simple and focused.</li>
+
+        <li>Prefer built-in Functional Interfaces whenever possible.</li>
+
+        <li>Use meaningful method names.</li>
+
+        <li>Use Method References instead of Lambdas when they improve readability.</li>
+
+        <li>Avoid creating unnecessary custom Functional Interfaces.</li>
+
+        <li>Combine Functional Interfaces with the Stream API for cleaner code.</li>
+
+    </ul>
+
+</section>
+<section id="interview">
+
+    <h2>Interview Questions</h2>
+
+    <ol>
+
+        <li>What is a Functional Interface?</li>
+
+        <li>Why were Functional Interfaces introduced in Java 8?</li>
+
+        <li>What is the purpose of the <code>@FunctionalInterface</code> annotation?</li>
+
+        <li>Can a Functional Interface contain default methods?</li>
+
+        <li>Can a Functional Interface contain static methods?</li>
+
+        <li>Can a Functional Interface contain private methods?</li>
+
+        <li>What is the difference between a Functional Interface and a normal interface?</li>
+
+        <li>Explain the Predicate Functional Interface with an example.</li>
+
+        <li>Explain the Function Functional Interface with an example.</li>
+
+        <li>Explain the Consumer Functional Interface with an example.</li>
+
+        <li>Explain the Supplier Functional Interface with an example.</li>
+
+        <li>How do Lambda Expressions work with Functional Interfaces?</li>
+
+        <li>Where are Functional Interfaces used in real-world applications?</li>
+
+    </ol>
+
+</section>
+
+<section id="outcomes">
+
+    <h2>Learning Outcomes</h2>
+
+    <p>
+
+        After completing this project, you will be able to:
+
+    </p>
+
+    <ul>
+
+        <li>Understand the concept of Functional Interfaces.</li>
+
+        <li>Create custom Functional Interfaces.</li>
+
+        <li>Use the <strong>@FunctionalInterface</strong> annotation effectively.</li>
+
+        <li>Implement Functional Interfaces using Lambda Expressions.</li>
+
+        <li>Work with Predicate, Function, Consumer, and Supplier.</li>
+
+        <li>Apply Functional Interfaces in Collections and the Stream API.</li>
+
+        <li>Write cleaner and more maintainable Java code.</li>
+
+        <li>Answer Java 8 Functional Interface interview questions confidently.</li>
+
+    </ul>
+
+</section>
+
+<section id="conclusion">
+
+    <h2>Conclusion</h2>
+
+    <p>
+
+        Functional Interfaces are one of the most important features
+        introduced in Java 8. They simplify Java programming by enabling
+        Lambda Expressions and Method References, making code shorter,
+        cleaner, and easier to maintain.
+
+    </p>
+
+    <p>
+
+        Built-in Functional Interfaces such as
+        <strong>Predicate</strong>,
+        <strong>Function</strong>,
+        <strong>Consumer</strong>, and
+        <strong>Supplier</strong> are widely used in modern Java
+        applications, including the Stream API, Collections Framework,
+        Spring Boot, and enterprise software development.
+
+    </p>
+
+</section>
+
+<footer>
+
+    <h3>Day 24 – Functional Interfaces</h3>
+
+    <p>Part of the <strong>100 Days of Java with Ankitha</strong> 🚀</p>
+
+    <p>Made with ❤️ by Ankitha Bathina</p>
+
+</footer>
+
+</body>
+
+</html>
