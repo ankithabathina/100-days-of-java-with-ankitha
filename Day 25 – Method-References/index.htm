@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Day 25 - Method References</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+            background:#f4f7fb;
+            color:#333;
+            line-height:1.8;
+        }
+
+        header{
+            background:#0077b6;
+            color:white;
+            text-align:center;
+            padding:25px;
+        }
+
+        nav{
+            background:#023e8a;
+            padding:12px;
+            text-align:center;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin:15px;
+            font-weight:bold;
+        }
+
+        nav a:hover{
+            color:#ffd60a;
+        }
+
+        section{
+            background:white;
+            margin:20px;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h2{
+            color:#0077b6;
+            margin-bottom:10px;
+        }
+
+        h3{
+            color:#023e8a;
+            margin-top:15px;
+        }
+
+        p{
+            margin:10px 0;
+        }
+
+        ul{
+            margin-left:25px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:15px;
+        }
+
+        table,th,td{
+            border:1px solid #ccc;
+        }
+
+        th{
+            background:#0077b6;
+            color:white;
+            padding:10px;
+        }
+
+        td{
+            padding:10px;
+        }
+
+        pre{
+            background:#f1f1f1;
+            padding:15px;
+            border-left:5px solid #0077b6;
+            overflow-x:auto;
+        }
+
+        footer{
+            background:#023e8a;
+            color:white;
+            text-align:center;
+            padding:20px;
+            margin-top:30px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Day 25 – Method References</h1>
+
+    <p>100 Days of Java with Ankitha 🚀</p>
+
+</header>
+
+<nav>
+
+    <a href="#objective">Objective</a>
+    <a href="#introduction">Introduction</a>
+    <a href="#methodreference">Method Reference</a>
+    <a href="#syntax">Syntax</a>
+    <a href="#types">Types</a>
+
+</nav>
+
+<section id="objective">
+
+    <h2>Objective</h2>
+
+    <p>
+
+        Learn Method References in Java, understand their syntax,
+        explore the different types of Method References, and use them
+        to write cleaner and more readable code by replacing simple
+        Lambda Expressions.
+
+    </p>
+
+</section>
+
+<section id="introduction">
+
+    <h2>Introduction</h2>
+
+    <p>
+
+        Method References were introduced in Java 8 as a shorthand
+        notation for Lambda Expressions. They allow developers to
+        reference existing methods using the <strong>::</strong> operator
+        instead of writing repetitive Lambda code.
+
+    </p>
+
+    <p>
+
+        Method References improve readability, reduce boilerplate code,
+        and work seamlessly with Functional Interfaces and the Stream API.
+
+    </p>
+
+</section>
+
+<section id="methodreference">
+
+    <h2>What is a Method Reference?</h2>
+
+    <p>
+
+        A Method Reference is a compact way of referring to an existing
+        method without invoking it directly. It is used when a Lambda
+        Expression simply calls an existing method.
+
+    </p>
+
+    <h3>Example</h3>
+
+<pre>
+names.forEach(System.out::println);
+</pre>
+
+    <p>
+
+        The above Method Reference is equivalent to the following
+        Lambda Expression:
+
+    </p>
+
+<pre>
+names.forEach(name -> System.out.println(name));
+</pre>
+
+</section>
+
+<section id="syntax">
+
+    <h2>Syntax</h2>
+
+<pre>
+ClassName::methodName
+</pre>
+
+<pre>
+objectReference::methodName
+</pre>
+
+<pre>
+ClassName::new
+</pre>
+
+</section>
+
+<section id="types">
+
+    <h2>Types of Method References</h2>
+
+    <ul>
+
+        <li>Static Method Reference</li>
+
+        <li>Instance Method Reference</li>
+
+        <li>Instance Method of an Arbitrary Object</li>
+
+        <li>Constructor Reference</li>
+
+    </ul>
+
+</section>
