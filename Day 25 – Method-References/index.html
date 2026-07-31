@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Day 25 - Method References</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+            background:#f4f7fb;
+            color:#333;
+            line-height:1.8;
+        }
+
+        header{
+            background:#0077b6;
+            color:white;
+            text-align:center;
+            padding:25px;
+        }
+
+        nav{
+            background:#023e8a;
+            padding:12px;
+            text-align:center;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin:15px;
+            font-weight:bold;
+        }
+
+        nav a:hover{
+            color:#ffd60a;
+        }
+
+        section{
+            background:white;
+            margin:20px;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h2{
+            color:#0077b6;
+            margin-bottom:10px;
+        }
+
+        h3{
+            color:#023e8a;
+            margin-top:15px;
+        }
+
+        p{
+            margin:10px 0;
+        }
+
+        ul{
+            margin-left:25px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:15px;
+        }
+
+        table,th,td{
+            border:1px solid #ccc;
+        }
+
+        th{
+            background:#0077b6;
+            color:white;
+            padding:10px;
+        }
+
+        td{
+            padding:10px;
+        }
+
+        pre{
+            background:#f1f1f1;
+            padding:15px;
+            border-left:5px solid #0077b6;
+            overflow-x:auto;
+        }
+
+        footer{
+            background:#023e8a;
+            color:white;
+            text-align:center;
+            padding:20px;
+            margin-top:30px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Day 25 – Method References</h1>
+
+    <p>100 Days of Java with Ankitha 🚀</p>
+
+</header>
+
+<nav>
+
+    <a href="#objective">Objective</a>
+    <a href="#introduction">Introduction</a>
+    <a href="#methodreference">Method Reference</a>
+    <a href="#syntax">Syntax</a>
+    <a href="#types">Types</a>
+
+</nav>
+
+<section id="objective">
+
+    <h2>Objective</h2>
+
+    <p>
+
+        Learn Method References in Java, understand their syntax,
+        explore the different types of Method References, and use them
+        to write cleaner and more readable code by replacing simple
+        Lambda Expressions.
+
+    </p>
+
+</section>
+
+<section id="introduction">
+
+    <h2>Introduction</h2>
+
+    <p>
+
+        Method References were introduced in Java 8 as a shorthand
+        notation for Lambda Expressions. They allow developers to
+        reference existing methods using the <strong>::</strong> operator
+        instead of writing repetitive Lambda code.
+
+    </p>
+
+    <p>
+
+        Method References improve readability, reduce boilerplate code,
+        and work seamlessly with Functional Interfaces and the Stream API.
+
+    </p>
+
+</section>
+
+<section id="methodreference">
+
+    <h2>What is a Method Reference?</h2>
+
+    <p>
+
+        A Method Reference is a compact way of referring to an existing
+        method without invoking it directly. It is used when a Lambda
+        Expression simply calls an existing method.
+
+    </p>
+
+    <h3>Example</h3>
+
+<pre>
+names.forEach(System.out::println);
+</pre>
+
+    <p>
+
+        The above Method Reference is equivalent to the following
+        Lambda Expression:
+
+    </p>
+
+<pre>
+names.forEach(name -> System.out.println(name));
+</pre>
+
+</section>
+
+<section id="syntax">
+
+    <h2>Syntax</h2>
+
+<pre>
+ClassName::methodName
+</pre>
+
+<pre>
+objectReference::methodName
+</pre>
+
+<pre>
+ClassName::new
+</pre>
+
+</section>
+
+<section id="types">
+
+    <h2>Types of Method References</h2>
+
+    <ul>
+
+        <li>Static Method Reference</li>
+
+        <li>Instance Method Reference</li>
+
+        <li>Instance Method of an Arbitrary Object</li>
+
+        <li>Constructor Reference</li>
+
+    </ul>
+
+</section>
+    <section id="static">
+
+    <h2>1. Static Method Reference</h2>
+
+    <p>
+
+        A Static Method Reference refers to a static method of a class.
+        It is used when the required method is declared as <strong>static</strong>.
+
+    </p>
+
+    <h3>Syntax</h3>
+
+<pre>
+ClassName::staticMethod
+</pre>
+
+    <h3>Example</h3>
+
+<pre>
+class MathOperations {
+
+    public static int square(int number) {
+        return number * number;
+    }
+
+}
+
+Function&lt;Integer, Integer&gt; square =
+MathOperations::square;
+
+System.out.println(square.apply(5));
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+25
+</pre>
+
+</section>
+
+<section id="instance">
+
+    <h2>2. Instance Method Reference</h2>
+
+    <p>
+
+        An Instance Method Reference refers to a method of a specific object.
+        The object must already exist before using the Method Reference.
+
+    </p>
+
+    <h3>Syntax</h3>
+
+<pre>
+objectReference::methodName
+</pre>
+
+    <h3>Example</h3>
+
+<pre>
+Printer printer = new Printer();
+
+Consumer&lt;String&gt; print =
+printer::display;
+
+print.accept("Hello Java");
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+Hello Java
+</pre>
+
+</section>
+
+<section id="arbitrary">
+
+    <h2>3. Instance Method of an Arbitrary Object</h2>
+
+    <p>
+
+        This type of Method Reference refers to an instance method of any
+        object of a particular class. It is commonly used with Collections
+        and the Stream API.
+
+    </p>
+
+    <h3>Syntax</h3>
+
+<pre>
+ClassName::instanceMethod
+</pre>
+
+    <h3>Example</h3>
+
+<pre>
+List&lt;String&gt; names =
+Arrays.asList("java","spring","github");
+
+names.stream()
+     .map(String::toUpperCase)
+     .forEach(System.out::println);
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+JAVA
+SPRING
+GITHUB
+</pre>
+
+</section>
+
+<section id="constructor">
+
+    <h2>4. Constructor Reference</h2>
+
+    <p>
+
+        A Constructor Reference is used to create objects by referring
+        directly to a constructor instead of using a Lambda Expression.
+
+    </p>
+
+    <h3>Syntax</h3>
+
+<pre>
+ClassName::new
+</pre>
+
+    <h3>Example</h3>
+
+<pre>
+Supplier&lt;Student&gt; student =
+Student::new;
+
+student.get();
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+Student Object Created
+</pre>
+
+</section>
+
+<section id="workflow">
+
+    <h2>Program Workflow</h2>
+
+<pre>
+Functional Interface
+          │
+          ▼
+Method Reference
+          │
+          ▼
+Invoke Existing Method
+          │
+          ▼
+Execute Method
+          │
+          ▼
+Display Output
+</pre>
+
+</section>
+<section id="comparison">
+
+    <h2>Method Reference vs Lambda Expression</h2>
+
+    <table>
+
+        <tr>
+
+            <th>Method Reference</th>
+
+            <th>Lambda Expression</th>
+
+        </tr>
+
+        <tr>
+
+            <td>Uses the <strong>::</strong> operator.</td>
+
+            <td>Uses the <strong>-></strong> operator.</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Shorter and cleaner syntax.</td>
+
+            <td>Requires more code.</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Refers to an existing method.</td>
+
+            <td>Can contain custom logic.</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Improves readability.</td>
+
+            <td>Suitable for complex operations.</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Cannot replace every Lambda Expression.</td>
+
+            <td>Can be used in all Functional Interface implementations.</td>
+
+        </tr>
+
+    </table>
+
+</section>
+
+<section id="advantages">
+
+    <h2>Advantages of Method References</h2>
+
+    <ul>
+
+        <li>Reduces boilerplate code.</li>
+
+        <li>Improves code readability.</li>
+
+        <li>Makes programs easier to maintain.</li>
+
+        <li>Works seamlessly with Functional Interfaces.</li>
+
+        <li>Reduces unnecessary Lambda Expressions.</li>
+
+        <li>Improves code reusability.</li>
+
+        <li>Frequently used with Stream API and Collections.</li>
+
+        <li>Encourages cleaner programming practices.</li>
+
+    </ul>
+
+</section>
+
+<section id="disadvantages">
+
+    <h2>Disadvantages of Method References</h2>
+
+    <ul>
+
+        <li>Cannot replace every Lambda Expression.</li>
+
+        <li>Requires an existing method with a matching signature.</li>
+
+        <li>Less flexible for custom business logic.</li>
+
+        <li>May confuse beginners unfamiliar with the <strong>::</strong> operator.</li>
+
+    </ul>
+
+</section>
+
+<section id="applications">
+
+    <h2>Real-Time Applications</h2>
+
+    <table>
+
+        <tr>
+
+            <th>Technology</th>
+
+            <th>Usage</th>
+
+        </tr>
+
+        <tr>
+
+            <td>Collections Framework</td>
+
+            <td>Sorting and Iteration</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Stream API</td>
+
+            <td>map(), filter(), forEach()</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Comparator</td>
+
+            <td>Custom Object Sorting</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Spring Boot</td>
+
+            <td>Functional Programming</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Event Handling</td>
+
+            <td>Callback Method Invocation</td>
+
+        </tr>
+
+    </table>
+
+</section>
+
+<section id="best-practices">
+
+    <h2>Best Practices</h2>
+
+    <ul>
+
+        <li>Use Method References only when they improve readability.</li>
+
+        <li>Prefer Method References over simple Lambda Expressions.</li>
+
+        <li>Use meaningful method names.</li>
+
+        <li>Choose Constructor References for object creation when appropriate.</li>
+
+        <li>Combine Method References with Stream API for cleaner code.</li>
+
+        <li>Avoid replacing complex Lambda Expressions with Method References.</li>
+
+        <li>Use Functional Interfaces to maximize the benefits of Method References.</li>
+
+    </ul>
+
+</section>
+<section id="interview">
+
+    <h2>Interview Questions</h2>
+
+    <ol>
+
+        <li>What is a Method Reference in Java?</li>
+
+        <li>Why were Method References introduced in Java 8?</li>
+
+        <li>What operator is used for Method References?</li>
+
+        <li>What is the difference between a Method Reference and a Lambda Expression?</li>
+
+        <li>What are the four types of Method References?</li>
+
+        <li>Explain Static Method Reference with an example.</li>
+
+        <li>Explain Instance Method Reference with an example.</li>
+
+        <li>What is an Instance Method of an Arbitrary Object?</li>
+
+        <li>What is a Constructor Reference?</li>
+
+        <li>Can every Lambda Expression be replaced with a Method Reference? Why or why not?</li>
+
+        <li>How are Method References used with Functional Interfaces?</li>
+
+        <li>Where are Method References used in the Stream API?</li>
+
+        <li>What are the advantages of Method References?</li>
+
+    </ol>
+
+</section>
+
+<section id="outcomes">
+
+    <h2>Learning Outcomes</h2>
+
+    <p>
+
+        After completing this project, you will be able to:
+
+    </p>
+
+    <ul>
+
+        <li>Understand the concept of Method References.</li>
+
+        <li>Use the <strong>::</strong> operator correctly.</li>
+
+        <li>Differentiate Method References from Lambda Expressions.</li>
+
+        <li>Implement all four types of Method References.</li>
+
+        <li>Use Method References with Functional Interfaces.</li>
+
+        <li>Apply Method References in Collections and the Stream API.</li>
+
+        <li>Write cleaner, more readable Java code.</li>
+
+        <li>Answer Java 8 Method Reference interview questions confidently.</li>
+
+    </ul>
+
+</section>
+
+<section id="conclusion">
+
+    <h2>Conclusion</h2>
+
+    <p>
+
+        Method References provide a concise and elegant way to refer to
+        existing methods in Java. Introduced in Java 8, they reduce
+        boilerplate code and improve readability by replacing simple
+        Lambda Expressions with a cleaner syntax.
+
+    </p>
+
+    <p>
+
+        They work seamlessly with Functional Interfaces, the Stream API,
+        and the Collections Framework, making them an essential feature
+        for modern Java development. Mastering Method References helps
+        developers write cleaner, more maintainable, and professional
+        Java applications.
+
+    </p>
+
+</section>
+
+<footer>
+
+    <h3>Day 25 – Method References</h3>
+
+    <p>Part of the <strong>100 Days of Java with Ankitha</strong> 🚀</p>
+
+    <p>Made with ❤️ by Ankitha Bathina</p>
+
+</footer>
+
+</body>
+
+</html>
