@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Day 26 - Stream API</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+            line-height:1.8;
+            background:#f4f7fb;
+            color:#333;
+        }
+
+        header{
+            background:#0077b6;
+            color:white;
+            text-align:center;
+            padding:30px;
+        }
+
+        nav{
+            background:#023e8a;
+            padding:15px;
+            text-align:center;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin:12px;
+            font-weight:bold;
+        }
+
+        nav a:hover{
+            color:#ffd60a;
+        }
+
+        section{
+            background:white;
+            margin:20px;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h2{
+            color:#0077b6;
+            margin-bottom:10px;
+        }
+
+        h3{
+            color:#023e8a;
+            margin-top:15px;
+        }
+
+        p{
+            margin:10px 0;
+        }
+
+        ul{
+            margin-left:25px;
+        }
+
+        pre{
+            background:#f1f1f1;
+            padding:15px;
+            border-left:5px solid #0077b6;
+            overflow-x:auto;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:15px;
+        }
+
+        table,th,td{
+            border:1px solid #ccc;
+        }
+
+        th{
+            background:#0077b6;
+            color:white;
+            padding:10px;
+        }
+
+        td{
+            padding:10px;
+        }
+
+        footer{
+            background:#023e8a;
+            color:white;
+            text-align:center;
+            padding:20px;
+            margin-top:30px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>Day 26 – Stream API</h1>
+
+    <p>100 Days of Java with Ankitha 🚀</p>
+
+</header>
+
+<nav>
+
+    <a href="#objective">Objective</a>
+    <a href="#introduction">Introduction</a>
+    <a href="#stream">Stream API</a>
+    <a href="#features">Features</a>
+    <a href="#creation">Creating Streams</a>
+
+</nav>
+
+<section id="objective">
+
+    <h2>Objective</h2>
+
+    <p>
+
+        Learn the Java Stream API and understand how to process collections
+        efficiently using functional programming concepts. Explore stream
+        creation, intermediate operations, terminal operations, and real-world
+        applications.
+
+    </p>
+
+</section>
+
+<section id="introduction">
+
+    <h2>Introduction</h2>
+
+    <p>
+
+        The Stream API was introduced in Java 8 to simplify collection
+        processing. It allows developers to perform complex data operations
+        using concise and readable code without modifying the original
+        collection.
+
+    </p>
+
+    <p>
+
+        Stream API works seamlessly with Lambda Expressions, Method
+        References, and Functional Interfaces to improve productivity
+        and code maintainability.
+
+    </p>
+
+</section>
+
+<section id="stream">
+
+    <h2>What is Stream API?</h2>
+
+    <p>
+
+        A Stream is a sequence of elements that supports various operations
+        such as filtering, mapping, sorting, searching, and collecting data.
+        Unlike collections, a Stream does not store data; it processes data
+        from a source like a List, Set, or Array.
+
+    </p>
+
+    <h3>Syntax</h3>
+
+<pre>
+collection.stream()
+          .operation()
+          .terminalOperation();
+</pre>
+
+</section>
+
+<section id="features">
+
+    <h2>Features of Stream API</h2>
+
+    <ul>
+
+        <li>Introduced in Java 8.</li>
+
+        <li>Supports Functional Programming.</li>
+
+        <li>Uses Lambda Expressions.</li>
+
+        <li>Supports Method References.</li>
+
+        <li>Processes data without modifying the original collection.</li>
+
+        <li>Supports Sequential and Parallel Streams.</li>
+
+        <li>Improves code readability and maintainability.</li>
+
+    </ul>
+
+</section>
+
+<section id="creation">
+
+    <h2>Creating a Stream</h2>
+
+    <p>
+
+        Streams can be created from collections, arrays, or the Stream class.
+
+    </p>
+
+<pre>
+List<Integer> numbers =
+Arrays.asList(10,20,30,40,50);
+
+numbers.stream()
+       .forEach(System.out::println);
+</pre>
+  <section id="intermediate">
+
+    <h2>Intermediate Operations</h2>
+
+    <p>
+
+        Intermediate operations return another Stream and are executed
+        only when a terminal operation is called. They help transform,
+        filter, and process data.
+
+    </p>
+
+</section>
+
+<section id="filter">
+
+    <h2>filter()</h2>
+
+    <p>
+
+        The <strong>filter()</strong> method returns only the elements
+        that satisfy the given condition.
+
+    </p>
+
+    <h3>Example</h3>
+
+<pre>
+numbers.stream()
+       .filter(number -> number > 20)
+       .forEach(System.out::println);
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+30
+40
+50
+30
+</pre>
+
+</section>
+
+<section id="map">
+
+    <h2>map()</h2>
+
+    <p>
+
+        The <strong>map()</strong> method transforms each element into
+        another form and returns a new Stream.
+
+    </p>
+
+    <h3>Example</h3>
+
+<pre>
+numbers.stream()
+       .map(number -> number * number)
+       .forEach(System.out::println);
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+100
+400
+900
+1600
+2500
+900
+400
+</pre>
+
+</section>
+
+<section id="sorted">
+
+    <h2>sorted()</h2>
+
+    <p>
+
+        The <strong>sorted()</strong> method sorts the elements in
+        ascending order.
+
+    </p>
+
+    <h3>Example</h3>
+
+<pre>
+numbers.stream()
+       .sorted()
+       .forEach(System.out::println);
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+10
+20
+20
+30
+30
+40
+50
+</pre>
+
+</section>
+
+<section id="distinct">
+
+    <h2>distinct()</h2>
+
+    <p>
+
+        The <strong>distinct()</strong> method removes duplicate elements
+        from the Stream.
+
+    </p>
+
+    <h3>Example</h3>
+
+<pre>
+numbers.stream()
+       .distinct()
+       .forEach(System.out::println);
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+10
+20
+30
+40
+50
+</pre>
+
+</section>
+
+<section id="limit">
+
+    <h2>limit()</h2>
+
+    <p>
+
+        The <strong>limit()</strong> method returns only the specified
+        number of elements from the beginning of the Stream.
+
+    </p>
+
+    <h3>Example</h3>
+
+<pre>
+numbers.stream()
+       .limit(3)
+       .forEach(System.out::println);
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+10
+20
+30
+</pre>
+
+</section>
+
+<section id="skip">
+
+    <h2>skip()</h2>
+
+    <p>
+
+        The <strong>skip()</strong> method skips the specified number of
+        elements from the beginning of the Stream.
+
+    </p>
+
+    <h3>Example</h3>
+
+<pre>
+numbers.stream()
+       .skip(2)
+       .forEach(System.out::println);
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+30
+40
+50
+30
+20
+</pre>
+
+</section>
+  <section id="terminal">
+
+    <h2>Terminal Operations</h2>
+
+    <p>
+
+        Terminal operations produce the final result and terminate the
+        Stream. Once a terminal operation is executed, the Stream cannot
+        be reused.
+
+    </p>
+
+</section>
+
+<section id="foreach">
+
+    <h2>forEach()</h2>
+
+    <p>
+
+        The <strong>forEach()</strong> method performs an action on every
+        element of the Stream.
+
+    </p>
+
+<pre>
+numbers.stream()
+       .forEach(System.out::println);
+</pre>
+
+</section>
+
+<section id="collect">
+
+    <h2>collect()</h2>
+
+    <p>
+
+        The <strong>collect()</strong> method collects Stream elements into
+        a Collection such as a List or Set.
+
+    </p>
+
+<pre>
+List<Integer> result =
+numbers.stream()
+       .filter(number -> number > 20)
+       .collect(Collectors.toList());
+
+System.out.println(result);
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+[30, 40, 50, 30]
+</pre>
+
+</section>
+
+<section id="count">
+
+    <h2>count()</h2>
+
+    <p>
+
+        The <strong>count()</strong> method returns the total number of
+        elements in the Stream.
+
+    </p>
+
+<pre>
+long count =
+numbers.stream().count();
+
+System.out.println(count);
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+7
+</pre>
+
+</section>
+
+<section id="minmax">
+
+    <h2>min() and max()</h2>
+
+    <p>
+
+        These methods return the minimum and maximum elements from
+        the Stream.
+
+    </p>
+
+<pre>
+Optional<Integer> minimum =
+numbers.stream().min(Integer::compareTo);
+
+Optional<Integer> maximum =
+numbers.stream().max(Integer::compareTo);
+
+System.out.println(minimum.get());
+System.out.println(maximum.get());
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+10
+50
+</pre>
+
+</section>
+
+<section id="findfirst">
+
+    <h2>findFirst()</h2>
+
+    <p>
+
+        The <strong>findFirst()</strong> method returns the first element
+        of the Stream wrapped inside an Optional object.
+
+    </p>
+
+<pre>
+Optional<Integer> first =
+numbers.stream().findFirst();
+
+System.out.println(first.get());
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+10
+</pre>
+
+</section>
+
+<section id="match">
+
+    <h2>Matching Operations</h2>
+
+    <h3>anyMatch()</h3>
+
+<pre>
+boolean result =
+numbers.stream()
+       .anyMatch(number -> number > 45);
+
+System.out.println(result);
+</pre>
+
+<pre>
+true
+</pre>
+
+    <h3>allMatch()</h3>
+
+<pre>
+boolean result =
+numbers.stream()
+       .allMatch(number -> number > 5);
+
+System.out.println(result);
+</pre>
+
+<pre>
+true
+</pre>
+
+    <h3>noneMatch()</h3>
+
+<pre>
+boolean result =
+numbers.stream()
+       .noneMatch(number -> number < 0);
+
+System.out.println(result);
+</pre>
+
+<pre>
+true
+</pre>
+
+</section>
+
+<section id="advantages">
+
+    <h2>Advantages of Stream API</h2>
+
+    <ul>
+
+        <li>Reduces boilerplate code.</li>
+
+        <li>Improves code readability.</li>
+
+        <li>Supports Functional Programming.</li>
+
+        <li>Processes collections efficiently.</li>
+
+        <li>Supports parallel processing.</li>
+
+        <li>Works seamlessly with Lambda Expressions.</li>
+
+        <li>Does not modify the original collection.</li>
+
+    </ul>
+
+</section>
+
+<section id="disadvantages">
+
+    <h2>Disadvantages of Stream API</h2>
+
+    <ul>
+
+        <li>Cannot reuse a Stream after a terminal operation.</li>
+
+        <li>Debugging complex Stream pipelines can be difficult.</li>
+
+        <li>May not improve performance for small datasets.</li>
+
+        <li>Requires understanding of functional programming concepts.</li>
+
+    </ul>
+
+</section>
+
+<section id="applications">
+
+    <h2>Real-Time Applications</h2>
+
+    <table>
+
+        <tr>
+
+            <th>Application</th>
+
+            <th>Usage</th>
+
+        </tr>
+
+        <tr>
+
+            <td>Spring Boot</td>
+
+            <td>Processing collections and REST API data</td>
+
+        </tr>
+
+        <tr>
+
+            <td>E-Commerce</td>
+
+            <td>Product filtering and sorting</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Employee Management</td>
+
+            <td>Searching, filtering, and grouping employees</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Report Generation</td>
+
+            <td>Data aggregation and transformation</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Collections Framework</td>
+
+            <td>Sorting, filtering, and mapping data</td>
+
+        </tr>
+
+    </table>
+
+</section>
+  <section id="terminal">
+
+    <h2>Terminal Operations</h2>
+
+    <p>
+
+        Terminal operations produce the final result and terminate the
+        Stream. Once a terminal operation is executed, the Stream cannot
+        be reused.
+
+    </p>
+
+</section>
+
+<section id="foreach">
+
+    <h2>forEach()</h2>
+
+    <p>
+
+        The <strong>forEach()</strong> method performs an action on every
+        element of the Stream.
+
+    </p>
+
+<pre>
+numbers.stream()
+       .forEach(System.out::println);
+</pre>
+
+</section>
+
+<section id="collect">
+
+    <h2>collect()</h2>
+
+    <p>
+
+        The <strong>collect()</strong> method collects Stream elements into
+        a Collection such as a List or Set.
+
+    </p>
+
+<pre>
+List<Integer> result =
+numbers.stream()
+       .filter(number -> number > 20)
+       .collect(Collectors.toList());
+
+System.out.println(result);
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+[30, 40, 50, 30]
+</pre>
+
+</section>
+
+<section id="count">
+
+    <h2>count()</h2>
+
+    <p>
+
+        The <strong>count()</strong> method returns the total number of
+        elements in the Stream.
+
+    </p>
+
+<pre>
+long count =
+numbers.stream().count();
+
+System.out.println(count);
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+7
+</pre>
+
+</section>
+
+<section id="minmax">
+
+    <h2>min() and max()</h2>
+
+    <p>
+
+        These methods return the minimum and maximum elements from
+        the Stream.
+
+    </p>
+
+<pre>
+Optional<Integer> minimum =
+numbers.stream().min(Integer::compareTo);
+
+Optional<Integer> maximum =
+numbers.stream().max(Integer::compareTo);
+
+System.out.println(minimum.get());
+System.out.println(maximum.get());
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+10
+50
+</pre>
+
+</section>
+
+<section id="findfirst">
+
+    <h2>findFirst()</h2>
+
+    <p>
+
+        The <strong>findFirst()</strong> method returns the first element
+        of the Stream wrapped inside an Optional object.
+
+    </p>
+
+<pre>
+Optional<Integer> first =
+numbers.stream().findFirst();
+
+System.out.println(first.get());
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+10
+</pre>
+
+</section>
+
+<section id="match">
+
+    <h2>Matching Operations</h2>
+
+    <h3>anyMatch()</h3>
+
+<pre>
+boolean result =
+numbers.stream()
+       .anyMatch(number -> number > 45);
+
+System.out.println(result);
+</pre>
+
+<pre>
+true
+</pre>
+
+    <h3>allMatch()</h3>
+
+<pre>
+boolean result =
+numbers.stream()
+       .allMatch(number -> number > 5);
+
+System.out.println(result);
+</pre>
+
+<pre>
+true
+</pre>
+
+    <h3>noneMatch()</h3>
+
+<pre>
+boolean result =
+numbers.stream()
+       .noneMatch(number -> number < 0);
+
+System.out.println(result);
+</pre>
+
+<pre>
+true
+</pre>
+
+</section>
+
+<section id="advantages">
+
+    <h2>Advantages of Stream API</h2>
+
+    <ul>
+
+        <li>Reduces boilerplate code.</li>
+
+        <li>Improves code readability.</li>
+
+        <li>Supports Functional Programming.</li>
+
+        <li>Processes collections efficiently.</li>
+
+        <li>Supports parallel processing.</li>
+
+        <li>Works seamlessly with Lambda Expressions.</li>
+
+        <li>Does not modify the original collection.</li>
+
+    </ul>
+
+</section>
+
+<section id="disadvantages">
+
+    <h2>Disadvantages of Stream API</h2>
+
+    <ul>
+
+        <li>Cannot reuse a Stream after a terminal operation.</li>
+
+        <li>Debugging complex Stream pipelines can be difficult.</li>
+
+        <li>May not improve performance for small datasets.</li>
+
+        <li>Requires understanding of functional programming concepts.</li>
+
+    </ul>
+
+</section>
+
+<section id="applications">
+
+    <h2>Real-Time Applications</h2>
+
+    <table>
+
+        <tr>
+
+            <th>Application</th>
+
+            <th>Usage</th>
+
+        </tr>
+
+        <tr>
+
+            <td>Spring Boot</td>
+
+            <td>Processing collections and REST API data</td>
+
+        </tr>
+
+        <tr>
+
+            <td>E-Commerce</td>
+
+            <td>Product filtering and sorting</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Employee Management</td>
+
+            <td>Searching, filtering, and grouping employees</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Report Generation</td>
+
+            <td>Data aggregation and transformation</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Collections Framework</td>
+
+            <td>Sorting, filtering, and mapping data</td>
+
+        </tr>
+
+    </table>
+
+</section>
+  <section id="terminal">
+
+    <h2>Terminal Operations</h2>
+
+    <p>
+
+        Terminal operations produce the final result and terminate the
+        Stream. Once a terminal operation is executed, the Stream cannot
+        be reused.
+
+    </p>
+
+</section>
+
+<section id="foreach">
+
+    <h2>forEach()</h2>
+
+    <p>
+
+        The <strong>forEach()</strong> method performs an action on every
+        element of the Stream.
+
+    </p>
+
+<pre>
+numbers.stream()
+       .forEach(System.out::println);
+</pre>
+
+</section>
+
+<section id="collect">
+
+    <h2>collect()</h2>
+
+    <p>
+
+        The <strong>collect()</strong> method collects Stream elements into
+        a Collection such as a List or Set.
+
+    </p>
+
+<pre>
+List<Integer> result =
+numbers.stream()
+       .filter(number -> number > 20)
+       .collect(Collectors.toList());
+
+System.out.println(result);
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+[30, 40, 50, 30]
+</pre>
+
+</section>
+
+<section id="count">
+
+    <h2>count()</h2>
+
+    <p>
+
+        The <strong>count()</strong> method returns the total number of
+        elements in the Stream.
+
+    </p>
+
+<pre>
+long count =
+numbers.stream().count();
+
+System.out.println(count);
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+7
+</pre>
+
+</section>
+
+<section id="minmax">
+
+    <h2>min() and max()</h2>
+
+    <p>
+
+        These methods return the minimum and maximum elements from
+        the Stream.
+
+    </p>
+
+<pre>
+Optional<Integer> minimum =
+numbers.stream().min(Integer::compareTo);
+
+Optional<Integer> maximum =
+numbers.stream().max(Integer::compareTo);
+
+System.out.println(minimum.get());
+System.out.println(maximum.get());
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+10
+50
+</pre>
+
+</section>
+
+<section id="findfirst">
+
+    <h2>findFirst()</h2>
+
+    <p>
+
+        The <strong>findFirst()</strong> method returns the first element
+        of the Stream wrapped inside an Optional object.
+
+    </p>
+
+<pre>
+Optional<Integer> first =
+numbers.stream().findFirst();
+
+System.out.println(first.get());
+</pre>
+
+    <h3>Output</h3>
+
+<pre>
+10
+</pre>
+
+</section>
+
+<section id="match">
+
+    <h2>Matching Operations</h2>
+
+    <h3>anyMatch()</h3>
+
+<pre>
+boolean result =
+numbers.stream()
+       .anyMatch(number -> number > 45);
+
+System.out.println(result);
+</pre>
+
+<pre>
+true
+</pre>
+
+    <h3>allMatch()</h3>
+
+<pre>
+boolean result =
+numbers.stream()
+       .allMatch(number -> number > 5);
+
+System.out.println(result);
+</pre>
+
+<pre>
+true
+</pre>
+
+    <h3>noneMatch()</h3>
+
+<pre>
+boolean result =
+numbers.stream()
+       .noneMatch(number -> number < 0);
+
+System.out.println(result);
+</pre>
+
+<pre>
+true
+</pre>
+
+</section>
+
+<section id="advantages">
+
+    <h2>Advantages of Stream API</h2>
+
+    <ul>
+
+        <li>Reduces boilerplate code.</li>
+
+        <li>Improves code readability.</li>
+
+        <li>Supports Functional Programming.</li>
+
+        <li>Processes collections efficiently.</li>
+
+        <li>Supports parallel processing.</li>
+
+        <li>Works seamlessly with Lambda Expressions.</li>
+
+        <li>Does not modify the original collection.</li>
+
+    </ul>
+
+</section>
+
+<section id="disadvantages">
+
+    <h2>Disadvantages of Stream API</h2>
+
+    <ul>
+
+        <li>Cannot reuse a Stream after a terminal operation.</li>
+
+        <li>Debugging complex Stream pipelines can be difficult.</li>
+
+        <li>May not improve performance for small datasets.</li>
+
+        <li>Requires understanding of functional programming concepts.</li>
+
+    </ul>
+
+</section>
+
+<section id="applications">
+
+    <h2>Real-Time Applications</h2>
+
+    <table>
+
+        <tr>
+
+            <th>Application</th>
+
+            <th>Usage</th>
+
+        </tr>
+
+        <tr>
+
+            <td>Spring Boot</td>
+
+            <td>Processing collections and REST API data</td>
+
+        </tr>
+
+        <tr>
+
+            <td>E-Commerce</td>
+
+            <td>Product filtering and sorting</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Employee Management</td>
+
+            <td>Searching, filtering, and grouping employees</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Report Generation</td>
+
+            <td>Data aggregation and transformation</td>
+
+        </tr>
+
+        <tr>
+
+            <td>Collections Framework</td>
+
+            <td>Sorting, filtering, and mapping data</td>
+
+        </tr>
+
+    </table>
+
+</section>
+
+</section>
